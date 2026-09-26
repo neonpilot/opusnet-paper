@@ -1,0 +1,52 @@
+name: live-prices
+# Marks the OPUSNET *paper* account to market with Yahoo prices during US regular hours.
+# Writes live.json to the dedicated `live` branch (force-pushed single commit), so it never
+# conflicts with the daily routine that pushes index.html/data.json to main, and it doesn't
+# trigger a Pages rebuild. The page reads it from raw.githubusercontent.com.
+on:
+  schedule:
+    - cron: "*/15 13-21 * * 1-5"   # UTC; covers 09:30-16:00 New York in both EDT and EST
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: live-prices
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements-live.txt
+      - run: pip install -r scripts/requirements-live.txt
+      - name: Fetch prices and mark paper account
+        id: mark
+        run: |
+          mkdir -p /tmp/out
+          git fetch --depth=1 origin live:refs/remotes/origin/live 2>/dev/null && git show origin/live:live.json > /tmp/prev.json 2>/dev/null || echo '{}' > /tmp/prev.json
+          set +e
+          python scripts/live_prices.py data.json /tmp/out/live.json /tmp/prev.json
+          rc=$?
+          set -e
+          if [ $rc -eq 3 ]; then echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ $rc -ne 0 ]; then exit $rc; fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      - name: Publish live.json to the live branch
+        if: steps.mark.outputs.changed == 'true'
+        run: |
+          git config user.name "opusnet-live-bot"
+          git config user.email "opusnet-live-bot@users.noreply.github.com"
+          git checkout --orphan live-tmp
+          git rm -rfq --cached . && git clean -fdxq -e .git
+          cp /tmp/out/live.json live.json
+          git add live.json
+          git commit -qm "live prices $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -f origin HEAD:refs/heads/live
