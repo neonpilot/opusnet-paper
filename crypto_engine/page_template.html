@@ -320,7 +320,7 @@ function renderLive(){
   $('sPnl2').textContent=`${a?a.n_fills:0} PAPER FILLS`;
   $('vClk').textContent=perth(now,{hour:'2-digit',minute:'2-digit',second:'2-digit'});
   const nd=L?new Date(L.next_decision_utc):null;
-  $('sClk1').textContent=`CRYPTO MARKET 24/7 · NEXT DECISION ${nd?hm(nd):'08:17'} AWST`;
+  $('sClk1').textContent=`CRYPTO MARKET 24/7 · NEXT DECISION ${nd?perth(nd,{weekday:'short',hour:'2-digit',minute:'2-digit'}).toUpperCase():'08:17'} AWST`;
   const age=L?(now-new Date(L.generated_utc))/60000:null;
   $('sClk2').textContent=age!=null?(age>130?`FEED STALE ${Math.round(age)} MIN`:'AWST · PERTH'):'AWST · PERTH';
 }
@@ -352,7 +352,7 @@ function liveStatic(){
   const dres=new Date(R.generated_at), nd=new Date(L.next_decision_utc), nowD=new Date(), nextRun=new Date(nowD.getTime());nextRun.setUTCMinutes(17,0,0);if(nextRun<=nowD)nextRun.setUTCHours(nextRun.getUTCHours()+1);
   const items=[[opened?hm(opened):'—',opened?'account opened '+dshort(perth(opened,{year:'numeric',month:'2-digit',day:'2-digit'}).split('/').reverse().join('-')):'account'],[hm(dres),`gates · N=${R.n_trials_total}`],
     [dec?dshort(dec.bar_date):'—',dec?'last decision':'no decision yet'],[lh?hm(lh):'—','last candle close'],[L.generated_awst.slice(11),'last update'],
-    [hm(nextRun),'next hourly run'],[hm(nd),'next decision']];
+    [hm(nextRun),'next hourly run'],[hm(nd),'next decision '+perth(nd,{weekday:'short'}).toLowerCase()]];
   timeline(items,4);$('tlh').textContent='Session / live 24/7';
 }
 function start0(){return L?L.account.start_capital:1000}
