@@ -1,0 +1,65 @@
+{
+ "label": "crypto-aggr-live",
+ "mode": "live",
+ "start_capital": 1000.0,
+ "cash": 1000.0,
+ "positions": {},
+ "targets": {
+  "SOL": 0.5,
+  "LINK": 0.5
+ },
+ "pending": [
+  {
+   "sym": "LINK",
+   "side": "BUY",
+   "qty": 34.95281370150297,
+   "target_weight": 0.5,
+   "ref_close": 14.305,
+   "created_at": "2026-09-27T07:40:00Z",
+   "reason": "BTC 84,433 is ABOVE its 100d SMA 69,536 (+21.4%) -> regime ON; hold LINK 50% + SOL 50% (top-2 by 90d return, selection refreshed 2026-09-21 from closes to 2026-09-20: LINK +59%, SOL +55%, ETH +53%, ADA +44%)"
+  },
+  {
+   "sym": "SOL",
+   "side": "BUY",
+   "qty": 4.120992334954257,
+   "target_weight": 0.5,
+   "ref_close": 121.33,
+   "created_at": "2026-09-27T07:40:00Z",
+   "reason": "BTC 84,433 is ABOVE its 100d SMA 69,536 (+21.4%) -> regime ON; hold LINK 50% + SOL 50% (top-2 by 90d return, selection refreshed 2026-09-21 from closes to 2026-09-20: LINK +59%, SOL +55%, ETH +53%, ADA +44%)"
+  }
+ ],
+ "peak_equity": 1000.0,
+ "halted": false,
+ "halt_reasons": [],
+ "last_hour": "2026-09-27T06:00:00Z",
+ "last_daily_bar": "2026-09-26",
+ "last_px": {
+  "BTC": 84511.69,
+  "ETH": 2707.25,
+  "BNB": 774.85,
+  "XRP": 1.5214,
+  "ADA": 0.2553,
+  "SOL": 121.33,
+  "DOGE": 0.09697,
+  "LTC": 72.0,
+  "LINK": 14.305
+ },
+ "opened_at": "2026-09-27T07:40:00Z",
+ "n_fills": 0,
+ "costs_paid": 0.0,
+ "seq": 2,
+ "last_equity": 1000.0,
+ "strategy": "mom_top2_1x",
+ "risk_rules": {
+  "leverage": 1.0,
+  "kill_max_drawdown_from_peak": 0.6,
+  "kill_24h_loss": null,
+  "stale_data_flatten": false,
+  "reset": "manual only: delete crypto/state_aggr/HALTED on crypto-state (creating that file halts it)",
+  "costs_bps_one_way": {
+   "BTC": 15,
+   "ETH": 15,
+   "others": 20
+  }
+ }
+}
