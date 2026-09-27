@@ -40,9 +40,16 @@ def cost(sym):
 
 class CryptoLedger:
     def __init__(self, directory: Path | None = None, mode="live", label="", start_capital=C.START_CAPITAL,
-                 opened_at=None):
+                 opened_at=None, kill_max_dd=C.KILL_MAX_DRAWDOWN, kill_24h=C.KILL_24H_LOSS, rebalance="band",
+                 min_trade_usd=1.0):
+        """kill_max_dd / kill_24h: None disables that rule. rebalance: "band" (original account: trade only when
+        the TARGET weight moves > RESIZE_BAND) or "exact" (aggressive account: every decision is a complete
+        target portfolio; holdings are traded back to it, pending orders are replaced, trades < min_trade_usd
+        skipped)."""
         self.dir = Path(directory) if directory else None
         self.mode, self.label = mode, label
+        self.kill_max_dd, self.kill_24h = kill_max_dd, kill_24h
+        self.rebalance, self.min_trade_usd = rebalance, min_trade_usd
         self.new_journal, self.new_equity = [], []
         if self.dir and (self.dir / "state.json").exists():
             self.state = json.loads((self.dir / "state.json").read_text())
@@ -141,6 +148,8 @@ class CryptoLedger:
         st["pending"] = still
 
     def _orders(self, target: dict, eq: float, px: dict, created_at, reason: str):
+        if self.rebalance == "exact":
+            return self._orders_exact(target, eq, px, created_at, reason)
         st, orders = self.state, []
         prev = st["targets"]
         for s in sorted(set(target) | set(prev) | set(st["positions"])):
@@ -162,6 +171,26 @@ class CryptoLedger:
                                    "ref_close": p, "created_at": iso(created_at), "reason": reason + " (resize)"})
         return orders
 
+    def _orders_exact(self, target: dict, eq: float, px: dict, created_at, reason: str):
+        st, orders = self.state, []
+        for s in sorted(set(target) | set(st["positions"])):
+            tw = float(target.get(s, 0.0))
+            held = st["positions"].get(s, 0.0)
+            p = float(px.get(s, np.nan))
+            if not np.isfinite(p) or p <= 0:
+                continue
+            base = {"target_weight": tw, "ref_close": p, "created_at": iso(created_at)}
+            if tw <= 0:
+                if held > 0:
+                    orders.append({"sym": s, "side": "SELL", "qty": held, "close_all": True, **base, "reason": reason})
+                continue
+            dq = tw * eq / p - held
+            if abs(dq * p) < self.min_trade_usd:
+                continue
+            orders.append({"sym": s, "side": "BUY" if dq > 0 else "SELL", "qty": abs(dq), **base,
+                           "reason": reason + (" (rebalance)" if held > 0 else "")})
+        return orders
+
     def process_hour(self, t, opens: dict, closes: dict, decide=None, decision_time=None, extra_health=None):
         """t = open time (UTC-naive) of a COMPLETED hourly candle."""
         st = self.state
@@ -180,12 +209,12 @@ class CryptoLedger:
         st["last_equity"] = eq
         hist = self.eq_hist if len(self.eq_hist) > 24 else \
             pd.concat([pd.Series([st["start_capital"]]), self.eq_hist]).reset_index(drop=True)
-        hc = health_check(hist)
+        hc = health_check(hist, max_dd=self.kill_max_dd, loss_24h=self.kill_24h)
         dd = eq / st["peak_equity"] - 1
         hc["drawdown"] = dd
         hc["reasons"] = [r for r in hc["reasons"] if not r.startswith("drawdown")]
-        if dd <= -C.KILL_MAX_DRAWDOWN:
-            hc["reasons"].insert(0, f"drawdown {dd:.2%} from peak ${st['peak_equity']:.2f} breached the -{C.KILL_MAX_DRAWDOWN:.0%} limit")
+        if self.kill_max_dd is not None and dd <= -self.kill_max_dd:
+            hc["reasons"].insert(0, f"drawdown {dd:.2%} from peak ${st['peak_equity']:.2f} breached the -{self.kill_max_dd:.0%} limit")
         if extra_health:
             hc["reasons"] += extra_health
         hc["ok"] = not hc["reasons"]
@@ -222,7 +251,10 @@ class CryptoLedger:
                 else:
                     target, rat = decide(D)
                     orders = self._orders(target, eq, st["last_px"], when, rat.get("summary", ""))
-                    st["pending"] = [o for o in st["pending"] if o["sym"] not in {x["sym"] for x in orders}] + orders
+                    if self.rebalance == "exact":      # a decision is a complete portfolio: replace all pending
+                        st["pending"] = orders
+                    else:
+                        st["pending"] = [o for o in st["pending"] if o["sym"] not in {x["sym"] for x in orders}] + orders
                     st["targets"] = {k: float(v) for k, v in target.items() if v > 0}
                     self.log("DECISION", close_t, {"bar_date": str(D.date()), "action": rat.get("action"),
                                                    "target_weights": {k: round(float(v), 4) for k, v in target.items() if v > 0},

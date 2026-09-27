@@ -113,16 +113,22 @@ def size_at_entry(signal: pd.DataFrame, bars) -> pd.DataFrame:
     return w.mul((C.MAX_GROSS / gross).where(gross > C.MAX_GROSS, 1.0), axis=0)
 
 
-def health_check(equity: pd.Series, hours_per_day=24) -> dict:
+_DEFAULT = object()
+
+
+def health_check(equity: pd.Series, hours_per_day=24, max_dd=_DEFAULT, loss_24h=_DEFAULT) -> dict:
+    """max_dd / loss_24h default to the config limits; pass None to disable a rule (aggressive account)."""
+    max_dd = C.KILL_MAX_DRAWDOWN if max_dd is _DEFAULT else max_dd
+    loss_24h = C.KILL_24H_LOSS if loss_24h is _DEFAULT else loss_24h
     eq = equity.dropna()
     reasons = []
     dd = float(eq.iloc[-1] / eq.cummax().iloc[-1] - 1) if len(eq) else 0.0
     l24 = float(eq.iloc[-1] / eq.iloc[-1 - hours_per_day] - 1) if len(eq) > hours_per_day else \
         (float(eq.iloc[-1] / eq.iloc[0] - 1) if len(eq) > 1 else 0.0)
-    if dd <= -C.KILL_MAX_DRAWDOWN:
-        reasons.append(f"drawdown {dd:.2%} breached the -{C.KILL_MAX_DRAWDOWN:.0%} limit")
-    if l24 <= -C.KILL_24H_LOSS:
-        reasons.append(f"24h loss {l24:.2%} breached the -{C.KILL_24H_LOSS:.0%} limit")
+    if max_dd is not None and dd <= -max_dd:
+        reasons.append(f"drawdown {dd:.2%} breached the -{max_dd:.0%} limit")
+    if loss_24h is not None and l24 <= -loss_24h:
+        reasons.append(f"24h loss {l24:.2%} breached the -{loss_24h:.0%} limit")
     return {"ok": not reasons, "reasons": reasons, "drawdown": dd, "loss_24h": l24}
 
 

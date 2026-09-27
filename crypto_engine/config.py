@@ -52,3 +52,38 @@ APPROVAL_RULE = ("A strategy is approved for paper trading only if it passes G1 
                  "(walk-forward OOS Sharpe >= 0.30 and >= 55% of OOS half-years profitable) AND its OOS "
                  "Sharpe beats a buy-and-hold BTC position sized by the same 1%-risk / 20%-cap rules over "
                  "the same OOS days. Among qualifiers the highest DSR wins. If none qualify: 100% cash (USD).")
+
+# =====================================================================================================
+# AGGRESSIVE PAPER ACCOUNT #3: mom_top2_1x (declared 2026-09-27, Perth time; paper only, simulated money)
+# Signal copied verbatim from /workspace/aggressive/backtest.py (trial #12 of PREREGISTRATION.md):
+#   every 7 days (days since 2018-01-01 divisible by 7, i.e. Mondays) pick the 2 coins with the highest
+#   90-day close-to-close return (coins with >= 100 days of history), 50/50; hold them only while BTC's
+#   daily close is above its 100-day SMA (checked daily); otherwise 100% cash. All inputs are closes up
+#   to day t-1; the position for day t is decided after the 00:00 UTC close and, in the live ledger,
+#   fills at the next hourly open after the run (never backdated). Rebalanced to exact target weights at
+#   every daily decision (the backtest rebalances daily). Spot only: no leverage, no shorts, no borrowing.
+# =====================================================================================================
+AGGR_NAME = "mom_top2_1x"
+AGGR_TITLE = "AGGRESSIVE: TOP-2 MOMENTUM, paper"
+AGGR_TOP_K = 2
+AGGR_LOOKBACK_DAYS = 90
+AGGR_SMA_DAYS = 100
+AGGR_MIN_HISTORY_DAYS = 100
+AGGR_REFRESH_DAYS = 7
+AGGR_REFRESH_ANCHOR = "2018-01-01"          # a Monday -> selection refreshes for Monday's position
+AGGR_LEVERAGE = 1.0                         # declared rule: no leverage, ever
+AGGR_MIN_TRADE_USD = 1.0                    # ignore rebalancing trades below $1 notional (dust)
+# Declared risk rule: the ONLY automatic kill switch is a catastrophic-drawdown hard stop. If hourly
+# marked equity falls 60% or more below its running peak, cancel pending orders, flatten everything at
+# the next hourly open and stay in cash until a human deletes crypto/state_aggr/HALTED on crypto-state.
+# (Backtest max drawdown 2019-2026 was -64%, so this stop would have fired once in that history.)
+# Deliberately NO 24h-loss switch (a 4%/24h move is ordinary for a 2-coin book) and NO stale-data
+# flatten (missed hours are caught up on the next run; stale data is flagged on the page instead).
+AGGR_KILL_MAX_DRAWDOWN = 0.60
+AGGR_KILL_24H_LOSS = None
+AGGR_DATA_DAYS = 500                        # daily history fetched per decision (>= 90 + 100 + slack)
+AGGR_STATE_SUBDIR = "crypto/state_aggr"     # on the crypto-state branch
+AGGR_PAGE_DIR = REPO / "crypto-aggressive"
+AGGR_BACKTEST = {"source": "/workspace/aggressive (PREREGISTRATION.md, RESULTS.md, results_full.json)",
+                 "cagr_2019_on": 1.072, "cagr_2022_on": 0.302, "max_drawdown": -0.637, "year_2021": 9.432,
+                 "final_1000_from_2025_09_26": 1077.46, "n_trials_total": 44}
