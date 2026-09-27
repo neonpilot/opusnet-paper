@@ -2,53 +2,37 @@
  "label": "crypto-aggr-live",
  "mode": "live",
  "start_capital": 1000.0,
- "cash": 1000.0,
- "positions": {},
+ "cash": 4.94166840780963e-07,
+ "positions": {
+  "LINK": 34.95281370150297,
+  "SOL": 3.9730967794407497
+ },
  "targets": {
   "SOL": 0.5,
   "LINK": 0.5
  },
- "pending": [
-  {
-   "sym": "LINK",
-   "side": "BUY",
-   "qty": 34.95281370150297,
-   "target_weight": 0.5,
-   "ref_close": 14.305,
-   "created_at": "2026-09-27T07:40:00Z",
-   "reason": "BTC 84,433 is ABOVE its 100d SMA 69,536 (+21.4%) -> regime ON; hold LINK 50% + SOL 50% (top-2 by 90d return, selection refreshed 2026-09-21 from closes to 2026-09-20: LINK +59%, SOL +55%, ETH +53%, ADA +44%)"
-  },
-  {
-   "sym": "SOL",
-   "side": "BUY",
-   "qty": 4.120992334954257,
-   "target_weight": 0.5,
-   "ref_close": 121.33,
-   "created_at": "2026-09-27T07:40:00Z",
-   "reason": "BTC 84,433 is ABOVE its 100d SMA 69,536 (+21.4%) -> regime ON; hold LINK 50% + SOL 50% (top-2 by 90d return, selection refreshed 2026-09-21 from closes to 2026-09-20: LINK +59%, SOL +55%, ETH +53%, ADA +44%)"
-  }
- ],
+ "pending": [],
  "peak_equity": 1000.0,
  "halted": false,
  "halt_reasons": [],
- "last_hour": "2026-09-27T07:00:00Z",
+ "last_hour": "2026-09-27T09:00:00Z",
  "last_daily_bar": "2026-09-26",
  "last_px": {
-  "BTC": 84791.0,
-  "ETH": 2718.27,
-  "BNB": 778.55,
-  "XRP": 1.5389,
-  "ADA": 0.258,
-  "SOL": 124.12,
-  "DOGE": 0.09811,
-  "LTC": 72.1,
-  "LINK": 14.443
+  "BTC": 84944.01,
+  "ETH": 2716.15,
+  "BNB": 780.05,
+  "XRP": 1.5387,
+  "ADA": 0.2563,
+  "SOL": 124.47,
+  "DOGE": 0.09799,
+  "LTC": 71.92,
+  "LINK": 14.347
  },
  "opened_at": "2026-09-27T07:40:00Z",
- "n_fills": 0,
- "costs_paid": 0.0,
- "seq": 2,
- "last_equity": 1000.0,
+ "n_fills": 2,
+ "costs_paid": 1.9960079830455753,
+ "seq": 4,
+ "last_equity": 995.9993748066202,
  "strategy": "mom_top2_1x",
  "risk_rules": {
   "leverage": 1.0,
@@ -65,7 +49,7 @@
  "last_health": {
   "ok": true,
   "reasons": [],
-  "drawdown": 0.0,
-  "loss_24h": 0.0
+  "drawdown": -0.0040006251933798476,
+  "loss_24h": -0.0040006251933798476
  }
 }
