@@ -2,134 +2,33 @@
  "label": "crypto-live",
  "mode": "live",
  "start_capital": 1000.0,
- "cash": 2.669310804359469,
- "positions": {
-  "ADA": 247.37741961805204,
-  "BNB": 0.1644444071483527,
-  "BTC": 0.0015066668039654372,
-  "DOGE": 1212.9716548489453,
-  "ETH": 0.04252256533284917,
-  "LINK": 6.604792556660282,
-  "LTC": 1.7527218093950698,
-  "SOL": 0.9326581203054863,
-  "XRP": 76.52052768696284
- },
+ "cash": 957.3480843627304,
+ "positions": {},
  "targets": {},
- "pending": [
-  {
-   "sym": "ADA",
-   "side": "SELL",
-   "qty": 247.37741961805204,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 0.2536,
-   "created_at": "2026-10-07T12:20:16Z",
-   "reason": "KILL SWITCH: flatten"
-  },
-  {
-   "sym": "BNB",
-   "side": "SELL",
-   "qty": 0.1644444071483527,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 767.85,
-   "created_at": "2026-10-07T12:20:16Z",
-   "reason": "KILL SWITCH: flatten"
-  },
-  {
-   "sym": "BTC",
-   "side": "SELL",
-   "qty": 0.0015066668039654372,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 83740.15,
-   "created_at": "2026-10-07T12:20:16Z",
-   "reason": "KILL SWITCH: flatten"
-  },
-  {
-   "sym": "DOGE",
-   "side": "SELL",
-   "qty": 1212.9716548489453,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 0.08889,
-   "created_at": "2026-10-07T12:20:16Z",
-   "reason": "KILL SWITCH: flatten"
-  },
-  {
-   "sym": "ETH",
-   "side": "SELL",
-   "qty": 0.04252256533284917,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 2578.94,
-   "created_at": "2026-10-07T12:20:16Z",
-   "reason": "KILL SWITCH: flatten"
-  },
-  {
-   "sym": "LINK",
-   "side": "SELL",
-   "qty": 6.604792556660282,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 13.383,
-   "created_at": "2026-10-07T12:20:16Z",
-   "reason": "KILL SWITCH: flatten"
-  },
-  {
-   "sym": "LTC",
-   "side": "SELL",
-   "qty": 1.7527218093950698,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 66.98,
-   "created_at": "2026-10-07T12:20:16Z",
-   "reason": "KILL SWITCH: flatten"
-  },
-  {
-   "sym": "SOL",
-   "side": "SELL",
-   "qty": 0.9326581203054863,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 117.34,
-   "created_at": "2026-10-07T12:20:16Z",
-   "reason": "KILL SWITCH: flatten"
-  },
-  {
-   "sym": "XRP",
-   "side": "SELL",
-   "qty": 76.52052768696284,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 1.4471,
-   "created_at": "2026-10-07T12:20:16Z",
-   "reason": "KILL SWITCH: flatten"
-  }
- ],
+ "pending": [],
  "peak_equity": 1012.1483532537674,
  "halted": true,
  "halt_reasons": [
   "24h loss -4.49% breached the -4% limit"
  ],
- "last_hour": "2026-10-07T11:00:00Z",
+ "last_hour": "2026-10-07T13:00:00Z",
  "last_daily_bar": "2026-10-06",
  "last_px": {
-  "BTC": 83740.15,
-  "ETH": 2578.94,
-  "BNB": 767.85,
-  "XRP": 1.4471,
-  "ADA": 0.2536,
-  "SOL": 117.34,
-  "DOGE": 0.08889,
-  "LTC": 66.98,
-  "LINK": 13.383
+  "BTC": 83192.01,
+  "ETH": 2569.44,
+  "BNB": 767.63,
+  "XRP": 1.4337,
+  "ADA": 0.254,
+  "SOL": 116.21,
+  "DOGE": 0.08857,
+  "LTC": 66.84,
+  "LINK": 13.426
  },
  "opened_at": "2026-09-26T23:11:49Z",
- "n_fills": 9,
- "costs_paid": 1.870143505809585,
- "seq": 22,
- "last_equity": 961.2857666829832,
+ "n_fills": 18,
+ "costs_paid": 3.6654902393585083,
+ "seq": 31,
+ "last_equity": 957.3480843627304,
  "btc_scan": {
   "dates": [
    "2026-07-09",
@@ -412,9 +311,9 @@
  "last_health": {
   "ok": false,
   "reasons": [
-   "24h loss -4.49% breached the -4% limit"
+   "24h loss -4.78% breached the -4% limit"
   ],
-  "drawdown": -0.05025210623252563,
-  "loss_24h": -0.04488636862568396
+  "drawdown": -0.05414252635482708,
+  "loss_24h": -0.0477532917029585
  }
 }
