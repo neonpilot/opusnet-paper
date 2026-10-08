@@ -15,8 +15,12 @@ from .decisions import Decider, load_research
 from .ledger import CryptoLedger, H, iso
 
 
-def run_ledger(hourly, decider, t0, enforce_kill=True, label="replay"):
-    L = CryptoLedger(None, mode="replay", label=label, opened_at=t0)
+def run_ledger(hourly, decider, t0, enforce_kill=True, label="replay", kill_24h=C.KILL_24H_LOSS,
+               auto_reenable_hours=C.KILL_24H_COOLOFF_HOURS):
+    """Defaults = the CURRENT official rules (24h switch changed 2026-10-08: >10%, 72h auto re-enable).
+    kill_24h=0.04, auto_reenable_hours=None reproduces the original pre-registered rule."""
+    L = CryptoLedger(None, mode="replay", label=label, opened_at=t0, kill_24h=kill_24h,
+                     auto_reenable_hours=auto_reenable_hours)
     L.enforce_kill = enforce_kill
     L.log("ACCOUNT_OPENED", t0, {"start_capital": C.START_CAPITAL, "note": "replay of the official rules"})
     snaps = []
@@ -55,16 +59,33 @@ def daily_frames(L, snaps):
     return frames
 
 
+def _arg(name):
+    return sys.argv[sys.argv.index(name) + 1] if name in sys.argv else None
+
+
 def main():
+    """python -m crypto_engine.replay [--no-refresh] [--end-hour YYYY-MM-DDTHH:00]
+    --end-hour pins the window (last processed hourly candle open, UTC) so a rule change can be compared on
+    exactly the same days as an earlier replay; daily bars are truncated to the last daily candle that had
+    closed by then."""
     R = load_research()
-    daily = load("1d", refresh="--no-refresh" not in sys.argv)
-    hourly = load("1h", hours_back=(C.REPLAY_DAYS + 3) * 24, refresh="--no-refresh" not in sys.argv)
+    end_hour = pd.Timestamp(_arg("--end-hour")) if _arg("--end-hour") else None
+    refresh = "--no-refresh" not in sys.argv
+    daily = load("1d", refresh=refresh)
+    back = (C.REPLAY_DAYS + 3) * 24 + (int((pd.Timestamp.now(tz="UTC").tz_localize(None) - end_hour) / H) + 48
+                                       if end_hour is not None else 0)
+    hourly = load("1h", hours_back=back, refresh=refresh)
+    if end_hour is not None:
+        hourly = hourly.truncate(end_hour)
+        daily = daily.truncate(end_hour.normalize() - pd.Timedelta(days=1) if end_hour.hour < 23 else end_hour.normalize())
     last_daily = daily.index[-1]
     D0 = last_daily - pd.Timedelta(days=C.REPLAY_DAYS - 1)
     t0 = D0 - H                     # the 23:00 UTC candle of the day before D0: first decision on its close
     dec = Decider(daily, R)
     L, snaps = run_ledger(hourly, dec, t0)
     Ls, snaps_s = run_ledger(hourly, dec, t0, enforce_kill=False, label="shadow-no-kill")
+    Lo, snaps_o = run_ledger(hourly, dec, t0, label="original-4pct-manual", kill_24h=C.KILL_24H_LOSS_ORIGINAL,
+                             auto_reenable_hours=None)
     frames = daily_frames(L, snaps)
     frames_s = daily_frames(Ls, snaps_s)
 
@@ -90,6 +111,7 @@ def main():
     fills = [j for j in L.journal if j["kind"] == "FILL"]
     decs = [j for j in L.journal if j["kind"] == "DECISION"]
     kills = [j for j in L.journal if j["kind"] == "KILL_SWITCH"]
+    reen = [j for j in L.journal if j["kind"] == "KILL_SWITCH_AUTO_REENABLE"]
     eq = [s["e"] for s in snaps]
     out = {"generated_at": pd.Timestamp.now(tz="Australia/Perth").isoformat(timespec="seconds"),
            "strategy": R["approved_strategy"], "research_run": R["run_id"], "start_capital": C.START_CAPITAL,
@@ -97,13 +119,25 @@ def main():
            "total_return": eq[-1] / C.START_CAPITAL - 1,
            "max_drawdown_hourly": float(min(np.array(eq) / np.maximum.accumulate(eq) - 1)),
            "n_fills": len(fills), "n_decisions": len(decs), "costs_paid": L.state["costs_paid"],
-           "halted": L.state["halted"], "kill_switch_events": kills, "final_positions": L.summary()["positions"],
+           "halted": L.state["halted"], "halt_kind": L.state.get("halt_kind"),
+           "rule": {"kill_24h_loss": C.KILL_24H_LOSS, "cooloff_hours": C.KILL_24H_COOLOFF_HOURS,
+                    "kill_max_drawdown": C.KILL_MAX_DRAWDOWN, "changed_on": C.KILL_RULE_CHANGED_ON,
+                    "note": "24h-loss switch changed 2026-10-08 after the live halt of 2026-10-07 (was 4%, manual reset)"},
+           "n_kill_switch_trips": len(kills),
+           "n_auto_halts": sum(1 for k in kills if k.get("halt_kind") == "auto"),
+           "n_auto_reenables": len(reen), "auto_reenable_events": reen, "kill_switch_events": kills, "final_positions": L.summary()["positions"],
            "pending_at_end": L.state["pending"],
            "btc_buy_hold_same_window": float(hourly.close["BTC"].iloc[-1] / hourly.open["BTC"].loc[t0 + H] - 1),
            "shadow_no_kill": {"final_equity": snaps_s[-1]["e"], "total_return": snaps_s[-1]["e"] / C.START_CAPITAL - 1,
                               "max_drawdown_hourly": float(min(np.array([s['e'] for s in snaps_s]) /
                                                                np.maximum.accumulate([s['e'] for s in snaps_s]) - 1)),
                               "n_fills": Ls.state["n_fills"]},
+           "original_rule_4pct_manual": {"final_equity": snaps_o[-1]["e"], "total_return": snaps_o[-1]["e"] / C.START_CAPITAL - 1,
+                                         "max_drawdown_hourly": float(min(np.array([s['e'] for s in snaps_o]) /
+                                                                          np.maximum.accumulate([s['e'] for s in snaps_o]) - 1)),
+                                         "n_fills": Lo.state["n_fills"], "halted_at_end": Lo.state["halted"],
+                                         "kill_switch_events": [{k: j[k] for k in ("ts_utc", "ts_awst", "reasons", "equity")}
+                                                                for j in Lo.journal if j["kind"] == "KILL_SWITCH"]},
            "cross_check": xc, "frames": frames, "frames_shadow": frames_s, "journal": L.journal,
            "journal_shadow_tail": Ls.journal[-40:]}
     C.RESULTS_DIR.mkdir(parents=True, exist_ok=True)

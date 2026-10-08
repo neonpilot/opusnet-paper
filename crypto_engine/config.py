@@ -27,8 +27,22 @@ MAX_POSITION = 0.20
 MAX_GROSS = 1.00
 STOP_ATR_MULT = 2.0
 ATR_WINDOW = 20
-KILL_MAX_DRAWDOWN = 0.10      # halt + flatten if equity < 90% of peak
-KILL_24H_LOSS = 0.04          # ... or loses >4% over any rolling 24 hours
+KILL_MAX_DRAWDOWN = 0.10      # halt + flatten if equity < 90% of peak (manual reset: delete crypto/state/HALTED)
+# ---- 24h-loss switch of the BTC trend account: CHANGED 2026-10-08 (Perth), AFTER SEEING A LIVE HALT ----
+# Pre-registered rule (2026-09-27): halt + flatten if the account lost >= 4% over a rolling 24h, manual reset
+# only. It tripped live at 2026-10-07 12:00 UTC (20:00 AWST) at -4.49% (equity ~$961) and flattened the
+# basket. On 2026-10-08 the operator (Harley) replaced it with the rule below. This is a post-hoc change made
+# after seeing that halt and the 2025-26 replay (where 4% tripped on 2026-08-23 and cost ~$194 vs ignoring
+# it); it is declared as a new trial in registry/CHANGELOG.md. 10% and 72h were fixed BEFORE re-running the
+# replay with them and must not be tuned on it.
+#   New rule: if the 24h loss EXCEEDS 10%, cancel pending orders, flatten at the next hourly open (same
+#   mechanics as before) and stay in cash for a 72h cooling-off; then re-enable automatically (state.json
+#   records halted_at_utc / reenable_at_utc) and let the trend filter act at its next daily decision.
+#   A HALTED file created by hand is a manual halt and is never auto-cleared.
+KILL_24H_LOSS = 0.10              # declared 2026-10-08: halt if the rolling-24h loss exceeds 10%
+KILL_24H_COOLOFF_HOURS = 72       # declared 2026-10-08: automatic re-enable 72h after the halt was acted on
+KILL_24H_LOSS_ORIGINAL = 0.04     # the pre-registered value (2026-09-27 .. 2026-10-08), kept for the record
+KILL_RULE_CHANGED_ON = "2026-10-08"
 STALE_HOURS = 6               # ... or the newest completed hourly candle is >6h old (live only)
 RESIZE_BAND = 0.005           # ledger re-trades an asset only if its target weight moves >0.5% of equity
 ORDER_DELAY_MIN = 17          # workflow runs at :17 -> decisions are made 17 min after the bar close

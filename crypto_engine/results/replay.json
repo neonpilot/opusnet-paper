@@ -1,29 +1,41 @@
 {
- "generated_at": "2026-09-27T07:11:19+08:00",
+ "generated_at": "2026-10-08T08:44:54+08:00",
  "strategy": "c_btc_regime",
  "research_run": "20260927-070706-8d03",
  "start_capital": 1000.0,
  "first_hour_utc": "2025-09-25T23:00:00Z",
  "last_hour_utc": "2026-09-26T22:00:00Z",
- "final_equity": 1083.8261735183326,
- "total_return": 0.08382617351833255,
- "max_drawdown_hourly": -0.08166537739067126,
+ "final_equity": 1059.0247664787232,
+ "total_return": 0.05902476647872312,
+ "max_drawdown_hourly": -0.10267980879157035,
  "n_fills": 48,
  "n_decisions": 366,
- "costs_paid": 9.575493904081226,
+ "costs_paid": 9.524295993784651,
  "halted": true,
+ "halt_kind": "manual",
+ "rule": {
+  "kill_24h_loss": 0.1,
+  "cooloff_hours": 72,
+  "kill_max_drawdown": 0.1,
+  "changed_on": "2026-10-08",
+  "note": "24h-loss switch changed 2026-10-08 after the live halt of 2026-10-07 (was 4%, manual reset)"
+ },
+ "n_kill_switch_trips": 1,
+ "n_auto_halts": 0,
+ "n_auto_reenables": 0,
+ "auto_reenable_events": [],
  "kill_switch_events": [
   {
-   "seq": 373,
-   "ts_utc": "2026-08-23T04:00:00Z",
-   "ts_awst": "2026-08-23 12:00",
+   "seq": 381,
+   "ts_utc": "2026-08-31T02:00:00Z",
+   "ts_awst": "2026-08-31 10:00",
    "mode": "replay",
    "account": "replay",
    "kind": "KILL_SWITCH",
    "reasons": [
-    "24h loss -4.90% breached the -4% limit"
+    "drawdown -10.12% from peak $1180.21 breached the -10% limit"
    ],
-   "equity": 1098.6488370404381,
+   "equity": 1060.8028040025536,
    "orders": [
     {
      "sym": "ADA",
@@ -31,8 +43,8 @@
      "qty": 324.6660003616415,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 0.2195,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 0.1926,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -41,8 +53,8 @@
      "qty": 0.19598648776432218,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 689.31,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 683.0,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -51,8 +63,8 @@
      "qty": 0.001773762939744821,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 76927.87,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 77640.94,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -61,8 +73,8 @@
      "qty": 1511.5963733651633,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 0.09111,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 0.0816,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -71,8 +83,8 @@
      "qty": 0.049202445624790876,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 2413.98,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 2412.95,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -81,8 +93,8 @@
      "qty": 8.555967784679973,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 11.456,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 11.087,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -91,8 +103,8 @@
      "qty": 2.6278521567732867,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 51.22,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 47.98,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -101,8 +113,8 @@
      "qty": 1.2821463817450989,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 93.7,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 101.52,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -111,11 +123,14 @@
      "qty": 99.38928977084001,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 1.4749,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 1.3434,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     }
-   ]
+   ],
+   "halt_kind": "manual",
+   "halted_at_utc": "2026-08-31T02:17:00Z",
+   "reenable_at_utc": null
   }
  ],
  "final_positions": [],
@@ -126,6 +141,23 @@
   "total_return": 0.2775465220109872,
   "max_drawdown_hourly": -0.11336903639385798,
   "n_fills": 39
+ },
+ "original_rule_4pct_manual": {
+  "final_equity": 1083.8261735183326,
+  "total_return": 0.08382617351833255,
+  "max_drawdown_hourly": -0.08166537739067126,
+  "n_fills": 48,
+  "halted_at_end": true,
+  "kill_switch_events": [
+   {
+    "ts_utc": "2026-08-23T04:00:00Z",
+    "ts_awst": "2026-08-23 12:00",
+    "reasons": [
+     "24h loss -4.90% breached the -4% limit"
+    ],
+    "equity": 1098.6488370404381
+   }
+  ]
  },
  "cross_check": {
   "window": "2025-09-26..2026-09-25",
@@ -5090,9 +5122,201 @@
   {
    "d": "2026-08-23",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1121.27,
+   "c": 0.0,
+   "dd": -0.0499,
+   "halted": false,
+   "w": {
+    "ADA": 0.0657,
+    "BNB": 0.1228,
+    "BTC": 0.123,
+    "DOGE": 0.1259,
+    "ETH": 0.1081,
+    "LINK": 0.0881,
+    "LTC": 0.1225,
+    "SOL": 0.1091,
+    "XRP": 0.1348
+   },
+   "k": [
+    "DECISION"
+   ],
+   "lo": 1081.23,
+   "hi": 1123.58
+  },
+  {
+   "d": "2026-08-24",
+   "hour_utc": 24,
+   "e": 1117.82,
+   "c": 0.0,
+   "dd": -0.0529,
+   "halted": false,
+   "w": {
+    "ADA": 0.0643,
+    "BNB": 0.1235,
+    "BTC": 0.1253,
+    "DOGE": 0.1219,
+    "ETH": 0.1093,
+    "LINK": 0.089,
+    "LTC": 0.1214,
+    "SOL": 0.1135,
+    "XRP": 0.1317
+   },
+   "k": [
+    "DECISION"
+   ],
+   "lo": 1098.38,
+   "hi": 1131.88
+  },
+  {
+   "d": "2026-08-25",
+   "hour_utc": 24,
+   "e": 1087.3,
+   "c": 0.0,
+   "dd": -0.0787,
+   "halted": false,
+   "w": {
+    "ADA": 0.0624,
+    "BNB": 0.1252,
+    "BTC": 0.1281,
+    "DOGE": 0.1191,
+    "ETH": 0.1105,
+    "LINK": 0.0888,
+    "LTC": 0.1207,
+    "SOL": 0.1139,
+    "XRP": 0.1311
+   },
+   "k": [
+    "DECISION"
+   ],
+   "lo": 1087.3,
+   "hi": 1141.76
+  },
+  {
+   "d": "2026-08-26",
+   "hour_utc": 24,
+   "e": 1108.18,
+   "c": 0.0,
+   "dd": -0.061,
+   "halted": false,
+   "w": {
+    "ADA": 0.0622,
+    "BNB": 0.1251,
+    "BTC": 0.1265,
+    "DOGE": 0.1196,
+    "ETH": 0.1113,
+    "LINK": 0.0897,
+    "LTC": 0.1198,
+    "SOL": 0.1181,
+    "XRP": 0.1276
+   },
+   "k": [
+    "DECISION"
+   ],
+   "lo": 1072.6,
+   "hi": 1108.18
+  },
+  {
+   "d": "2026-08-27",
+   "hour_utc": 24,
+   "e": 1127.11,
+   "c": 0.0,
+   "dd": -0.045,
+   "halted": false,
+   "w": {
+    "ADA": 0.0616,
+    "BNB": 0.1238,
+    "BTC": 0.1263,
+    "DOGE": 0.1195,
+    "ETH": 0.1096,
+    "LINK": 0.0905,
+    "LTC": 0.1164,
+    "SOL": 0.1242,
+    "XRP": 0.1282
+   },
+   "k": [
+    "DECISION"
+   ],
+   "lo": 1097.08,
+   "hi": 1130.15
+  },
+  {
+   "d": "2026-08-28",
+   "hour_utc": 24,
+   "e": 1087.1,
+   "c": 0.0,
+   "dd": -0.0789,
+   "halted": false,
+   "w": {
+    "ADA": 0.0607,
+    "BNB": 0.1247,
+    "BTC": 0.127,
+    "DOGE": 0.1185,
+    "ETH": 0.1106,
+    "LINK": 0.09,
+    "LTC": 0.1192,
+    "SOL": 0.1228,
+    "XRP": 0.1265
+   },
+   "k": [
+    "DECISION"
+   ],
+   "lo": 1079.08,
+   "hi": 1128.26
+  },
+  {
+   "d": "2026-08-29",
+   "hour_utc": 24,
+   "e": 1090.91,
+   "c": 0.0,
+   "dd": -0.0757,
+   "halted": false,
+   "w": {
+    "ADA": 0.0601,
+    "BNB": 0.1244,
+    "BTC": 0.1272,
+    "DOGE": 0.1182,
+    "ETH": 0.1108,
+    "LINK": 0.0899,
+    "LTC": 0.1181,
+    "SOL": 0.1241,
+    "XRP": 0.1272
+   },
+   "k": [
+    "DECISION"
+   ],
+   "lo": 1080.08,
+   "hi": 1091.25
+  },
+  {
+   "d": "2026-08-30",
+   "hour_utc": 24,
+   "e": 1064.2,
+   "c": 0.0,
+   "dd": -0.0983,
+   "halted": false,
+   "w": {
+    "ADA": 0.0588,
+    "BNB": 0.1261,
+    "BTC": 0.1295,
+    "DOGE": 0.1165,
+    "ETH": 0.1117,
+    "LINK": 0.0896,
+    "LTC": 0.1184,
+    "SOL": 0.1226,
+    "XRP": 0.1268
+   },
+   "k": [
+    "DECISION"
+   ],
+   "lo": 1064.2,
+   "hi": 1111.13
+  },
+  {
+   "d": "2026-08-31",
+   "hour_utc": 24,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
@@ -5100,482 +5324,370 @@
     "FILL",
     "KILL_SWITCH"
    ],
-   "lo": 1083.83,
-   "hi": 1123.26
-  },
-  {
-   "d": "2026-08-24",
-   "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
-   "halted": true,
-   "w": {},
-   "k": [
-    "DECISION"
-   ],
-   "lo": 1083.83,
-   "hi": 1083.83
-  },
-  {
-   "d": "2026-08-25",
-   "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
-   "halted": true,
-   "w": {},
-   "k": [
-    "DECISION"
-   ],
-   "lo": 1083.83,
-   "hi": 1083.83
-  },
-  {
-   "d": "2026-08-26",
-   "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
-   "halted": true,
-   "w": {},
-   "k": [
-    "DECISION"
-   ],
-   "lo": 1083.83,
-   "hi": 1083.83
-  },
-  {
-   "d": "2026-08-27",
-   "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
-   "halted": true,
-   "w": {},
-   "k": [
-    "DECISION"
-   ],
-   "lo": 1083.83,
-   "hi": 1083.83
-  },
-  {
-   "d": "2026-08-28",
-   "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
-   "halted": true,
-   "w": {},
-   "k": [
-    "DECISION"
-   ],
-   "lo": 1083.83,
-   "hi": 1083.83
-  },
-  {
-   "d": "2026-08-29",
-   "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
-   "halted": true,
-   "w": {},
-   "k": [
-    "DECISION"
-   ],
-   "lo": 1083.83,
-   "hi": 1083.83
-  },
-  {
-   "d": "2026-08-30",
-   "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
-   "halted": true,
-   "w": {},
-   "k": [
-    "DECISION"
-   ],
-   "lo": 1083.83,
-   "hi": 1083.83
-  },
-  {
-   "d": "2026-08-31",
-   "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
-   "halted": true,
-   "w": {},
-   "k": [
-    "DECISION"
-   ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1069.19
   },
   {
    "d": "2026-09-01",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-02",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-03",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-04",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-05",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-06",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-07",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-08",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-09",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-10",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-11",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-12",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-13",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-14",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-15",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-16",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-17",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-18",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-19",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-20",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-21",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-22",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-23",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-24",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-25",
    "hour_utc": 24,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   },
   {
    "d": "2026-09-26",
    "hour_utc": 23,
-   "e": 1083.83,
-   "c": 1083.83,
-   "dd": -0.0817,
+   "e": 1059.02,
+   "c": 1059.02,
+   "dd": -0.1027,
    "halted": true,
    "w": {},
    "k": [],
-   "lo": 1083.83,
-   "hi": 1083.83
+   "lo": 1059.02,
+   "hi": 1059.02
   }
  ],
  "frames_shadow": [
@@ -10551,8 +10663,7 @@
     "XRP": 0.1348
    },
    "k": [
-    "DECISION",
-    "KILL_SWITCH_IGNORED"
+    "DECISION"
    ],
    "lo": 1081.23,
    "hi": 1123.58
@@ -10744,7 +10855,8 @@
     "XRP": 0.127
    },
    "k": [
-    "DECISION"
+    "DECISION",
+    "KILL_SWITCH_IGNORED"
    ],
    "lo": 1060.8,
    "hi": 1087.04
@@ -32388,15 +32500,719 @@
   },
   {
    "seq": 373,
-   "ts_utc": "2026-08-23T04:00:00Z",
-   "ts_awst": "2026-08-23 12:00",
+   "ts_utc": "2026-08-24T00:00:00Z",
+   "ts_awst": "2026-08-24 08:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "DECISION",
+   "bar_date": "2026-08-23",
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
+   },
+   "orders": [],
+   "equity": 1121.267382010115,
+   "cash": 1.1034356361960818e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.049941140690682895,
+    "loss_24h": 0.012417414770789392,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 77,734 is ABOVE its 100d SMA 66,158 (+17.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 77734.0,
+     "btc_sma": 66158.4923,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.17496631645579397,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0241,
+     "ETH": 0.0331,
+     "BNB": 0.0243,
+     "XRP": 0.0461,
+     "ADA": 0.0581,
+     "SOL": 0.0367,
+     "DOGE": 0.0419,
+     "LTC": 0.0305,
+     "LINK": 0.0449
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1803,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
+  },
+  {
+   "seq": 374,
+   "ts_utc": "2026-08-25T00:00:00Z",
+   "ts_awst": "2026-08-25 08:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "DECISION",
+   "bar_date": "2026-08-24",
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
+   },
+   "orders": [],
+   "equity": 1117.8201766907914,
+   "cash": 1.1034356361960818e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.052861985447274606,
+    "loss_24h": -0.0030743829479313867,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 78,993 is ABOVE its 100d SMA 66,167 (+19.4%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 78992.75,
+     "btc_sma": 66166.93930000001,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.1938401690585676,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.025,
+     "ETH": 0.0343,
+     "BNB": 0.0255,
+     "XRP": 0.0495,
+     "ADA": 0.0601,
+     "SOL": 0.0376,
+     "DOGE": 0.0461,
+     "LTC": 0.0327,
+     "LINK": 0.0461
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1803,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
+  },
+  {
+   "seq": 375,
+   "ts_utc": "2026-08-26T00:00:00Z",
+   "ts_awst": "2026-08-26 08:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "DECISION",
+   "bar_date": "2026-08-25",
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
+   },
+   "orders": [],
+   "equity": 1087.2961708666892,
+   "cash": 1.1034356361960818e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.07872522076480382,
+    "loss_24h": -0.02730672290642122,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 78,539 is ABOVE its 100d SMA 66,178 (+18.7%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 78539.14,
+     "btc_sma": 66177.754,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.18679065475688406,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0266,
+     "ETH": 0.0358,
+     "BNB": 0.0271,
+     "XRP": 0.0555,
+     "ADA": 0.0666,
+     "SOL": 0.0417,
+     "DOGE": 0.0525,
+     "LTC": 0.0366,
+     "LINK": 0.0503
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1803,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
+  },
+  {
+   "seq": 376,
+   "ts_utc": "2026-08-27T00:00:00Z",
+   "ts_awst": "2026-08-27 08:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "DECISION",
+   "bar_date": "2026-08-26",
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
+   },
+   "orders": [],
+   "equity": 1108.1766096746564,
+   "cash": 1.1034356361960818e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.06103305724158414,
+    "loss_24h": 0.019204002890328642,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 79,024 is ABOVE its 100d SMA 66,198 (+19.4%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 79023.75,
+     "btc_sma": 66197.9728,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.1937487910505924,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0269,
+     "ETH": 0.036,
+     "BNB": 0.0272,
+     "XRP": 0.058,
+     "ADA": 0.062,
+     "SOL": 0.0422,
+     "DOGE": 0.0525,
+     "LTC": 0.0369,
+     "LINK": 0.0501
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1803,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
+  },
+  {
+   "seq": 377,
+   "ts_utc": "2026-08-28T00:00:00Z",
+   "ts_awst": "2026-08-28 08:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "DECISION",
+   "bar_date": "2026-08-27",
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
+   },
+   "orders": [],
+   "equity": 1127.1052023239874,
+   "cash": 1.1034356361960818e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.04499470864669752,
+    "loss_24h": 0.01708084477156402,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 80,250 is ABOVE its 100d SMA 66,232 (+21.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 80249.58,
+     "btc_sma": 66232.125,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.2116413296417714,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0272,
+     "ETH": 0.0367,
+     "BNB": 0.0274,
+     "XRP": 0.0586,
+     "ADA": 0.0621,
+     "SOL": 0.0432,
+     "DOGE": 0.0528,
+     "LTC": 0.0376,
+     "LINK": 0.0502
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1158,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
+  },
+  {
+   "seq": 378,
+   "ts_utc": "2026-08-29T00:00:00Z",
+   "ts_awst": "2026-08-29 08:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "DECISION",
+   "bar_date": "2026-08-28",
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
+   },
+   "orders": [],
+   "equity": 1087.1015411537805,
+   "cash": 1.1034356361960818e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.07889013208390616,
+    "loss_24h": -0.035492393334466965,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 77,846 is ABOVE its 100d SMA 66,235 (+17.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 77845.87,
+     "btc_sma": 66235.06139999999,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.17529701572828937,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0307,
+     "ETH": 0.04,
+     "BNB": 0.0292,
+     "XRP": 0.0644,
+     "ADA": 0.0688,
+     "SOL": 0.0474,
+     "DOGE": 0.0579,
+     "LTC": 0.0399,
+     "LINK": 0.0548
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1158,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
+  },
+  {
+   "seq": 379,
+   "ts_utc": "2026-08-30T00:00:00Z",
+   "ts_awst": "2026-08-30 08:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "DECISION",
+   "bar_date": "2026-08-29",
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
+   },
+   "orders": [],
+   "equity": 1090.9090998923596,
+   "cash": 1.1034356361960818e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.07566395698065587,
+    "loss_24h": 0.003502486745201372,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 78,230 is ABOVE its 100d SMA 66,241 (+18.1%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 78230.0,
+     "btc_sma": 66241.2062,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.1809869488759399,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0307,
+     "ETH": 0.0398,
+     "BNB": 0.0289,
+     "XRP": 0.0641,
+     "ADA": 0.0688,
+     "SOL": 0.0471,
+     "DOGE": 0.0578,
+     "LTC": 0.0401,
+     "LINK": 0.0548
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1158,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
+  },
+  {
+   "seq": 380,
+   "ts_utc": "2026-08-31T00:00:00Z",
+   "ts_awst": "2026-08-31 08:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "DECISION",
+   "bar_date": "2026-08-30",
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
+   },
+   "orders": [],
+   "equity": 1064.2015605079514,
+   "cash": 1.1034356361960818e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.09829346962822938,
+    "loss_24h": -0.024481910900773896,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 77,682 is ABOVE its 100d SMA 66,263 (+17.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 77682.0,
+     "btc_sma": 66262.6312,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.1723349736223574,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0314,
+     "ETH": 0.0422,
+     "BNB": 0.0303,
+     "XRP": 0.0682,
+     "ADA": 0.0741,
+     "SOL": 0.0516,
+     "DOGE": 0.0628,
+     "LTC": 0.043,
+     "LINK": 0.0591
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1158,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
+  },
+  {
+   "seq": 381,
+   "ts_utc": "2026-08-31T02:00:00Z",
+   "ts_awst": "2026-08-31 10:00",
    "mode": "replay",
    "account": "replay",
    "kind": "KILL_SWITCH",
    "reasons": [
-    "24h loss -4.90% breached the -4% limit"
+    "drawdown -10.12% from peak $1180.21 breached the -10% limit"
    ],
-   "equity": 1098.6488370404381,
+   "equity": 1060.8028040025536,
    "orders": [
     {
      "sym": "ADA",
@@ -32404,8 +33220,8 @@
      "qty": 324.6660003616415,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 0.2195,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 0.1926,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -32414,8 +33230,8 @@
      "qty": 0.19598648776432218,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 689.31,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 683.0,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -32424,8 +33240,8 @@
      "qty": 0.001773762939744821,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 76927.87,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 77640.94,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -32434,8 +33250,8 @@
      "qty": 1511.5963733651633,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 0.09111,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 0.0816,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -32444,8 +33260,8 @@
      "qty": 0.049202445624790876,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 2413.98,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 2412.95,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -32454,8 +33270,8 @@
      "qty": 8.555967784679973,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 11.456,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 11.087,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -32464,8 +33280,8 @@
      "qty": 2.6278521567732867,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 51.22,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 47.98,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -32474,8 +33290,8 @@
      "qty": 1.2821463817450989,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 93.7,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 101.52,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     },
     {
@@ -32484,285 +33300,176 @@
      "qty": 99.38928977084001,
      "close_all": true,
      "target_weight": 0.0,
-     "ref_close": 1.4749,
-     "created_at": "2026-08-23T04:17:00Z",
+     "ref_close": 1.3434,
+     "created_at": "2026-08-31T02:17:00Z",
      "reason": "KILL SWITCH: flatten"
     }
-   ]
+   ],
+   "halt_kind": "manual",
+   "halted_at_utc": "2026-08-31T02:17:00Z",
+   "reenable_at_utc": null
   },
   {
-   "seq": 374,
-   "ts_utc": "2026-08-23T05:00:00Z",
-   "ts_awst": "2026-08-23 13:00",
+   "seq": 382,
+   "ts_utc": "2026-08-31T03:00:00Z",
+   "ts_awst": "2026-08-31 11:00",
    "mode": "replay",
    "account": "replay",
    "kind": "FILL",
    "sym": "ADA",
    "side": "SELL",
    "qty": 324.6660003616415,
-   "ref_open": 0.2157,
-   "fill_price": 0.2152686,
-   "notional": 69.89039536545006,
-   "cost": 0.14006091255601213,
-   "fill_bar_open_utc": "2026-08-23T05:00:00Z",
-   "order_created_utc": "2026-08-23T04:17:00Z",
+   "ref_open": 0.1925,
+   "fill_price": 0.192115,
+   "notional": 62.37320865947677,
+   "cost": 0.12499641013923199,
+   "fill_bar_open_utc": "2026-08-31T03:00:00Z",
+   "order_created_utc": "2026-08-31T02:17:00Z",
    "order_reason": "KILL SWITCH: flatten"
   },
   {
-   "seq": 375,
-   "ts_utc": "2026-08-23T05:00:00Z",
-   "ts_awst": "2026-08-23 13:00",
+   "seq": 383,
+   "ts_utc": "2026-08-31T03:00:00Z",
+   "ts_awst": "2026-08-31 11:00",
    "mode": "replay",
    "account": "replay",
    "kind": "FILL",
    "sym": "BNB",
    "side": "SELL",
    "qty": 0.19598648776432218,
-   "ref_open": 681.99,
-   "fill_price": 680.62602,
-   "notional": 133.39350314080932,
-   "cost": 0.26732164958078014,
-   "fill_bar_open_utc": "2026-08-23T05:00:00Z",
-   "order_created_utc": "2026-08-23T04:17:00Z",
+   "ref_open": 683.3,
+   "fill_price": 681.9334,
+   "notional": 133.64973195518263,
+   "cost": 0.2678351341787227,
+   "fill_bar_open_utc": "2026-08-31T03:00:00Z",
+   "order_created_utc": "2026-08-31T02:17:00Z",
    "order_reason": "KILL SWITCH: flatten"
   },
   {
-   "seq": 376,
-   "ts_utc": "2026-08-23T05:00:00Z",
-   "ts_awst": "2026-08-23 13:00",
+   "seq": 384,
+   "ts_utc": "2026-08-31T03:00:00Z",
+   "ts_awst": "2026-08-31 11:00",
    "mode": "replay",
    "account": "replay",
    "kind": "FILL",
    "sym": "BTC",
    "side": "SELL",
    "qty": 0.001773762939744821,
-   "ref_open": 76602.0,
-   "fill_price": 76487.09700000001,
-   "notional": 135.6699780272673,
-   "cost": 0.20381068306549915,
-   "fill_bar_open_utc": "2026-08-23T05:00:00Z",
-   "order_created_utc": "2026-08-23T04:17:00Z",
+   "ref_open": 77474.0,
+   "fill_price": 77357.789,
+   "notional": 137.21437922879957,
+   "cost": 0.2061307649906854,
+   "fill_bar_open_utc": "2026-08-31T03:00:00Z",
+   "order_created_utc": "2026-08-31T02:17:00Z",
    "order_reason": "KILL SWITCH: flatten"
   },
   {
-   "seq": 377,
-   "ts_utc": "2026-08-23T05:00:00Z",
-   "ts_awst": "2026-08-23 13:00",
+   "seq": 385,
+   "ts_utc": "2026-08-31T03:00:00Z",
+   "ts_awst": "2026-08-31 11:00",
    "mode": "replay",
    "account": "replay",
    "kind": "FILL",
    "sym": "DOGE",
    "side": "SELL",
    "qty": 1511.5963733651633,
-   "ref_open": 0.08949,
-   "fill_price": 0.08931102,
-   "notional": 135.00221393354357,
-   "cost": 0.2705455189048969,
-   "fill_bar_open_utc": "2026-08-23T05:00:00Z",
-   "order_created_utc": "2026-08-23T04:17:00Z",
+   "ref_open": 0.08181,
+   "fill_price": 0.08164637999999999,
+   "notional": 123.41637190639399,
+   "cost": 0.24732739861000802,
+   "fill_bar_open_utc": "2026-08-31T03:00:00Z",
+   "order_created_utc": "2026-08-31T02:17:00Z",
    "order_reason": "KILL SWITCH: flatten"
   },
   {
-   "seq": 378,
-   "ts_utc": "2026-08-23T05:00:00Z",
-   "ts_awst": "2026-08-23 13:00",
+   "seq": 386,
+   "ts_utc": "2026-08-31T03:00:00Z",
+   "ts_awst": "2026-08-31 11:00",
    "mode": "replay",
    "account": "replay",
    "kind": "FILL",
    "sym": "ETH",
    "side": "SELL",
    "qty": 0.049202445624790876,
-   "ref_open": 2378.67,
-   "fill_price": 2375.101995,
-   "notional": 116.86082676231983,
-   "cost": 0.17555457200148197,
-   "fill_bar_open_utc": "2026-08-23T05:00:00Z",
-   "order_created_utc": "2026-08-23T04:17:00Z",
+   "ref_open": 2407.91,
+   "fill_price": 2404.298135,
+   "notional": 118.29734825312362,
+   "cost": 0.17771259126658528,
+   "fill_bar_open_utc": "2026-08-31T03:00:00Z",
+   "order_created_utc": "2026-08-31T02:17:00Z",
    "order_reason": "KILL SWITCH: flatten"
   },
   {
-   "seq": 379,
-   "ts_utc": "2026-08-23T05:00:00Z",
-   "ts_awst": "2026-08-23 13:00",
+   "seq": 387,
+   "ts_utc": "2026-08-31T03:00:00Z",
+   "ts_awst": "2026-08-31 11:00",
    "mode": "replay",
    "account": "replay",
    "kind": "FILL",
    "sym": "LINK",
    "side": "SELL",
    "qty": 8.555967784679973,
-   "ref_open": 11.269,
-   "fill_price": 11.246462,
-   "notional": 96.2243665636275,
-   "cost": 0.19283440193111726,
-   "fill_bar_open_utc": "2026-08-23T05:00:00Z",
-   "order_created_utc": "2026-08-23T04:17:00Z",
+   "ref_open": 11.08,
+   "fill_price": 11.05784,
+   "notional": 94.6105228081456,
+   "cost": 0.1896002461085082,
+   "fill_bar_open_utc": "2026-08-31T03:00:00Z",
+   "order_created_utc": "2026-08-31T02:17:00Z",
    "order_reason": "KILL SWITCH: flatten"
   },
   {
-   "seq": 380,
-   "ts_utc": "2026-08-23T05:00:00Z",
-   "ts_awst": "2026-08-23 13:00",
+   "seq": 388,
+   "ts_utc": "2026-08-31T03:00:00Z",
+   "ts_awst": "2026-08-31 11:00",
    "mode": "replay",
    "account": "replay",
    "kind": "FILL",
    "sym": "LTC",
    "side": "SELL",
    "qty": 2.6278521567732867,
-   "ref_open": 51.12,
-   "fill_price": 51.017759999999996,
-   "notional": 134.0671306497419,
-   "cost": 0.2686716045085008,
-   "fill_bar_open_utc": "2026-08-23T05:00:00Z",
-   "order_created_utc": "2026-08-23T04:17:00Z",
+   "ref_open": 48.13,
+   "fill_price": 48.03374,
+   "notional": 126.22556725688729,
+   "cost": 0.2529570486109966,
+   "fill_bar_open_utc": "2026-08-31T03:00:00Z",
+   "order_created_utc": "2026-08-31T02:17:00Z",
    "order_reason": "KILL SWITCH: flatten"
   },
   {
-   "seq": 381,
-   "ts_utc": "2026-08-23T05:00:00Z",
-   "ts_awst": "2026-08-23 13:00",
+   "seq": 389,
+   "ts_utc": "2026-08-31T03:00:00Z",
+   "ts_awst": "2026-08-31 11:00",
    "mode": "replay",
    "account": "replay",
    "kind": "FILL",
    "sym": "SOL",
    "side": "SELL",
    "qty": 1.2821463817450989,
-   "ref_open": 92.55,
-   "fill_price": 92.36489999999999,
-   "notional": 118.42532233524787,
-   "cost": 0.2373252952610178,
-   "fill_bar_open_utc": "2026-08-23T05:00:00Z",
-   "order_created_utc": "2026-08-23T04:17:00Z",
+   "ref_open": 101.46,
+   "fill_price": 101.25707999999999,
+   "notional": 129.826398748074,
+   "cost": 0.2601731437837154,
+   "fill_bar_open_utc": "2026-08-31T03:00:00Z",
+   "order_created_utc": "2026-08-31T02:17:00Z",
    "order_reason": "KILL SWITCH: flatten"
   },
   {
-   "seq": 382,
-   "ts_utc": "2026-08-23T05:00:00Z",
-   "ts_awst": "2026-08-23 13:00",
+   "seq": 390,
+   "ts_utc": "2026-08-31T03:00:00Z",
+   "ts_awst": "2026-08-31 11:00",
    "mode": "replay",
    "account": "replay",
    "kind": "FILL",
    "sym": "XRP",
    "side": "SELL",
    "qty": 99.38928977084001,
-   "ref_open": 1.4547,
-   "fill_price": 1.4517906,
-   "notional": 144.2924366299817,
-   "cost": 0.28916319965928194,
-   "fill_bar_open_utc": "2026-08-23T05:00:00Z",
-   "order_created_utc": "2026-08-23T04:17:00Z",
+   "ref_open": 1.345,
+   "fill_price": 1.34231,
+   "notional": 133.41123755229623,
+   "cost": 0.26735718948355963,
+   "fill_bar_open_utc": "2026-08-31T03:00:00Z",
+   "order_created_utc": "2026-08-31T02:17:00Z",
    "order_reason": "KILL SWITCH: flatten"
-  },
-  {
-   "seq": 383,
-   "ts_utc": "2026-08-24T00:00:00Z",
-   "ts_awst": "2026-08-24 08:00",
-   "mode": "replay",
-   "account": "replay",
-   "kind": "DECISION",
-   "bar_date": "2026-08-23",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
-   },
-   "equity": 1083.8261735183326
-  },
-  {
-   "seq": 384,
-   "ts_utc": "2026-08-25T00:00:00Z",
-   "ts_awst": "2026-08-25 08:00",
-   "mode": "replay",
-   "account": "replay",
-   "kind": "DECISION",
-   "bar_date": "2026-08-24",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
-   },
-   "equity": 1083.8261735183326
-  },
-  {
-   "seq": 385,
-   "ts_utc": "2026-08-26T00:00:00Z",
-   "ts_awst": "2026-08-26 08:00",
-   "mode": "replay",
-   "account": "replay",
-   "kind": "DECISION",
-   "bar_date": "2026-08-25",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
-   },
-   "equity": 1083.8261735183326
-  },
-  {
-   "seq": 386,
-   "ts_utc": "2026-08-27T00:00:00Z",
-   "ts_awst": "2026-08-27 08:00",
-   "mode": "replay",
-   "account": "replay",
-   "kind": "DECISION",
-   "bar_date": "2026-08-26",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
-   },
-   "equity": 1083.8261735183326
-  },
-  {
-   "seq": 387,
-   "ts_utc": "2026-08-28T00:00:00Z",
-   "ts_awst": "2026-08-28 08:00",
-   "mode": "replay",
-   "account": "replay",
-   "kind": "DECISION",
-   "bar_date": "2026-08-27",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
-   },
-   "equity": 1083.8261735183326
-  },
-  {
-   "seq": 388,
-   "ts_utc": "2026-08-29T00:00:00Z",
-   "ts_awst": "2026-08-29 08:00",
-   "mode": "replay",
-   "account": "replay",
-   "kind": "DECISION",
-   "bar_date": "2026-08-28",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
-   },
-   "equity": 1083.8261735183326
-  },
-  {
-   "seq": 389,
-   "ts_utc": "2026-08-30T00:00:00Z",
-   "ts_awst": "2026-08-30 08:00",
-   "mode": "replay",
-   "account": "replay",
-   "kind": "DECISION",
-   "bar_date": "2026-08-29",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
-   },
-   "equity": 1083.8261735183326
-  },
-  {
-   "seq": 390,
-   "ts_utc": "2026-08-31T00:00:00Z",
-   "ts_awst": "2026-08-31 08:00",
-   "mode": "replay",
-   "account": "replay",
-   "kind": "DECISION",
-   "bar_date": "2026-08-30",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
-   },
-   "equity": 1083.8261735183326
   },
   {
    "seq": 391,
@@ -32774,9 +33481,9 @@
    "bar_date": "2026-08-31",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 392,
@@ -32788,9 +33495,9 @@
    "bar_date": "2026-09-01",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 393,
@@ -32802,9 +33509,9 @@
    "bar_date": "2026-09-02",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 394,
@@ -32816,9 +33523,9 @@
    "bar_date": "2026-09-03",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 395,
@@ -32830,9 +33537,9 @@
    "bar_date": "2026-09-04",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 396,
@@ -32844,9 +33551,9 @@
    "bar_date": "2026-09-05",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 397,
@@ -32858,9 +33565,9 @@
    "bar_date": "2026-09-06",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 398,
@@ -32872,9 +33579,9 @@
    "bar_date": "2026-09-07",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 399,
@@ -32886,9 +33593,9 @@
    "bar_date": "2026-09-08",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 400,
@@ -32900,9 +33607,9 @@
    "bar_date": "2026-09-09",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 401,
@@ -32914,9 +33621,9 @@
    "bar_date": "2026-09-10",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 402,
@@ -32928,9 +33635,9 @@
    "bar_date": "2026-09-11",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 403,
@@ -32942,9 +33649,9 @@
    "bar_date": "2026-09-12",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 404,
@@ -32956,9 +33663,9 @@
    "bar_date": "2026-09-13",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 405,
@@ -32970,9 +33677,9 @@
    "bar_date": "2026-09-14",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 406,
@@ -32984,9 +33691,9 @@
    "bar_date": "2026-09-15",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 407,
@@ -32998,9 +33705,9 @@
    "bar_date": "2026-09-16",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 408,
@@ -33012,9 +33719,9 @@
    "bar_date": "2026-09-17",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 409,
@@ -33026,9 +33733,9 @@
    "bar_date": "2026-09-18",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 410,
@@ -33040,9 +33747,9 @@
    "bar_date": "2026-09-19",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 411,
@@ -33054,9 +33761,9 @@
    "bar_date": "2026-09-20",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 412,
@@ -33068,9 +33775,9 @@
    "bar_date": "2026-09-21",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 413,
@@ -33082,9 +33789,9 @@
    "bar_date": "2026-09-22",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 414,
@@ -33096,9 +33803,9 @@
    "bar_date": "2026-09-23",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 415,
@@ -33110,9 +33817,9 @@
    "bar_date": "2026-09-24",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   },
   {
    "seq": 416,
@@ -33124,9 +33831,9 @@
    "bar_date": "2026-09-25",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: 24h loss -4.90% breached the -4% limit"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
    },
-   "equity": 1083.8261735183326
+   "equity": 1059.0247664787232
   }
  ],
  "journal_shadow_tail": [
@@ -33431,19 +34138,6 @@
   },
   {
    "seq": 373,
-   "ts_utc": "2026-08-23T04:00:00Z",
-   "ts_awst": "2026-08-23 12:00",
-   "mode": "replay",
-   "account": "shadow-no-kill",
-   "kind": "KILL_SWITCH_IGNORED",
-   "reasons": [
-    "24h loss -4.90% breached the -4% limit"
-   ],
-   "equity": 1098.6488370404381,
-   "note": "research shadow: breach logged, not enforced"
-  },
-  {
-   "seq": 374,
    "ts_utc": "2026-08-24T00:00:00Z",
    "ts_awst": "2026-08-24 08:00",
    "mode": "replay",
@@ -33531,7 +34225,7 @@
    }
   },
   {
-   "seq": 375,
+   "seq": 374,
    "ts_utc": "2026-08-25T00:00:00Z",
    "ts_awst": "2026-08-25 08:00",
    "mode": "replay",
@@ -33619,7 +34313,7 @@
    }
   },
   {
-   "seq": 376,
+   "seq": 375,
    "ts_utc": "2026-08-26T00:00:00Z",
    "ts_awst": "2026-08-26 08:00",
    "mode": "replay",
@@ -33707,7 +34401,7 @@
    }
   },
   {
-   "seq": 377,
+   "seq": 376,
    "ts_utc": "2026-08-27T00:00:00Z",
    "ts_awst": "2026-08-27 08:00",
    "mode": "replay",
@@ -33795,7 +34489,7 @@
    }
   },
   {
-   "seq": 378,
+   "seq": 377,
    "ts_utc": "2026-08-28T00:00:00Z",
    "ts_awst": "2026-08-28 08:00",
    "mode": "replay",
@@ -33883,7 +34577,7 @@
    }
   },
   {
-   "seq": 379,
+   "seq": 378,
    "ts_utc": "2026-08-29T00:00:00Z",
    "ts_awst": "2026-08-29 08:00",
    "mode": "replay",
@@ -33971,7 +34665,7 @@
    }
   },
   {
-   "seq": 380,
+   "seq": 379,
    "ts_utc": "2026-08-30T00:00:00Z",
    "ts_awst": "2026-08-30 08:00",
    "mode": "replay",
@@ -34059,7 +34753,7 @@
    }
   },
   {
-   "seq": 381,
+   "seq": 380,
    "ts_utc": "2026-08-31T00:00:00Z",
    "ts_awst": "2026-08-31 08:00",
    "mode": "replay",
@@ -34145,6 +34839,19 @@
      }
     }
    }
+  },
+  {
+   "seq": 381,
+   "ts_utc": "2026-08-31T02:00:00Z",
+   "ts_awst": "2026-08-31 10:00",
+   "mode": "replay",
+   "account": "shadow-no-kill",
+   "kind": "KILL_SWITCH_IGNORED",
+   "reasons": [
+    "drawdown -10.12% from peak $1180.21 breached the -10% limit"
+   ],
+   "equity": 1060.8028040025536,
+   "note": "research shadow: breach logged, not enforced"
   },
   {
    "seq": 382,
@@ -35494,8 +36201,7 @@
     "drawdown": -0.10536340533459476,
     "loss_24h": -0.04788969510105756,
     "reasons": [
-     "drawdown -10.54% from peak $1180.21 breached the -10% limit",
-     "24h loss -4.79% breached the -4% limit"
+     "drawdown -10.54% from peak $1180.21 breached the -10% limit"
     ]
    },
    "rationale": {

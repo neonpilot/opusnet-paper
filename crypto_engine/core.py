@@ -127,7 +127,7 @@ def health_check(equity: pd.Series, hours_per_day=24, max_dd=_DEFAULT, loss_24h=
         (float(eq.iloc[-1] / eq.iloc[0] - 1) if len(eq) > 1 else 0.0)
     if max_dd is not None and dd <= -max_dd:
         reasons.append(f"drawdown {dd:.2%} breached the -{max_dd:.0%} limit")
-    if loss_24h is not None and l24 <= -loss_24h:
+    if loss_24h is not None and l24 < -loss_24h:          # "exceeds": strictly more than the limit
         reasons.append(f"24h loss {l24:.2%} breached the -{loss_24h:.0%} limit")
     return {"ok": not reasons, "reasons": reasons, "drawdown": dd, "loss_24h": l24}
 

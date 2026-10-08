@@ -78,7 +78,8 @@ def main():
         sdir.mkdir(parents=True, exist_ok=True)
         hourly = fetch_hourly(now - pd.Timedelta(hours=30))
         daily = load("1d", cache=False)
-        L = CryptoLedger(sdir, mode="live", label="crypto-live", opened_at=now)
+        L = CryptoLedger(sdir, mode="live", label="crypto-live", opened_at=now,
+                         auto_reenable_hours=C.KILL_24H_COOLOFF_HOURS)
         t_last = hourly.index[-1]
         L.state["last_hour"] = iso(t_last)
         L.state["last_daily_bar"] = str(daily.index[-1].date())
@@ -96,7 +97,8 @@ def main():
         print("opened", L.summary())
         return
 
-    L = CryptoLedger(sdir, mode="live")
+    L = CryptoLedger(sdir, mode="live", auto_reenable_hours=C.KILL_24H_COOLOFF_HOURS)
+    L.sync_manual_halt(now)       # a HALTED file created by hand halts the account; never auto-cleared
     last = pd.Timestamp(L.state["last_hour"].rstrip("Z"))
     hourly = fetch_hourly(min(last + H, now - pd.Timedelta(hours=30)))
     new_hours = hourly.index[hourly.index > last]

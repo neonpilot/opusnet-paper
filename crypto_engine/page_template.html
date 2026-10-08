@@ -156,6 +156,7 @@ header{display:flex;justify-content:space-between;align-items:flex-start;padding
    <div class="modes"><button id="bLive" class="on">LIVE</button><button id="bReplay">SESSION REPLAY</button><button id="bGates">GATES &amp; CRITIC</button></div></div>
 </header>
 <div class="notice" id="notice">PAPER TRADING — SIMULATED MONEY — REAL PRICES</div>
+<div class="sm" id="rulechg" style="text-transform:none;text-align:center;margin:6px 0 0;line-height:1.45;color:#e7b9bc">Kill-switch rule changed on 8 Oct 2026 after the live halt of 7 Oct 2026 20:00 AWST (-4.49% in 24h under the old 4% rule): the account now halts and goes to cash if it loses MORE THAN 10% in 24 hours, and re-enables automatically after a 72-hour cooling-off (the trend filter then acts at its next daily decision). The 10%-from-peak drawdown halt and any hand-made HALTED file still need a manual reset. A post-hoc change, declared as a new trial.</div>
 <div class="ctl" id="ctl"><button id="bPause">❚❚ PAUSE</button><button id="bRestart">↺ RESTART</button><div class="prog"><i id="progi"></i></div><span class="sm" id="progt"></span></div>
 <section class="top">
   <div><div class="lbl">Session balance / USD</div><div class="big" id="vBal">—</div><div class="subrow sm"><span id="sBal1"></span><span id="sBal2"></span></div></div>
@@ -293,10 +294,13 @@ function logTo(entries){const el=$('log');const last=entries.slice(-7);el.innerH
 function timeline(items,cur){$('tl').innerHTML=items.map((e,i)=>`<div class="ev ${i<cur?'done':''} ${i===cur?'cur':''}"><div class="t">${e[0]}</div><div class="d">${e[1]}</div></div>`).join('')}
 function holdName(w){const k=Object.entries(w).filter(([t,v])=>v>0.001).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);return k.length?(k.length>3?`LONG ${k.length} COINS`:'LONG '+k.join('·')):'FLAT / CASH'}
 function sigText(sig,params){if(!sig)return '';return `BTC ${pxf(sig.btc_close)} vs ${sig.sma_days}d SMA ${pxf(sig.btc_sma)} (${pct(sig.btc_vs_sma)}) → regime ${sig.regime_on?'ON':'OFF'} · basket ${sig.basket}`}
+const RULE_CHG='Kill-switch rule changed on 8 Oct 2026 after the live halt of 7 Oct 2026 20:00 AWST (-4.49% in 24h under the old 4% rule): the account now halts and goes to cash if it loses MORE THAN 10% in 24 hours, and re-enables automatically after a 72-hour cooling-off (the trend filter then acts at its next daily decision). The 10%-from-peak drawdown halt and any hand-made HALTED file still need a manual reset. A post-hoc change, declared as a new trial.';
+const awstT=s=>s?new Date(s).toLocaleString('en-AU',{timeZone:'Australia/Perth',hour12:false,day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})+' AWST':'—';
+const haltTxt=a=>a&&a.halt_kind==='auto'?`automatic halt (24h loss > 10%) — cash until ${awstT(a.reenable_at_utc)}, then it re-enables by itself`:'manual halt — no new entries until a human deletes crypto/state/HALTED';
 function callout(dec,stateTxt,dateTxt){if(!dec){$('coK').textContent=dateTxt+' / STANDBY';$('coH').textContent='Holding cash (USD)';$('coS').textContent=approved?`Awaiting the first daily decision (after the 00:00 UTC candle close = 08:00 AWST).`:'No strategy passed the pre-registered approval rule.';return}
   const tw=Object.entries(dec.w||{}).sort((a,b)=>b[1]-a[1]);
   $('coK').textContent=`${dateTxt} / ${stateTxt}`;$('coH').textContent=tw.length?(tw.length>3?`Long ${tw.length} coins · ${(tw.reduce((a,x)=>a+x[1],0)*100).toFixed(0)}% gross`:'Long '+tw.map(x=>x[0]).join(' · ')):'Hold 100% cash (USD)';
-  $('coS').textContent=(dec.action&&dec.action.startsWith('HALT'))?'Kill switch active — no new entries until a human deletes crypto/state/HALTED.':`${approved} · SMA ${dec.params?dec.params.sma:'?'} · ${sigText(dec.sig,dec.params)}`}
+  $('coS').textContent=(dec.action&&dec.action.startsWith('HALT'))?'Kill switch active — '+haltTxt(L&&L.account)+'.':`${approved} · SMA ${dec.params?dec.params.sma:'?'} · ${sigText(dec.sig,dec.params)}`}
 const tw={};function tween(id,to,fmtf,ms=900){const el=$(id);const from=tw[id]==null?to:tw[id];tw[id]=to;const t0=performance.now();
   const step=t=>{const k=Math.min(1,(t-t0)/ms),e=1-Math.pow(1-k,3),v=from+(to-from)*e;el.textContent=fmtf(v);if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
 function scanFrom(sc,upto){if(!sc){$('scan').innerHTML='';return}let n=sc.dates.length;if(upto){while(n>0&&sc.dates[n-1]>upto)n--}
@@ -308,7 +312,10 @@ let L=D.live_initial, liveErr=null, mode='live', pipeK=0, fetchedAt=null;
 function compactJ(j){const k=j.kind;let text=k;
   if(k==='DECISION')text='DEC '+(j.bar_date||'')+' · '+((j.rationale&&j.rationale.summary)||j.action||'');
   else if(k==='FILL')text=`FILL ${j.side} ${(+j.qty).toPrecision(4)} ${j.sym} @ ${pxf(j.fill_price)} (cost $${(+j.cost).toFixed(2)})`;
-  else if(k==='KILL_SWITCH')text='KILL SWITCH · '+j.reasons.join('; ');
+  else if(k==='KILL_SWITCH')text='KILL SWITCH · '+j.reasons.join('; ')+(j.halt_kind==='auto'?` · auto re-enable ${awstT(j.reenable_at_utc)}`:'');
+  else if(k==='KILL_SWITCH_AUTO_REENABLE')text='KILL SWITCH RE-ENABLED · 72h cooling-off over · strategy acts at its next daily decision';
+  else if(k==='KILL_SWITCH_RESET')text='KILL SWITCH RESET · HALTED removed by operator · trading re-enabled';
+  else if(k==='MANUAL_HALT_OVERRIDE')text='MANUAL HALT · HALTED file created by operator';
   else if(k==='ACCOUNT_OPENED')text=`ACCOUNT OPENED · $${(+j.start_capital).toLocaleString()} simulated · ${j.ts_awst} AWST`;
   return {seq:j.seq,d:j.ts_utc,kind:k,text}}
 function renderLive(){
@@ -340,7 +347,7 @@ function liveStatic(){
   const st=a.halted?'HALTED':(pos.length?holdName(w):(pendT.length?'ORDERS QUEUED':'FLAT / CASH'));
   $('ps').textContent=st;$('psz').textContent=`SIZE / ${expo.toFixed(2)} GROSS · ${pendT.length} ORDER(S) QUEUED`;
   const eh=L.equity_hourly.e;spark2($('pwave'),eh.length>1?eh.slice(-72):[start0(),start0()],null,210,30,3);
-  $('pks').textContent=a.halted?'KILL SWITCH HALTED — '+a.halt_reasons.join('; '):'KILL SWITCH ARMED · 10% DD / 4% 24H · CHECKED HOURLY';
+  $('pks').textContent=a.halted?'KILL SWITCH HALTED — '+a.halt_reasons.join('; ')+' · '+haltTxt(a):'KILL SWITCH ARMED · 10% DD (MANUAL RESET) / >10% 24H (72H AUTO RE-ENABLE) · CHECKED HOURLY · RULE CHANGED 8 OCT 2026';
   const dd=dec?{w:dec.target_weights,action:dec.action,params:dec.rationale&&dec.rationale.params,sig:dec.rationale&&dec.rationale.signal}:null;
   callout(dd,pendT.length?'ORDERS QUEUED':(st.startsWith('LONG')?'HOLD':st),dec?dlong(dec.bar_date):'—');
   if(dec&&pendT.length)$('coS').textContent+=' · fills at the next hourly open';
@@ -376,7 +383,7 @@ function replayFrame(i){
   evidence(fills,'no paper fills yet in this replay');logTo(RV.log.filter(e=>e.i!=null&&e.i<=i));
   const st=s.halted?'HALTED':(pendT.length?'ORDERS QUEUED':holdName(s.w));
   $('ps').textContent=st;$('psz').textContent=`SIZE / ${expo.toFixed(2)} GROSS · CASH ${fmt$(s.c)}`;
-  spark2($('pwave'),RV.sessions.slice(Math.max(0,i-40),i+1).map(x=>x.e),null,210,30,3);$('pks').textContent=s.halted?'KILL SWITCH HALTED — flat, no new entries (rule: manual reset only)':'KILL SWITCH ARMED · 10% DD / 4% 24H · CHECKED HOURLY';
+  spark2($('pwave'),RV.sessions.slice(Math.max(0,i-40),i+1).map(x=>x.e),null,210,30,3);$('pks').textContent=s.halted?'KILL SWITCH HALTED — flat, no new entries (24h-loss halt: 72h cooling-off; drawdown halt: manual reset)':'KILL SWITCH ARMED · 10% DD (MANUAL RESET) / >10% 24H (72H AUTO RE-ENABLE) · CHECKED HOURLY';
   callout(dec?{w:dec.w,action:dec.action,params:dec.params,sig:dec.sig}:null,st,dec?dlong(dec.d):dlong(s.d));
   const sdec=RV.decisions.filter(d=>d.sig&&d.i!=null&&d.i<=i).pop();
   if(sdec){const sc=sdec.sig;$('scanT').textContent=`BTC vs ${sc.sma_days}d SMA (decision ${dshort(sdec.d)})`;
@@ -416,19 +423,21 @@ $('ovb').innerHTML=`<div style="display:flex;justify-content:space-between"><spa
 ${S.map(s=>`<tr><td><b>${s.name}</b><br><span class="sm" style="text-transform:none">${s.title} · ${s.n_variants} variants</span></td><td>${n2(s.full.sharpe)}</td><td>${p1(s.full.cagr)}</td><td>${p1(s.full.max_drawdown)}</td><td>${P(s.g1)}</td><td>${P(s.g2)} ${s.dsr.toFixed(3)}</td><td>${P(s.g3)} ${n2(s.oos.sharpe)}</td><td>${p1(s.pos_folds)}</td><td>${p1(s.oos.cagr)}</td><td>${p1(s.oos.max_drawdown)}</td><td>${s.beats_sized_btc?'yes':'no'}</td><td>${s.name===approved?'<b style="color:#ff6a72">APPROVED</b>':(s.qualifies?'QUALIFIED':(s.passed_all?'PASSED':'REJECTED'))}</td></tr>`).join('')}
 <tr><td><b>BTC buy &amp; hold</b><br><span class="sm" style="text-transform:none">100% BTC, same OOS days</span></td><td colspan="5"></td><td>${n2(b0.sharpe)}</td><td></td><td>${p1(b0.cagr)}</td><td>${p1(b0.max_drawdown)}</td><td colspan="2" class="sm" style="text-transform:none">risk-sized BTC: SR ${n2(bs0.sharpe)}, CAGR ${p1(bs0.cagr)}</td></tr></table>
 <div class="sm" style="text-transform:none;line-height:1.5">Full sample ${S[0].full.start}→${S[0].full.end} (best variant, in-sample). OOS = walk-forward (2y train → 6m untouched test) ${S[0].oos.start}→${S[0].oos.end}. Costs per side: BTC/ETH 15 bps, others 20 bps (10 bps taker + slippage). Sizing 1% risk to a 2×ATR stop, cap 20%/coin, gross ≤ 100%, long/cash only. G2 hurdle: best of N=${R.n_trials_total} random trials → SR ${S[0].sr0.toFixed(2)}.</div>
-<div class="lbl" style="margin:12px 0 6px">Session replay (official rules, hourly ledger, ${dlong(RA.first_hour_utc)} → ${dlong(RA.last_hour_utc)})</div>
+<div class="lbl" style="margin:12px 0 6px">Session replay (current official rules, hourly ledger, ${dlong(RA.first_hour_utc)} → ${dlong(RA.last_hour_utc)})</div>
+<div class="sm" style="text-transform:none;line-height:1.5"><b style="color:#e7b9bc">Rule change, 8 Oct 2026:</b> ${RULE_CHG}</div>
 <ul><li>${fmt$(RA.start_capital)} → <b>${fmt$(RA.final_equity)}</b> (${pct(RA.total_return)}), max hourly drawdown ${p1(RA.max_drawdown_hourly)}, ${RA.n_fills} fills, costs ${fmt$(RA.costs_paid)}. BTC buy-and-hold over the same window: ${pct(RA.btc_buy_hold_same_window)}.</li>
-<li>Kill switch: ${ks||'never tripped'}${RA.halted?' — the account then stayed flat to the end of the replay, as the rules require (manual reset only).':''}</li>
+<li>Kill switch (new rule): ${ks||'never tripped'}${RA.n_auto_reenables?` · automatic re-enables: ${RA.n_auto_reenables}`:''}${RA.halted?(RA.halt_kind==='auto'?' — still in its 72h cooling-off at the end of the replay.':' — a manual-reset halt, so the account stayed flat to the end of the replay.'):''}</li>
+${RA.original_rule?`<li>Same window under the ORIGINAL pre-registered rule (4% 24h loss, manual reset only): ${fmt$(RA.original_rule.final_equity)} (${pct(RA.original_rule.total_return)}); it tripped ${RA.original_rule.kill_switch_events.map(k=>k.ts_awst+' AWST').join(', ')||'never'} and stayed in cash to the end.</li>`:''}
 <li>Research shadow, NOT the official result: same rules with the kill switch ignored → ${fmt$(RA.shadow_no_kill.final_equity)} (${pct(RA.shadow_no_kill.total_return)}), max DD ${p1(RA.shadow_no_kill.max_drawdown_hourly)}.</li>
 ${RA.cross_check?`<li>Cross-check: vectorised backtest ${pct(RA.cross_check.vectorised_backtest_return)} vs hourly ledger (no kill) ${pct(RA.cross_check.hourly_ledger_no_kill_return_to_same_close)} over ${RA.cross_check.window}.</li>`:''}</ul>
 <div class="lbl" style="margin:12px 0 6px">Critic — every way these backtests could lie</div><ul>${S.flatMap(s=>s.critic.filter((c,i)=>!(c.startsWith('Survivorship')&&s!==S[0])).map(c=>`<li><b>${s.name}:</b> ${c}</li>`)).join('')}
 <li><b>all:</b> The replay year is walk-forward out-of-sample for PARAMETERS, but the choice of strategy family used data through ${S[0].oos.end}, so the replay is not a clean out-of-sample test of the selection itself.</li>
-<li><b>all:</b> Kill switch vs crypto volatility: with a full basket (up to 100% gross in 9 highly correlated coins) a 4% loss over 24h is an ordinary move. In the replay it tripped once (${ks||'never'}) and the account then sat in cash to the end, because the rules allow only a manual reset. Live will behave the same way.</li>
+<li><b>all:</b> Kill switch vs crypto volatility: with a full basket (up to 100% gross in 9 highly correlated coins) a 4% loss over 24h is an ordinary move. The original 4%/manual-reset switch tripped in the replay year and live on 7 Oct 2026, each time leaving the account in cash. On 8 Oct 2026, after seeing the live halt, it was loosened to >10% in 24h with a 72h automatic re-enable. That change was made after looking at the data, so the replay with the new rule is not an out-of-sample test of it.</li>
 <li><b>all:</b> Binance USDT prices; USDT is treated as $1. Fills assume the full order trades at the hourly open ± cost; no partial fills, no exchange outages.</li></ul>
 <div class="sm" style="text-transform:none;line-height:1.5">Approval only means “allowed to paper-trade and collect forward evidence”.</div>`;
 
 /* ---------------- footer ---------------- */
-$('foot').innerHTML=`PAPER TRADING — SIMULATED MONEY — REAL PRICES. No exchange is connected, no API keys exist, no real orders are sent. Prices: ${R.data.source}. The <i>crypto-paper</i> GitHub Action runs every hour at :17 UTC-minute, books each completed hourly candle (fills at the next hourly open, kill switch checked every candle) and decides once a day after the 00:00 UTC close (08:00 AWST); this page re-reads its live.json every minute. Research run ${R.run_id} · ${R.n_trials_total} crypto trials in a registry separate from the stock system · approved: ${approved||'none'}. Page built ${new Date(D.generated_at).toLocaleString('en-AU',{timeZone:'Australia/Perth',hour12:false})} AWST. Sphere geometry is decorative; every number, highlight, bar and log line comes from the ledger/journal. <a href="../">← OPUSNET stocks page</a> · <a href="../crypto-aggressive/">aggressive top-2 momentum paper account →</a>. Not financial advice.`;
+$('foot').innerHTML=`PAPER TRADING — SIMULATED MONEY — REAL PRICES. No exchange is connected, no API keys exist, no real orders are sent. Prices: ${R.data.source}. The <i>crypto-paper</i> GitHub Action runs every hour at :17 UTC-minute, books each completed hourly candle (fills at the next hourly open, kill switch checked every candle) and decides once a day after the 00:00 UTC close (08:00 AWST); this page re-reads its live.json every minute. ${RULE_CHG} Research run ${R.run_id} · ${R.n_trials_total} crypto trials in a registry separate from the stock system · approved: ${approved||'none'}. Page built ${new Date(D.generated_at).toLocaleString('en-AU',{timeZone:'Australia/Perth',hour12:false})} AWST. Sphere geometry is decorative; every number, highlight, bar and log line comes from the ledger/journal. <a href="../">← OPUSNET stocks page</a> · <a href="../crypto-aggressive/">aggressive top-2 momentum paper account →</a>. Not financial advice.`;
 
 /* ---------------- boot ---------------- */
 window.addEventListener('resize',resize);resize();

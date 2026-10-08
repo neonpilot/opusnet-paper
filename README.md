@@ -14,7 +14,10 @@ Page: https://neonpilot.github.io/opusnet-paper/crypto/ — **paper trading, sim
   * `python -m crypto_engine.build_page <live.json>`: builds `crypto/index.html`.
   * `python -m pytest crypto_engine/tests`.
 * `.github/workflows/crypto-paper.yml`: runs hourly at :17 (`17 * * * *`). It books the new completed 1h candles into the paper ledger, fills orders at the next hourly open, checks the kill switch on every candle, and decides daily after the 00:00 UTC close. It commits `crypto/state/*` to the **`crypto-state`** branch (append-only, with rebase-and-retry on push). It never pushes to main.
-* Kill-switch reset: delete `crypto/state/HALTED` on the `crypto-state` branch and commit.
+* Kill switch (rule changed on **8 Oct 2026**, after the live halt of 7 Oct 2026 20:00 AWST at -4.49% under the old rule). The old rule halted on a 4% loss over 24 hours and needed a manual reset. Now:
+  * **24h-loss halt (automatic):** if the account loses **more than 10% over a rolling 24 hours**, pending orders are cancelled, everything is sold at the next hourly open, and it stays in cash for a **72-hour cooling-off**. `state.json` records `halted_at_utc` and `reenable_at_utc`, and the halt is marked by `crypto/state/AUTO_HALTED`. After 72h it re-enables by itself, and the trend filter acts at its next daily decision (no forced re-entry). The peak-equity watermark is re-based at re-enable. Deleting `AUTO_HALTED` ends the cooling-off early.
+  * **Manual halts:** the 10%-from-peak drawdown halt, the stale-data halt, and a `crypto/state/HALTED` file created by hand. They never clear by themselves. To reset, delete `crypto/state/HALTED` on the `crypto-state` branch and commit. Creating `HALTED` during an automatic halt cancels the automatic re-enable.
+  * The values are declared in `crypto_engine/config.py` (`KILL_24H_LOSS`, `KILL_24H_COOLOFF_HOURS`). The change is recorded as a post-hoc trial in `crypto_engine/registry/CHANGELOG.md`.
 
 ## Paper account #3: AGGRESSIVE: TOP-2 MOMENTUM (mom_top2_1x)
 Page: https://neonpilot.github.io/opusnet-paper/crypto-aggressive/ — **paper trading, simulated money, real prices.** High risk: the backtest's max drawdown was -64%, and most of its gains came from 2021.
