@@ -2,8 +2,18 @@
  "label": "crypto-live",
  "mode": "live",
  "start_capital": 1000.0,
- "cash": 957.3480843627304,
- "positions": {},
+ "cash": 1.093456916123614e-07,
+ "positions": {
+  "ADA": 235.43592912574604,
+  "BNB": 0.15766287788349395,
+  "BTC": 0.0014616423961638005,
+  "DOGE": 1261.5270328030435,
+  "ETH": 0.0426412777866307,
+  "LINK": 6.7121692561533886,
+  "LTC": 1.8421825748162899,
+  "SOL": 0.9321098402080861,
+  "XRP": 76.6505824053228
+ },
  "targets": {
   "BTC": 0.12721254892589418,
   "ETH": 0.1146548685839212,
@@ -15,110 +25,28 @@
   "LTC": 0.12721254892589418,
   "LINK": 0.09343139550651636
  },
- "pending": [
-  {
-   "sym": "ADA",
-   "side": "BUY",
-   "qty": 235.43592912574604,
-   "target_weight": 0.06283386458298522,
-   "ref_close": 0.2555,
-   "created_at": "2026-10-08T00:47:55Z",
-   "reason": "BTC 83,322 is ABOVE its 100d SMA 72,055 (+15.6%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
-  },
-  {
-   "sym": "BNB",
-   "side": "BUY",
-   "qty": 0.15766287788349395,
-   "target_weight": 0.12721254892589418,
-   "ref_close": 772.45,
-   "created_at": "2026-10-08T00:47:55Z",
-   "reason": "BTC 83,322 is ABOVE its 100d SMA 72,055 (+15.6%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
-  },
-  {
-   "sym": "BTC",
-   "side": "BUY",
-   "qty": 0.0014616423961638005,
-   "target_weight": 0.12721254892589418,
-   "ref_close": 83321.81,
-   "created_at": "2026-10-08T00:47:55Z",
-   "reason": "BTC 83,322 is ABOVE its 100d SMA 72,055 (+15.6%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
-  },
-  {
-   "sym": "DOGE",
-   "side": "BUY",
-   "qty": 1261.5270328030435,
-   "target_weight": 0.11733074817353847,
-   "ref_close": 0.08904,
-   "created_at": "2026-10-08T00:47:55Z",
-   "reason": "BTC 83,322 is ABOVE its 100d SMA 72,055 (+15.6%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
-  },
-  {
-   "sym": "ETH",
-   "side": "BUY",
-   "qty": 0.0426412777866307,
-   "target_weight": 0.1146548685839212,
-   "ref_close": 2574.14,
-   "created_at": "2026-10-08T00:47:55Z",
-   "reason": "BTC 83,322 is ABOVE its 100d SMA 72,055 (+15.6%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
-  },
-  {
-   "sym": "LINK",
-   "side": "BUY",
-   "qty": 6.7121692561533886,
-   "target_weight": 0.09343139550651636,
-   "ref_close": 13.326,
-   "created_at": "2026-10-08T00:47:55Z",
-   "reason": "BTC 83,322 is ABOVE its 100d SMA 72,055 (+15.6%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
-  },
-  {
-   "sym": "LTC",
-   "side": "BUY",
-   "qty": 1.8421825748162899,
-   "target_weight": 0.12721254892589418,
-   "ref_close": 66.11,
-   "created_at": "2026-10-08T00:47:55Z",
-   "reason": "BTC 83,322 is ABOVE its 100d SMA 72,055 (+15.6%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
-  },
-  {
-   "sym": "SOL",
-   "side": "BUY",
-   "qty": 0.9321098402080861,
-   "target_weight": 0.1132340223862891,
-   "ref_close": 116.3,
-   "created_at": "2026-10-08T00:47:55Z",
-   "reason": "BTC 83,322 is ABOVE its 100d SMA 72,055 (+15.6%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
-  },
-  {
-   "sym": "XRP",
-   "side": "BUY",
-   "qty": 78.71432056393002,
-   "target_weight": 0.11687745398906706,
-   "ref_close": 1.4215,
-   "created_at": "2026-10-08T00:47:55Z",
-   "reason": "BTC 83,322 is ABOVE its 100d SMA 72,055 (+15.6%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
-  }
- ],
+ "pending": [],
  "peak_equity": 1012.1483532537674,
  "halted": false,
  "halt_reasons": [],
- "last_hour": "2026-10-07T23:00:00Z",
+ "last_hour": "2026-10-08T03:00:00Z",
  "last_daily_bar": "2026-10-07",
  "last_px": {
-  "BTC": 83321.81,
-  "ETH": 2574.14,
-  "BNB": 772.45,
-  "XRP": 1.4215,
-  "ADA": 0.2555,
-  "SOL": 116.3,
-  "DOGE": 0.08904,
-  "LTC": 66.11,
-  "LINK": 13.326
+  "BTC": 82757.0,
+  "ETH": 2564.34,
+  "BNB": 769.67,
+  "XRP": 1.4169,
+  "ADA": 0.2543,
+  "SOL": 115.73,
+  "DOGE": 0.0886,
+  "LTC": 65.59,
+  "LINK": 13.174
  },
  "opened_at": "2026-09-26T23:11:49Z",
- "n_fills": 18,
- "costs_paid": 3.6654902393585083,
- "seq": 33,
- "last_equity": 957.3480843627304,
+ "n_fills": 27,
+ "costs_paid": 5.4607508047523385,
+ "seq": 42,
+ "last_equity": 949.0330681518064,
  "btc_scan": {
   "dates": [
    "2026-07-10",
@@ -401,7 +329,7 @@
  "last_health": {
   "ok": true,
   "reasons": [],
-  "drawdown": -0.05414252635482708,
-  "loss_24h": -0.037359123570484765
+  "drawdown": -0.06235774123335114,
+  "loss_24h": -0.021871723769083973
  }
 }
