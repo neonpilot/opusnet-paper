@@ -27,7 +27,8 @@ MAX_POSITION = 0.20
 MAX_GROSS = 1.00
 STOP_ATR_MULT = 2.0
 ATR_WINDOW = 20
-KILL_MAX_DRAWDOWN = 0.10      # halt + flatten if equity < 90% of peak (manual reset: delete crypto/state/HALTED)
+KILL_MAX_DRAWDOWN = 0.10      # halt + flatten if equity <= 90% of the peak watermark (BTC trend account: automatic
+                              # halt with a 72h cooling-off since 2026-10-09, see below; aggressive account: own rule)
 # ---- 24h-loss switch of the BTC trend account: CHANGED 2026-10-08 (Perth), AFTER SEEING A LIVE HALT ----
 # Pre-registered rule (2026-09-27): halt + flatten if the account lost >= 4% over a rolling 24h, manual reset
 # only. It tripped live at 2026-10-07 12:00 UTC (20:00 AWST) at -4.49% (equity ~$961) and flattened the
@@ -43,6 +44,27 @@ KILL_24H_LOSS = 0.10              # declared 2026-10-08: halt if the rolling-24h
 KILL_24H_COOLOFF_HOURS = 72       # declared 2026-10-08: automatic re-enable 72h after the halt was acted on
 KILL_24H_LOSS_ORIGINAL = 0.04     # the pre-registered value (2026-09-27 .. 2026-10-08), kept for the record
 KILL_RULE_CHANGED_ON = "2026-10-08"
+# ---- 10%-from-peak drawdown halt of the BTC trend account: CHANGED 2026-10-09 (Perth), AFTER A SECOND LIVE HALT ----
+# Rule until 2026-10-09: halt + flatten when equity fell 10% below its peak watermark, manual reset only (delete
+# crypto/state/HALTED). It tripped live on the candle closing 2026-10-08 16:00 UTC (00:00 AWST 9 Oct; acted on
+# by the 21:18 UTC run, 05:18 AWST) at -11.29% from a peak of $1,012.15 and sold the 9-coin basket at the 22:00
+# UTC open (06:00 AWST) into $911.44 cash. That halt was partly caused by an operator resume on 2026-10-08 that
+# did NOT re-base the peak watermark (the account restarted at $957.35 cash but kept the $1,012.15 peak, so it
+# began 5.4% "in drawdown"; the actual loss since the restart was -6.2%). On 2026-10-09 the operator (Harley)
+# changed the rule; it is a post-hoc change, declared as trial #46 in registry/CHANGELOG.md. 10% and 72h were
+# fixed BEFORE re-running the replay and must not be tuned on it.
+#   New rule: drawdown <= -10% from the peak watermark -> cancel pending orders, flatten at the next hourly open,
+#   72h cooling-off in cash (AUTO_HALTED + halted_at_utc / reenable_at_utc in state.json), then re-enable
+#   automatically with the peak watermark re-based to current equity; the trend filter acts at its next daily
+#   decision (nothing forced). The stale-data halt stays manual (HALTED). A HALTED file created by hand is a
+#   manual halt and is never auto-cleared.
+KILL_MAX_DD_AUTO = True           # declared 2026-10-09: the drawdown halt is an automatic (cooling-off) halt
+KILL_MAX_DD_COOLOFF_HOURS = 72    # declared 2026-10-09: same 72h cooling-off as the 24h-loss switch
+KILL_DD_RULE_CHANGED_ON = "2026-10-09"
+# Declared 2026-10-09: EVERY resume of the BTC trend account (automatic re-enable, the operator deleting
+# AUTO_HALTED early, or the operator deleting HALTED) re-bases the peak watermark to the equity at the candle
+# close where the resume takes effect, and journals the previous peak. This is the fix for the 2026-10-08 bug.
+REBASE_PEAK_ON_RESUME = True
 STALE_HOURS = 6               # ... or the newest completed hourly candle is >6h old (live only)
 RESIZE_BAND = 0.005           # ledger re-trades an asset only if its target weight moves >0.5% of equity
 ORDER_DELAY_MIN = 17          # workflow runs at :17 -> decisions are made 17 min after the bar close

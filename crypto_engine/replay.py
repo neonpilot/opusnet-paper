@@ -15,12 +15,19 @@ from .decisions import Decider, load_research
 from .ledger import CryptoLedger, H, iso
 
 
+CURRENT_DD_HOURS = C.KILL_MAX_DD_COOLOFF_HOURS if C.KILL_MAX_DD_AUTO else None
+
+
 def run_ledger(hourly, decider, t0, enforce_kill=True, label="replay", kill_24h=C.KILL_24H_LOSS,
-               auto_reenable_hours=C.KILL_24H_COOLOFF_HOURS):
-    """Defaults = the CURRENT official rules (24h switch changed 2026-10-08: >10%, 72h auto re-enable).
-    kill_24h=0.04, auto_reenable_hours=None reproduces the original pre-registered rule."""
+               auto_reenable_hours=C.KILL_24H_COOLOFF_HOURS, auto_dd_hours=CURRENT_DD_HOURS,
+               rebase_peak_on_resume=C.REBASE_PEAK_ON_RESUME):
+    """Defaults = the CURRENT official rules (24h switch changed 2026-10-08: >10%, 72h auto re-enable; drawdown
+    halt changed 2026-10-09: 10% from peak, 72h auto re-enable, peak re-based at any resume).
+    kill_24h=0.10, auto_dd_hours=None reproduces the 2026-10-08 rule; kill_24h=0.04, auto_reenable_hours=None,
+    auto_dd_hours=None reproduces the original pre-registered rule."""
     L = CryptoLedger(None, mode="replay", label=label, opened_at=t0, kill_24h=kill_24h,
-                     auto_reenable_hours=auto_reenable_hours)
+                     auto_reenable_hours=auto_reenable_hours, auto_dd_hours=auto_dd_hours,
+                     rebase_peak_on_resume=rebase_peak_on_resume)
     L.enforce_kill = enforce_kill
     L.log("ACCOUNT_OPENED", t0, {"start_capital": C.START_CAPITAL, "note": "replay of the official rules"})
     snaps = []
@@ -85,7 +92,9 @@ def main():
     L, snaps = run_ledger(hourly, dec, t0)
     Ls, snaps_s = run_ledger(hourly, dec, t0, enforce_kill=False, label="shadow-no-kill")
     Lo, snaps_o = run_ledger(hourly, dec, t0, label="original-4pct-manual", kill_24h=C.KILL_24H_LOSS_ORIGINAL,
-                             auto_reenable_hours=None)
+                             auto_reenable_hours=None, auto_dd_hours=None, rebase_peak_on_resume=False)
+    Lp, snaps_p = run_ledger(hourly, dec, t0, label="rule-2026-10-08", auto_dd_hours=None,
+                             rebase_peak_on_resume=False)
     frames = daily_frames(L, snaps)
     frames_s = daily_frames(Ls, snaps_s)
 
@@ -121,8 +130,12 @@ def main():
            "n_fills": len(fills), "n_decisions": len(decs), "costs_paid": L.state["costs_paid"],
            "halted": L.state["halted"], "halt_kind": L.state.get("halt_kind"),
            "rule": {"kill_24h_loss": C.KILL_24H_LOSS, "cooloff_hours": C.KILL_24H_COOLOFF_HOURS,
-                    "kill_max_drawdown": C.KILL_MAX_DRAWDOWN, "changed_on": C.KILL_RULE_CHANGED_ON,
-                    "note": "24h-loss switch changed 2026-10-08 after the live halt of 2026-10-07 (was 4%, manual reset)"},
+                    "kill_max_drawdown": C.KILL_MAX_DRAWDOWN, "drawdown_auto": C.KILL_MAX_DD_AUTO,
+                    "drawdown_cooloff_hours": C.KILL_MAX_DD_COOLOFF_HOURS, "rebase_peak_on_resume": C.REBASE_PEAK_ON_RESUME,
+                    "changed_on": C.KILL_DD_RULE_CHANGED_ON,
+                    "note": "24h-loss switch changed 2026-10-08 after the live halt of 2026-10-07 (was 4%, manual reset); "
+                            "10% drawdown halt changed 2026-10-09 after the live halt of 2026-10-08 (was manual reset): "
+                            "72h cooling-off, automatic re-enable, peak re-based at any resume"},
            "n_kill_switch_trips": len(kills),
            "n_auto_halts": sum(1 for k in kills if k.get("halt_kind") == "auto"),
            "n_auto_reenables": len(reen), "auto_reenable_events": reen, "kill_switch_events": kills, "final_positions": L.summary()["positions"],
@@ -132,6 +145,12 @@ def main():
                               "max_drawdown_hourly": float(min(np.array([s['e'] for s in snaps_s]) /
                                                                np.maximum.accumulate([s['e'] for s in snaps_s]) - 1)),
                               "n_fills": Ls.state["n_fills"]},
+           "rule_2026_10_08": {"final_equity": snaps_p[-1]["e"], "total_return": snaps_p[-1]["e"] / C.START_CAPITAL - 1,
+                               "max_drawdown_hourly": float(min(np.array([s['e'] for s in snaps_p]) /
+                                                                np.maximum.accumulate([s['e'] for s in snaps_p]) - 1)),
+                               "n_fills": Lp.state["n_fills"], "halted_at_end": Lp.state["halted"],
+                               "kill_switch_events": [{k: j[k] for k in ("ts_utc", "ts_awst", "reasons", "equity")}
+                                                      for j in Lp.journal if j["kind"] == "KILL_SWITCH"]},
            "original_rule_4pct_manual": {"final_equity": snaps_o[-1]["e"], "total_return": snaps_o[-1]["e"] / C.START_CAPITAL - 1,
                                          "max_drawdown_hourly": float(min(np.array([s['e'] for s in snaps_o]) /
                                                                           np.maximum.accumulate([s['e'] for s in snaps_o]) - 1)),

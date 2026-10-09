@@ -19,6 +19,14 @@ from .decisions import Decider, load_research
 from .ledger import CryptoLedger, H, awst, iso
 
 
+def trend_rules():
+    """Kill-switch options of the BTC trend account (24h rule changed 2026-10-08, drawdown rule and peak
+    re-base on resume changed 2026-10-09; see config.py and registry/CHANGELOG.md)."""
+    return {"auto_reenable_hours": C.KILL_24H_COOLOFF_HOURS,
+            "auto_dd_hours": C.KILL_MAX_DD_COOLOFF_HOURS if C.KILL_MAX_DD_AUTO else None,
+            "rebase_peak_on_resume": C.REBASE_PEAK_ON_RESUME}
+
+
 def now_utc():
     return pd.Timestamp.now(tz="UTC").tz_localize(None).floor("s")
 
@@ -78,8 +86,7 @@ def main():
         sdir.mkdir(parents=True, exist_ok=True)
         hourly = fetch_hourly(now - pd.Timedelta(hours=30))
         daily = load("1d", cache=False)
-        L = CryptoLedger(sdir, mode="live", label="crypto-live", opened_at=now,
-                         auto_reenable_hours=C.KILL_24H_COOLOFF_HOURS)
+        L = CryptoLedger(sdir, mode="live", label="crypto-live", opened_at=now, **trend_rules())
         t_last = hourly.index[-1]
         L.state["last_hour"] = iso(t_last)
         L.state["last_daily_bar"] = str(daily.index[-1].date())
@@ -97,7 +104,7 @@ def main():
         print("opened", L.summary())
         return
 
-    L = CryptoLedger(sdir, mode="live", auto_reenable_hours=C.KILL_24H_COOLOFF_HOURS)
+    L = CryptoLedger(sdir, mode="live", **trend_rules())
     L.sync_manual_halt(now)       # a HALTED file created by hand halts the account; never auto-cleared
     last = pd.Timestamp(L.state["last_hour"].rstrip("Z"))
     hourly = fetch_hourly(min(last + H, now - pd.Timedelta(hours=30)))

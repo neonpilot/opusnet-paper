@@ -185,7 +185,8 @@ def test_live_account_keeps_drawdown_rule_and_auto_halt_rebases_peak(tmp_path):
     assert len(k) == 1 and k[0]["halt_kind"] == "auto"
     assert "KILL_SWITCH_AUTO_REENABLE" in kinds(L) and not L.state["halted"]
     assert abs(L.state["peak_equity"] - L.state["last_equity"]) < 1e-9
-    # a slow 10% drawdown with no single 24h loss > 10% is a MANUAL halt (unchanged rule)
+    # 2026-10-08 configuration (no auto_dd_hours): a slow 10% drawdown is a MANUAL halt. Since 2026-10-09 the
+    # live account passes auto_dd_hours=72 (see test_kill_rule_2026_10_09.py)
     p = tmp_path / "dd"
     L = feed(CryptoLedger(p, mode="live", label="t", auto_reenable_hours=72), [(100, 100)] * 6)
     px = [100 * (0.997 ** i) for i in range(1, 45)]                 # -0.3%/h: 24h loss ~7%, drawdown > 10%

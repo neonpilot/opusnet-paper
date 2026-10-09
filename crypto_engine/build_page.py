@@ -55,7 +55,7 @@ def log_text(j):
         return "KILL SWITCH · " + "; ".join(j["reasons"]) + " → flatten, no new entries" + \
             (f" (automatic halt: re-enables {j['reenable_at_utc']})" if j.get("halt_kind") == "auto" else "")
     if k == "KILL_SWITCH_AUTO_REENABLE":
-        return "KILL SWITCH RE-ENABLED · 72h cooling-off over · strategy acts at its next daily decision"
+        return "KILL SWITCH RE-ENABLED · 72h cooling-off over · peak re-based · strategy acts at its next daily decision"
     if k == "ACCOUNT_OPENED":
         return f"ACCOUNT OPENED · ${j['start_capital']:,.0f} simulated"
     return k
@@ -109,7 +109,7 @@ def main():
                                        "total_return", "max_drawdown_hourly", "n_fills", "n_decisions", "costs_paid",
                                        "halted", "btc_buy_hold_same_window", "shadow_no_kill", "cross_check"]}
          | {k: RP.get(k) for k in ["halt_kind", "rule", "n_kill_switch_trips", "n_auto_reenables"]}
-         | {"original_rule": RP.get("original_rule_4pct_manual")}
+         | {"original_rule": RP.get("original_rule_4pct_manual"), "rule_1008": RP.get("rule_2026_10_08")}
          | {"kill": [{"ts_utc": k["ts_utc"], "ts_awst": k["ts_awst"], "reasons": k["reasons"], "equity": k["equity"]}
                      for k in RP["kill_switch_events"]]},
          "rv": rv, "corr": {"nodes": C.SYMBOLS, "snaps": corr_snaps(daily, RP["frames"])}}

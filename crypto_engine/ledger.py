@@ -6,17 +6,20 @@ Timing (identical in replay and live):
     created_at, at that open worsened by the coin's one-way cost; sells before buys; never borrows, never shorts;
   * every hourly close is marked to market and the kill switch is checked. A breach cancels pending
     orders, queues a full liquidation at the next hourly open and blocks new entries. Two kinds of halt:
-      - MANUAL halt (file HALTED): drawdown from peak, stale data (live), or a HALTED file created by hand.
+      - MANUAL halt (file HALTED): stale data (live), a HALTED file created by hand, and any rule that
+        the ledger was not built to auto-re-enable (e.g. the drawdown rule of the aggressive account).
         It never clears by itself; only deleting HALTED re-enables trading.
       - AUTOMATIC halt (file AUTO_HALTED + state.halt_kind == "auto"): only for a ledger built with
-        auto_reenable_hours (the BTC trend account, rule changed 2026-10-08, see config.py) and only when
-        the rolling-24h-loss rule is breached. It re-enables by itself at the first candle close
-        >= state.reenable_at_utc (= halted_at_utc + cooling-off; halted_at_utc is the time the halt was
-        actually acted on, never earlier than the breaching candle's close). The peak-equity watermark is
-        re-based to equity at re-enable (otherwise the drawdown rule, which is always also breached when
-        the 24h rule is, would re-halt it at once). After re-enable the strategy acts only at its next
-        normal daily decision; nothing is forced. Creating HALTED by hand turns any halt into a manual one;
-        deleting AUTO_HALTED by hand ends the cooling-off early (logged);
+        auto_reenable_hours (24h-loss rule; BTC trend account, changed 2026-10-08) and/or auto_dd_hours
+        (10%-from-peak drawdown rule; BTC trend account, changed 2026-10-09), see config.py. It re-enables
+        by itself at the first candle close >= state.reenable_at_utc (= halted_at_utc + cooling-off;
+        halted_at_utc is the time the halt was actually acted on, never earlier than the breaching candle's
+        close). The peak-equity watermark is re-based to equity at re-enable. After re-enable the strategy
+        acts only at its next normal daily decision; nothing is forced. Creating HALTED by hand turns any
+        halt into a manual one; deleting AUTO_HALTED by hand ends the cooling-off early (logged);
+      - with rebase_peak_on_resume (BTC trend account, 2026-10-09) an operator resume (HALTED deleted)
+        also re-bases the peak watermark to current equity and journals the previous peak, so a resumed
+        account never starts out "in drawdown" against a stale peak;
   * when the 23:00 UTC hourly candle is processed the daily candle is complete, so the approved
     strategy decides on it. Orders are stamped created_at = run time (live) or daily close + 17 min
     (replay, mirroring the :17 cron), so they fill at the next hourly open after that (~01:00 UTC).
@@ -51,17 +54,22 @@ def cost(sym):
 class CryptoLedger:
     def __init__(self, directory: Path | None = None, mode="live", label="", start_capital=C.START_CAPITAL,
                  opened_at=None, kill_max_dd=C.KILL_MAX_DRAWDOWN, kill_24h=C.KILL_24H_LOSS, rebalance="band",
-                 min_trade_usd=1.0, auto_reenable_hours=None):
+                 min_trade_usd=1.0, auto_reenable_hours=None, auto_dd_hours=None, rebase_peak_on_resume=False):
         """kill_max_dd / kill_24h: None disables that rule. rebalance: "band" (original account: trade only when
         the TARGET weight moves > RESIZE_BAND) or "exact" (aggressive account: every decision is a complete
         target portfolio; holdings are traded back to it, pending orders are replaced, trades < min_trade_usd
         skipped). auto_reenable_hours: None (default; every halt is manual) or the cooling-off in hours after
-        which a 24h-loss halt clears itself (BTC trend account only)."""
+        which a 24h-loss halt clears itself (BTC trend account only). auto_dd_hours: None (drawdown halts are
+        manual) or the cooling-off after which a drawdown halt clears itself (BTC trend account, 2026-10-09).
+        rebase_peak_on_resume: an operator resume (HALTED deleted) re-bases the peak watermark (2026-10-09)."""
         self.dir = Path(directory) if directory else None
         self.mode, self.label = mode, label
         self.kill_max_dd, self.kill_24h = kill_max_dd, kill_24h
         self.rebalance, self.min_trade_usd = rebalance, min_trade_usd
         self.auto_reenable_hours = auto_reenable_hours
+        self.auto_dd_hours = auto_dd_hours
+        self.rebase_peak_on_resume = rebase_peak_on_resume
+        self._meta = auto_reenable_hours is not None or auto_dd_hours is not None   # records halt kind/times
         self.new_journal, self.new_equity = [], []
         if self.dir and (self.dir / "state.json").exists():
             self.state = json.loads((self.dir / "state.json").read_text())
@@ -117,18 +125,38 @@ class CryptoLedger:
     def auto_halted_file(self):
         return self.dir / "AUTO_HALTED" if self.dir else None
 
-    def _set_halt_meta(self, kind, acted_at, breach_close=None):
+    def _auto_hours(self, reasons):
+        """Cooling-off (hours) if this set of breached rules is an AUTOMATIC halt, else None (manual).
+        Any reason other than the 24h-loss and drawdown rules (e.g. extra health checks) makes it manual.
+        A drawdown breach that accompanies an auto 24h-loss breach follows the 24h rule (2026-10-08 behaviour)."""
+        has24 = any(r.startswith("24h loss") for r in reasons)
+        hasdd = any(r.startswith("drawdown") for r in reasons)
+        if not reasons or any(not (r.startswith("24h loss") or r.startswith("drawdown")) for r in reasons):
+            return None
+        h = []
+        if has24:
+            if self.auto_reenable_hours is None:
+                return None
+            h.append(self.auto_reenable_hours)
+        if hasdd:
+            if self.auto_dd_hours is not None:
+                h.append(self.auto_dd_hours)
+            elif not has24:
+                return None
+        return max(h) if h else None
+
+    def _set_halt_meta(self, kind, acted_at, breach_close=None, hours=None):
         st = self.state
         st["halt_kind"] = kind
         st["halted_at_utc"] = iso(acted_at)
         st["halt_breach_candle_close_utc"] = iso(breach_close) if breach_close is not None else None
-        st["reenable_at_utc"] = iso(pd.Timestamp(acted_at) + pd.Timedelta(hours=self.auto_reenable_hours)) \
-            if kind == "auto" else None
+        st["cooloff_hours"] = hours if kind == "auto" else None
+        st["reenable_at_utc"] = iso(pd.Timestamp(acted_at) + pd.Timedelta(hours=hours)) if kind == "auto" else None
 
     def _clear_halt_meta(self):
         st = self.state
         st["halted"], st["halt_reasons"] = False, []
-        for k in ("halt_kind", "halted_at_utc", "halt_breach_candle_close_utc", "reenable_at_utc"):
+        for k in ("halt_kind", "halted_at_utc", "halt_breach_candle_close_utc", "reenable_at_utc", "cooloff_hours"):
             st.pop(k, None)
 
     def sync_manual_halt(self, now):
@@ -141,7 +169,7 @@ class CryptoLedger:
         if not st["halted"]:
             self.halt(["manual halt: HALTED file created by operator"], now)
         elif st.get("halt_kind") == "auto":
-            st["halt_kind"], st["reenable_at_utc"] = "manual", None
+            st["halt_kind"], st["reenable_at_utc"], st["cooloff_hours"] = "manual", None, None
             st["halt_reasons"] = st["halt_reasons"] + ["manual override: HALTED file created by operator"]
             af = self.auto_halted_file()
             if af is not None and af.exists():
@@ -261,7 +289,7 @@ class CryptoLedger:
                 info = {"halted_at_utc": st["halted_at_utc"], "reenable_at_utc": st["reenable_at_utc"],
                         "previous_peak_equity": st["peak_equity"], "equity": eq,
                         "note": ("AUTO_HALTED file removed by operator before the cooling-off ended; " if early and close_t < ra
-                                 else f"{self.auto_reenable_hours}h cooling-off over; ")
+                                 else f"{st.get('cooloff_hours') or self.auto_reenable_hours}h cooling-off over; ")
                                 + "trading re-enabled; the strategy acts at its next daily decision (nothing forced); "
                                   "peak-equity watermark re-based to current equity"}
                 if decision_time is not None:
@@ -293,37 +321,44 @@ class CryptoLedger:
                                                           "note": "research shadow: breach logged, not enforced"})
             st["_shadow_breach"] = True
         elif not hc["ok"] and not st["halted"]:
-            auto = self.auto_reenable_hours is not None and any(r.startswith("24h loss") for r in hc["reasons"])
+            hours = self._auto_hours(hc["reasons"])
+            auto = hours is not None
             st["halted"], st["halt_reasons"] = True, hc["reasons"]
             st["pending"] = []
             st["targets"] = {}
             flat = self._orders({}, eq, st["last_px"], when, "KILL SWITCH: flatten")
             st["pending"] = flat
-            if self.auto_reenable_hours is None:              # accounts without auto re-enable: unchanged behaviour
+            if not self._meta:                                # accounts without auto re-enable: unchanged behaviour
                 rec = {"halted_at_utc": iso(close_t), "reasons": hc["reasons"]}
             else:
                 acted = max(pd.Timestamp(when), close_t)      # never earlier than the breaching candle's close
-                self._set_halt_meta("auto" if auto else "manual", acted, close_t)
+                self._set_halt_meta("auto" if auto else "manual", acted, close_t, hours)
                 rec = {"halted_at_utc": st["halted_at_utc"], "breach_candle_close_utc": iso(close_t),
                        "reasons": hc["reasons"], "kind": st["halt_kind"]}
             if auto:
                 rec["reenable_at_utc"] = st["reenable_at_utc"]
-                rec["note"] = (f"automatic halt: clears itself at reenable_at_utc ({self.auto_reenable_hours}h cooling-off). "
+                rec["cooloff_hours"] = hours
+                rec["note"] = (f"automatic halt: clears itself at reenable_at_utc ({hours}h cooling-off; the peak "
+                               "watermark is re-based to equity at re-enable). "
                                "Create a file named HALTED to keep it halted indefinitely.")
                 if self.auto_halted_file():
                     self.auto_halted_file().write_text(json.dumps(rec))
             elif hf:
                 hf.write_text(json.dumps(rec))
-            meta = {} if self.auto_reenable_hours is None else \
+            meta = {} if not self._meta else \
                 {"halt_kind": st["halt_kind"], "halted_at_utc": st["halted_at_utc"], "reenable_at_utc": st.get("reenable_at_utc")}
             self.log("KILL_SWITCH", close_t, {"reasons": hc["reasons"], "equity": eq, "orders": flat, **meta})
         elif st["halted"] and st.get("halt_kind") != "auto" and hf is not None and not hf.exists():
-            if self.auto_reenable_hours is None:              # accounts without auto re-enable: unchanged behaviour
+            if not self._meta and not self.rebase_peak_on_resume:   # accounts without these rules: unchanged
                 st["halted"], st["halt_reasons"] = False, []
                 self.log("KILL_SWITCH_RESET", close_t, {"note": "HALTED file removed by operator; trading re-enabled"})
             else:
                 info = {"note": "HALTED file removed by operator; trading re-enabled",
                         "effective_from_candle_close_utc": iso(close_t)}
+                if self.rebase_peak_on_resume:
+                    info.update(previous_peak_equity=st["peak_equity"], new_peak_equity=eq, equity=eq)
+                    info["note"] += "; peak-equity watermark re-based to current equity"
+                    st["peak_equity"] = eq
                 self._clear_halt_meta()
                 self.log("KILL_SWITCH_RESET", decision_time if decision_time is not None else close_t, info)
 
@@ -360,7 +395,7 @@ class CryptoLedger:
         st["halted"], st["halt_reasons"], st["targets"] = True, reasons, {}
         eq, _ = self.value(st["last_px"])
         st["pending"] = self._orders({}, eq, st["last_px"], ts, "KILL SWITCH: flatten")
-        if self.auto_reenable_hours is not None:   # BTC trend account: record the halt kind (manual)
+        if self._meta:                              # BTC trend account: record the halt kind (manual)
             self._set_halt_meta("manual", ts)
         if self.halted_file():
             self.halted_file().write_text(json.dumps({"halted_at_utc": iso(ts), "reasons": reasons}))

@@ -1,29 +1,59 @@
 {
- "generated_at": "2026-10-08T08:44:54+08:00",
+ "generated_at": "2026-10-09T12:59:17+08:00",
  "strategy": "c_btc_regime",
  "research_run": "20260927-070706-8d03",
  "start_capital": 1000.0,
  "first_hour_utc": "2025-09-25T23:00:00Z",
  "last_hour_utc": "2026-09-26T22:00:00Z",
- "final_equity": 1059.0247664787232,
- "total_return": 0.05902476647872312,
- "max_drawdown_hourly": -0.10267980879157035,
- "n_fills": 48,
+ "final_equity": 1083.170110508582,
+ "total_return": 0.08317011050858203,
+ "max_drawdown_hourly": -0.17901319437346108,
+ "n_fills": 75,
  "n_decisions": 366,
- "costs_paid": 9.524295993784651,
- "halted": true,
- "halt_kind": "manual",
+ "costs_paid": 15.233487852861357,
+ "halted": false,
+ "halt_kind": null,
  "rule": {
   "kill_24h_loss": 0.1,
   "cooloff_hours": 72,
   "kill_max_drawdown": 0.1,
-  "changed_on": "2026-10-08",
-  "note": "24h-loss switch changed 2026-10-08 after the live halt of 2026-10-07 (was 4%, manual reset)"
+  "drawdown_auto": true,
+  "drawdown_cooloff_hours": 72,
+  "rebase_peak_on_resume": true,
+  "changed_on": "2026-10-09",
+  "note": "24h-loss switch changed 2026-10-08 after the live halt of 2026-10-07 (was 4%, manual reset); 10% drawdown halt changed 2026-10-09 after the live halt of 2026-10-08 (was manual reset): 72h cooling-off, automatic re-enable, peak re-based at any resume"
  },
- "n_kill_switch_trips": 1,
- "n_auto_halts": 0,
- "n_auto_reenables": 0,
- "auto_reenable_events": [],
+ "n_kill_switch_trips": 2,
+ "n_auto_halts": 2,
+ "n_auto_reenables": 2,
+ "auto_reenable_events": [
+  {
+   "seq": 394,
+   "ts_utc": "2026-09-03T03:00:00Z",
+   "ts_awst": "2026-09-03 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "KILL_SWITCH_AUTO_REENABLE",
+   "halted_at_utc": "2026-08-31T02:17:00Z",
+   "reenable_at_utc": "2026-09-03T02:17:00Z",
+   "previous_peak_equity": 1180.2083323819165,
+   "equity": 1059.0247664787232,
+   "note": "72h cooling-off over; trading re-enabled; the strategy acts at its next daily decision (nothing forced); peak-equity watermark re-based to current equity"
+  },
+  {
+   "seq": 430,
+   "ts_utc": "2026-09-19T03:00:00Z",
+   "ts_awst": "2026-09-19 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "KILL_SWITCH_AUTO_REENABLE",
+   "halted_at_utc": "2026-09-16T02:17:00Z",
+   "reenable_at_utc": "2026-09-19T02:17:00Z",
+   "previous_peak_equity": 1100.5740804852248,
+   "equity": 994.8808691115186,
+   "note": "72h cooling-off over; trading re-enabled; the strategy acts at its next daily decision (nothing forced); peak-equity watermark re-based to current equity"
+  }
+ ],
  "kill_switch_events": [
   {
    "seq": 381,
@@ -128,12 +158,183 @@
      "reason": "KILL SWITCH: flatten"
     }
    ],
-   "halt_kind": "manual",
+   "halt_kind": "auto",
    "halted_at_utc": "2026-08-31T02:17:00Z",
-   "reenable_at_utc": null
+   "reenable_at_utc": "2026-09-03T02:17:00Z"
+  },
+  {
+   "seq": 417,
+   "ts_utc": "2026-09-16T02:00:00Z",
+   "ts_awst": "2026-09-16 10:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "KILL_SWITCH",
+   "reasons": [
+    "drawdown -10.07% from peak $1100.57 breached the -10% limit"
+   ],
+   "equity": 989.6923477203455,
+   "orders": [
+    {
+     "sym": "ADA",
+     "side": "SELL",
+     "qty": 300.96164073700425,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 0.1924,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "BNB",
+     "side": "SELL",
+     "qty": 0.18576602950747112,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 708.9,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "BTC",
+     "side": "SELL",
+     "qty": 0.0016576919721099858,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 75489.14,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "DOGE",
+     "side": "SELL",
+     "qty": 1414.8960166847583,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 0.07949,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "ETH",
+     "side": "SELL",
+     "qty": 0.048423474055033014,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 2391.0,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "LINK",
+     "side": "SELL",
+     "qty": 8.361883022738926,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 10.79,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "LTC",
+     "side": "SELL",
+     "qty": 2.616454455610958,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 50.64,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "SOL",
+     "side": "SELL",
+     "qty": 1.1537197817499165,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 96.49,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "XRP",
+     "side": "SELL",
+     "qty": 85.29225359523116,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 1.2757,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    }
+   ],
+   "halt_kind": "auto",
+   "halted_at_utc": "2026-09-16T02:17:00Z",
+   "reenable_at_utc": "2026-09-19T02:17:00Z"
   }
  ],
- "final_positions": [],
+ "final_positions": [
+  {
+   "sym": "ADA",
+   "qty": 274.41707553097365,
+   "price": 0.2523,
+   "value": 69.23542815646466,
+   "weight": 0.06391925652745023
+  },
+  {
+   "sym": "BNB",
+   "qty": 0.1660866266466565,
+   "price": 772.95,
+   "value": 128.37665806653314,
+   "weight": 0.11851938750992337
+  },
+  {
+   "sym": "BTC",
+   "qty": 0.0015576781146346623,
+   "price": 84276.01,
+   "value": 131.27489636573193,
+   "weight": 0.12119508754178446
+  },
+  {
+   "sym": "DOGE",
+   "qty": 1330.7126848654202,
+   "price": 0.0964,
+   "value": 128.2807028210265,
+   "weight": 0.11843080008992746
+  },
+  {
+   "sym": "ETH",
+   "qty": 0.04332752253574802,
+   "price": 2688.85,
+   "value": 116.50120897024607,
+   "weight": 0.10755578264206823
+  },
+  {
+   "sym": "LINK",
+   "qty": 7.485352549832906,
+   "price": 14.065,
+   "value": 105.28148361339981,
+   "weight": 0.09719755243612371
+  },
+  {
+   "sym": "LTC",
+   "qty": 2.1716082916486816,
+   "price": 72.19,
+   "value": 156.7684025741183,
+   "weight": 0.1447311009168363
+  },
+  {
+   "sym": "SOL",
+   "qty": 1.0143558671408648,
+   "price": 121.14,
+   "value": 122.87906974544435,
+   "weight": 0.11344392589244252
+  },
+  {
+   "sym": "XRP",
+   "qty": 81.84236257821995,
+   "price": 1.5221,
+   "value": 124.57226008030858,
+   "weight": 0.11500710633698898
+  }
+ ],
  "pending_at_end": [],
  "btc_buy_hold_same_window": -0.22678651003367245,
  "shadow_no_kill": {
@@ -141,6 +342,23 @@
   "total_return": 0.2775465220109872,
   "max_drawdown_hourly": -0.11336903639385798,
   "n_fills": 39
+ },
+ "rule_2026_10_08": {
+  "final_equity": 1059.0247664787232,
+  "total_return": 0.05902476647872312,
+  "max_drawdown_hourly": -0.10267980879157035,
+  "n_fills": 48,
+  "halted_at_end": true,
+  "kill_switch_events": [
+   {
+    "ts_utc": "2026-08-31T02:00:00Z",
+    "ts_awst": "2026-08-31 10:00",
+    "reasons": [
+     "drawdown -10.12% from peak $1180.21 breached the -10% limit"
+    ],
+    "equity": 1060.8028040025536
+   }
+  ]
  },
  "original_rule_4pct_manual": {
   "final_equity": 1083.8261735183326,
@@ -5360,11 +5578,12 @@
    "hour_utc": 24,
    "e": 1059.02,
    "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
+   "dd": 0.0,
+   "halted": false,
    "w": {},
    "k": [
-    "DECISION"
+    "DECISION",
+    "KILL_SWITCH_AUTO_REENABLE"
    ],
    "lo": 1059.02,
    "hi": 1059.02
@@ -5372,322 +5591,517 @@
   {
    "d": "2026-09-04",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1039.33,
+   "c": 3.86,
+   "dd": -0.0246,
+   "halted": false,
+   "w": {
+    "ADA": 0.0612,
+    "BNB": 0.1289,
+    "BTC": 0.1271,
+    "DOGE": 0.1154,
+    "ETH": 0.1144,
+    "LINK": 0.0936,
+    "LTC": 0.1278,
+    "SOL": 0.1131,
+    "XRP": 0.1148
+   },
    "k": [
-    "DECISION"
+    "DECISION",
+    "FILL"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1029.79,
+   "hi": 1065.57
   },
   {
    "d": "2026-09-05",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1074.65,
+   "c": 3.86,
+   "dd": -0.0119,
+   "halted": false,
+   "w": {
+    "ADA": 0.0611,
+    "BNB": 0.1325,
+    "BTC": 0.1231,
+    "DOGE": 0.1181,
+    "ETH": 0.1118,
+    "LINK": 0.0938,
+    "LTC": 0.1332,
+    "SOL": 0.1108,
+    "XRP": 0.1121
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1038.4,
+   "hi": 1087.58
   },
   {
    "d": "2026-09-06",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1093.38,
+   "c": 3.86,
+   "dd": 0.0,
+   "halted": false,
+   "w": {
+    "ADA": 0.0615,
+    "BNB": 0.1279,
+    "BTC": 0.1218,
+    "DOGE": 0.1177,
+    "ETH": 0.1114,
+    "LINK": 0.1012,
+    "LTC": 0.1315,
+    "SOL": 0.1124,
+    "XRP": 0.111
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1070.34,
+   "hi": 1093.38
   },
   {
    "d": "2026-09-07",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1077.41,
+   "c": 3.86,
+   "dd": -0.0211,
+   "halted": false,
+   "w": {
+    "ADA": 0.0616,
+    "BNB": 0.1276,
+    "BTC": 0.1217,
+    "DOGE": 0.1189,
+    "ETH": 0.1119,
+    "LINK": 0.0989,
+    "LTC": 0.1341,
+    "SOL": 0.1112,
+    "XRP": 0.1106
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1071.71,
+   "hi": 1100.57
   },
   {
    "d": "2026-09-08",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1074.3,
+   "c": 3.86,
+   "dd": -0.0239,
+   "halted": false,
+   "w": {
+    "ADA": 0.0615,
+    "BNB": 0.13,
+    "BTC": 0.1211,
+    "DOGE": 0.1186,
+    "ETH": 0.112,
+    "LINK": 0.0974,
+    "LTC": 0.1322,
+    "SOL": 0.111,
+    "XRP": 0.1125
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1068.83,
+   "hi": 1086.17
   },
   {
    "d": "2026-09-09",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1047.17,
+   "c": 3.86,
+   "dd": -0.0485,
+   "halted": false,
+   "w": {
+    "ADA": 0.0609,
+    "BNB": 0.1282,
+    "BTC": 0.124,
+    "DOGE": 0.1164,
+    "ETH": 0.1141,
+    "LINK": 0.0943,
+    "LTC": 0.1329,
+    "SOL": 0.1119,
+    "XRP": 0.1136
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1039.39,
+   "hi": 1086.26
   },
   {
    "d": "2026-09-10",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1019.24,
+   "c": 3.86,
+   "dd": -0.0739,
+   "halted": false,
+   "w": {
+    "ADA": 0.0604,
+    "BNB": 0.1292,
+    "BTC": 0.1245,
+    "DOGE": 0.1151,
+    "ETH": 0.1158,
+    "LINK": 0.094,
+    "LTC": 0.1338,
+    "SOL": 0.1117,
+    "XRP": 0.1117
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1019.24,
+   "hi": 1049.08
   },
   {
    "d": "2026-09-11",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1040.05,
+   "c": 3.86,
+   "dd": -0.055,
+   "halted": false,
+   "w": {
+    "ADA": 0.0597,
+    "BNB": 0.1298,
+    "BTC": 0.1231,
+    "DOGE": 0.1147,
+    "ETH": 0.1172,
+    "LINK": 0.0929,
+    "LTC": 0.1341,
+    "SOL": 0.1137,
+    "XRP": 0.1112
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1021.81,
+   "hi": 1072.19
   },
   {
    "d": "2026-09-12",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1042.47,
+   "c": 3.86,
+   "dd": -0.0528,
+   "halted": false,
+   "w": {
+    "ADA": 0.0599,
+    "BNB": 0.1297,
+    "BTC": 0.1229,
+    "DOGE": 0.1151,
+    "ETH": 0.1173,
+    "LINK": 0.0923,
+    "LTC": 0.1347,
+    "SOL": 0.1126,
+    "XRP": 0.1118
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1038.6,
+   "hi": 1048.13
   },
   {
    "d": "2026-09-13",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1025.4,
+   "c": 3.86,
+   "dd": -0.0683,
+   "halted": false,
+   "w": {
+    "ADA": 0.0597,
+    "BNB": 0.1298,
+    "BTC": 0.1242,
+    "DOGE": 0.1137,
+    "ETH": 0.117,
+    "LINK": 0.0914,
+    "LTC": 0.1372,
+    "SOL": 0.1117,
+    "XRP": 0.1116
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1024.12,
+   "hi": 1044.56
   },
   {
    "d": "2026-09-14",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1045.32,
+   "c": 3.86,
+   "dd": -0.0502,
+   "halted": false,
+   "w": {
+    "ADA": 0.0601,
+    "BNB": 0.128,
+    "BTC": 0.124,
+    "DOGE": 0.1132,
+    "ETH": 0.1165,
+    "LINK": 0.0921,
+    "LTC": 0.133,
+    "SOL": 0.1132,
+    "XRP": 0.1161
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1029.17,
+   "hi": 1063.39
   },
   {
    "d": "2026-09-15",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 996.18,
+   "c": 3.86,
+   "dd": -0.0949,
+   "halted": false,
+   "w": {
+    "ADA": 0.059,
+    "BNB": 0.1328,
+    "BTC": 0.1259,
+    "DOGE": 0.1137,
+    "ETH": 0.1166,
+    "LINK": 0.0914,
+    "LTC": 0.1347,
+    "SOL": 0.1122,
+    "XRP": 0.1099
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 992.61,
+   "hi": 1044.27
   },
   {
    "d": "2026-09-16",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
+   "e": 994.88,
+   "c": 994.88,
+   "dd": -0.096,
    "halted": true,
    "w": {},
    "k": [
-    "DECISION"
+    "DECISION",
+    "FILL",
+    "KILL_SWITCH"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 989.69,
+   "hi": 996.82
   },
   {
    "d": "2026-09-17",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
+   "e": 994.88,
+   "c": 994.88,
+   "dd": -0.096,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 994.88,
+   "hi": 994.88
   },
   {
    "d": "2026-09-18",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
+   "e": 994.88,
+   "c": 994.88,
+   "dd": -0.096,
    "halted": true,
    "w": {},
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 994.88,
+   "hi": 994.88
   },
   {
    "d": "2026-09-19",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
+   "e": 994.88,
+   "c": 994.88,
+   "dd": 0.0,
+   "halted": false,
    "w": {},
    "k": [
-    "DECISION"
+    "DECISION",
+    "KILL_SWITCH_AUTO_REENABLE"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 994.88,
+   "hi": 994.88
   },
   {
    "d": "2026-09-20",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 997.57,
+   "c": 0.0,
+   "dd": -0.0004,
+   "halted": false,
+   "w": {
+    "ADA": 0.0627,
+    "BNB": 0.1286,
+    "BTC": 0.1268,
+    "DOGE": 0.1165,
+    "ETH": 0.1149,
+    "LINK": 0.094,
+    "LTC": 0.1279,
+    "SOL": 0.113,
+    "XRP": 0.1157
+   },
    "k": [
-    "DECISION"
+    "DECISION",
+    "FILL"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 968.94,
+   "hi": 997.98
   },
   {
    "d": "2026-09-21",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1067.83,
+   "c": 0.0,
+   "dd": -0.0032,
+   "halted": false,
+   "w": {
+    "ADA": 0.063,
+    "BNB": 0.1243,
+    "BTC": 0.1264,
+    "DOGE": 0.1244,
+    "ETH": 0.1126,
+    "LINK": 0.0924,
+    "LTC": 0.1261,
+    "SOL": 0.1129,
+    "XRP": 0.1177
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 996.78,
+   "hi": 1071.3
   },
   {
    "d": "2026-09-22",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1071.38,
+   "c": 0.0,
+   "dd": -0.0011,
+   "halted": false,
+   "w": {
+    "ADA": 0.0651,
+    "BNB": 0.1222,
+    "BTC": 0.1253,
+    "DOGE": 0.1248,
+    "ETH": 0.1114,
+    "LINK": 0.0911,
+    "LTC": 0.1277,
+    "SOL": 0.1123,
+    "XRP": 0.1201
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1050.98,
+   "hi": 1072.54
   },
   {
    "d": "2026-09-23",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1030.3,
+   "c": 0.0,
+   "dd": -0.0551,
+   "halted": false,
+   "w": {
+    "ADA": 0.0635,
+    "BNB": 0.1237,
+    "BTC": 0.1276,
+    "DOGE": 0.1198,
+    "ETH": 0.1129,
+    "LINK": 0.0898,
+    "LTC": 0.1303,
+    "SOL": 0.1132,
+    "XRP": 0.1192
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1020.1,
+   "hi": 1090.33
   },
   {
    "d": "2026-09-24",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1071.93,
+   "c": 0.0,
+   "dd": -0.0169,
+   "halted": false,
+   "w": {
+    "ADA": 0.0634,
+    "BNB": 0.1203,
+    "BTC": 0.1227,
+    "DOGE": 0.1189,
+    "ETH": 0.1087,
+    "LINK": 0.0923,
+    "LTC": 0.1458,
+    "SOL": 0.1108,
+    "XRP": 0.1172
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1027.19,
+   "hi": 1076.8
   },
   {
    "d": "2026-09-25",
    "hour_utc": 24,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1093.59,
+   "c": 0.0,
+   "dd": -0.0003,
+   "halted": false,
+   "w": {
+    "ADA": 0.0649,
+    "BNB": 0.118,
+    "BTC": 0.1198,
+    "DOGE": 0.1204,
+    "ETH": 0.1066,
+    "LINK": 0.0953,
+    "LTC": 0.1441,
+    "SOL": 0.1133,
+    "XRP": 0.1174
+   },
    "k": [
     "DECISION"
    ],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1067.12,
+   "hi": 1093.93
   },
   {
    "d": "2026-09-26",
    "hour_utc": 23,
-   "e": 1059.02,
-   "c": 1059.02,
-   "dd": -0.1027,
-   "halted": true,
-   "w": {},
+   "e": 1083.17,
+   "c": 0.0,
+   "dd": -0.0108,
+   "halted": false,
+   "w": {
+    "ADA": 0.0639,
+    "BNB": 0.1185,
+    "BTC": 0.1212,
+    "DOGE": 0.1184,
+    "ETH": 0.1076,
+    "LINK": 0.0972,
+    "LTC": 0.1447,
+    "SOL": 0.1134,
+    "XRP": 0.115
+   },
    "k": [],
-   "lo": 1059.02,
-   "hi": 1059.02
+   "lo": 1076.4,
+   "hi": 1095.05
   }
  ],
  "frames_shadow": [
@@ -33305,9 +33719,9 @@
      "reason": "KILL SWITCH: flatten"
     }
    ],
-   "halt_kind": "manual",
+   "halt_kind": "auto",
    "halted_at_utc": "2026-08-31T02:17:00Z",
-   "reenable_at_utc": null
+   "reenable_at_utc": "2026-09-03T02:17:00Z"
   },
   {
    "seq": 382,
@@ -33481,7 +33895,7 @@
    "bar_date": "2026-08-31",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (automatic halt, re-enables at 2026-09-03T02:17:00Z)"
    },
    "equity": 1059.0247664787232
   },
@@ -33495,7 +33909,7 @@
    "bar_date": "2026-09-01",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (automatic halt, re-enables at 2026-09-03T02:17:00Z)"
    },
    "equity": 1059.0247664787232
   },
@@ -33509,194 +33923,1682 @@
    "bar_date": "2026-09-02",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (automatic halt, re-enables at 2026-09-03T02:17:00Z)"
    },
    "equity": 1059.0247664787232
   },
   {
    "seq": 394,
+   "ts_utc": "2026-09-03T03:00:00Z",
+   "ts_awst": "2026-09-03 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "KILL_SWITCH_AUTO_REENABLE",
+   "halted_at_utc": "2026-08-31T02:17:00Z",
+   "reenable_at_utc": "2026-09-03T02:17:00Z",
+   "previous_peak_equity": 1180.2083323819165,
+   "equity": 1059.0247664787232,
+   "note": "72h cooling-off over; trading re-enabled; the strategy acts at its next daily decision (nothing forced); peak-equity watermark re-based to current equity"
+  },
+  {
+   "seq": 395,
    "ts_utc": "2026-09-04T00:00:00Z",
    "ts_awst": "2026-09-04 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-03",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [
+    {
+     "sym": "ADA",
+     "side": "BUY",
+     "qty": 300.96164073700425,
+     "target_weight": 0.06283386458298522,
+     "ref_close": 0.2211,
+     "created_at": "2026-09-04T00:17:00Z",
+     "reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "BNB",
+     "side": "BUY",
+     "qty": 0.18576602950747112,
+     "target_weight": 0.12721254892589418,
+     "ref_close": 725.22,
+     "created_at": "2026-09-04T00:17:00Z",
+     "reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "BTC",
+     "side": "BUY",
+     "qty": 0.0016576919721099858,
+     "target_weight": 0.12721254892589418,
+     "ref_close": 81270.37,
+     "created_at": "2026-09-04T00:17:00Z",
+     "reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "DOGE",
+     "side": "BUY",
+     "qty": 1414.8960166847583,
+     "target_weight": 0.11733074817353847,
+     "ref_close": 0.08782,
+     "created_at": "2026-09-04T00:17:00Z",
+     "reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "ETH",
+     "side": "BUY",
+     "qty": 0.048423474055033014,
+     "target_weight": 0.1146548685839212,
+     "ref_close": 2507.51,
+     "created_at": "2026-09-04T00:17:00Z",
+     "reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "LINK",
+     "side": "BUY",
+     "qty": 8.361883022738926,
+     "target_weight": 0.09343139550651636,
+     "ref_close": 11.833,
+     "created_at": "2026-09-04T00:17:00Z",
+     "reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "LTC",
+     "side": "BUY",
+     "qty": 2.616454455610958,
+     "target_weight": 0.12721254892589418,
+     "ref_close": 51.49,
+     "created_at": "2026-09-04T00:17:00Z",
+     "reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "SOL",
+     "side": "BUY",
+     "qty": 1.1537197817499165,
+     "target_weight": 0.1132340223862891,
+     "ref_close": 103.94,
+     "created_at": "2026-09-04T00:17:00Z",
+     "reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "XRP",
+     "side": "BUY",
+     "qty": 85.29225359523116,
+     "target_weight": 0.11687745398906706,
+     "ref_close": 1.4512,
+     "created_at": "2026-09-04T00:17:00Z",
+     "reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    }
+   ],
+   "equity": 1059.0247664787232,
+   "cash": 1059.0247664787232,
+   "health": {
+    "ok": true,
+    "drawdown": 0.0,
+    "loss_24h": 0.0,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 81270.37,
+     "btc_sma": 66338.24799999999,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.2250906897631666,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0342,
+     "ETH": 0.0459,
+     "BNB": 0.0309,
+     "XRP": 0.0707,
+     "ADA": 0.0706,
+     "SOL": 0.0568,
+     "DOGE": 0.0626,
+     "LTC": 0.0433,
+     "LINK": 0.0596
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1158,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 395,
+   "seq": 396,
+   "ts_utc": "2026-09-04T01:00:00Z",
+   "ts_awst": "2026-09-04 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "ADA",
+   "side": "BUY",
+   "qty": 300.96164073700425,
+   "ref_open": 0.2197,
+   "fill_price": 0.2201394,
+   "notional": 66.25351501485967,
+   "cost": 0.13224254493983967,
+   "fill_bar_open_utc": "2026-09-04T01:00:00Z",
+   "order_created_utc": "2026-09-04T00:17:00Z",
+   "order_reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 397,
+   "ts_utc": "2026-09-04T01:00:00Z",
+   "ts_awst": "2026-09-04 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "BNB",
+   "side": "BUY",
+   "qty": 0.18576602950747112,
+   "ref_open": 721.66,
+   "fill_price": 723.1033199999999,
+   "notional": 134.32803268007032,
+   "cost": 0.2681198257087232,
+   "fill_bar_open_utc": "2026-09-04T01:00:00Z",
+   "order_created_utc": "2026-09-04T00:17:00Z",
+   "order_reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 398,
+   "ts_utc": "2026-09-04T01:00:00Z",
+   "ts_awst": "2026-09-04 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "BTC",
+   "side": "BUY",
+   "qty": 0.0016576919721099858,
+   "ref_open": 80972.11,
+   "fill_price": 81093.568165,
+   "notional": 134.42815693687442,
+   "cost": 0.20134022506771004,
+   "fill_bar_open_utc": "2026-09-04T01:00:00Z",
+   "order_created_utc": "2026-09-04T00:17:00Z",
+   "order_reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 399,
+   "ts_utc": "2026-09-04T01:00:00Z",
+   "ts_awst": "2026-09-04 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "DOGE",
+   "side": "BUY",
+   "qty": 1414.8960166847583,
+   "ref_open": 0.08706,
+   "fill_price": 0.08723412,
+   "notional": 123.4272089070002,
+   "cost": 0.2463616944251501,
+   "fill_bar_open_utc": "2026-09-04T01:00:00Z",
+   "order_created_utc": "2026-09-04T00:17:00Z",
+   "order_reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 400,
+   "ts_utc": "2026-09-04T01:00:00Z",
+   "ts_awst": "2026-09-04 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "ETH",
+   "side": "BUY",
+   "qty": 0.048423474055033014,
+   "ref_open": 2501.48,
+   "fill_price": 2505.2322200000003,
+   "notional": 121.31204740700278,
+   "cost": 0.181695527818776,
+   "fill_bar_open_utc": "2026-09-04T01:00:00Z",
+   "order_created_utc": "2026-09-04T00:17:00Z",
+   "order_reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 401,
+   "ts_utc": "2026-09-04T01:00:00Z",
+   "ts_awst": "2026-09-04 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "LINK",
+   "side": "BUY",
+   "qty": 8.361883022738926,
+   "ref_open": 11.79,
+   "fill_price": 11.81358,
+   "notional": 98.78377403976812,
+   "cost": 0.19717320167618385,
+   "fill_bar_open_utc": "2026-09-04T01:00:00Z",
+   "order_created_utc": "2026-09-04T00:17:00Z",
+   "order_reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 402,
+   "ts_utc": "2026-09-04T01:00:00Z",
+   "ts_awst": "2026-09-04 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "LTC",
+   "side": "BUY",
+   "qty": 2.616454455610958,
+   "ref_open": 51.04,
+   "fill_price": 51.14208,
+   "notional": 133.81092308521207,
+   "cost": 0.2670876708287666,
+   "fill_bar_open_utc": "2026-09-04T01:00:00Z",
+   "order_created_utc": "2026-09-04T00:17:00Z",
+   "order_reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 403,
+   "ts_utc": "2026-09-04T01:00:00Z",
+   "ts_awst": "2026-09-04 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "SOL",
+   "side": "BUY",
+   "qty": 1.1537197817499165,
+   "ref_open": 103.49,
+   "fill_price": 103.69698,
+   "notional": 119.63725713372546,
+   "cost": 0.23879692042659773,
+   "fill_bar_open_utc": "2026-09-04T01:00:00Z",
+   "order_created_utc": "2026-09-04T00:17:00Z",
+   "order_reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 404,
+   "ts_utc": "2026-09-04T01:00:00Z",
+   "ts_awst": "2026-09-04 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "XRP",
+   "side": "BUY",
+   "qty": 85.29225359523116,
+   "ref_open": 1.4414,
+   "fill_price": 1.4442828,
+   "notional": 123.18613484083053,
+   "cost": 0.2458805086643324,
+   "fill_bar_open_utc": "2026-09-04T01:00:00Z",
+   "order_created_utc": "2026-09-04T00:17:00Z",
+   "order_reason": "BTC 81,270 is ABOVE its 100d SMA 66,338 (+22.5%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 405,
    "ts_utc": "2026-09-05T00:00:00Z",
    "ts_awst": "2026-09-05 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-04",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1039.328020334444,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": -0.02462403129222457,
+    "loss_24h": -0.018598947605135918,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 79,661 is ABOVE its 100d SMA 66,390 (+20.0%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 79660.77,
+     "btc_sma": 66390.3627,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.19988454288110113,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0365,
+     "ETH": 0.049,
+     "BNB": 0.0321,
+     "XRP": 0.0759,
+     "ADA": 0.0767,
+     "SOL": 0.0598,
+     "DOGE": 0.0669,
+     "LTC": 0.0451,
+     "LINK": 0.0603
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1158,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 396,
+   "seq": 406,
    "ts_utc": "2026-09-06T00:00:00Z",
    "ts_awst": "2026-09-06 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-05",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1074.651840450443,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": -0.01189036320550263,
+    "loss_24h": 0.033987171927330584,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 79,832 is ABOVE its 100d SMA 66,453 (+20.1%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 79831.75,
+     "btc_sma": 66452.5051,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.20133544822526206,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0364,
+     "ETH": 0.049,
+     "BNB": 0.0338,
+     "XRP": 0.0758,
+     "ADA": 0.0761,
+     "SOL": 0.0596,
+     "DOGE": 0.0688,
+     "LTC": 0.0454,
+     "LINK": 0.06
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1158,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 397,
+   "seq": 407,
    "ts_utc": "2026-09-07T00:00:00Z",
    "ts_awst": "2026-09-07 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-06",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1093.3802418907587,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": 0.0,
+    "loss_24h": 0.017427412986577906,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 80,342 is ABOVE its 100d SMA 66,521 (+20.8%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 80341.83,
+     "btc_sma": 66521.3156,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.20776068956760074,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0359,
+     "ETH": 0.0488,
+     "BNB": 0.0358,
+     "XRP": 0.0758,
+     "ADA": 0.0751,
+     "SOL": 0.0589,
+     "DOGE": 0.0697,
+     "LTC": 0.046,
+     "LINK": 0.0588
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1158,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 398,
+   "seq": 408,
    "ts_utc": "2026-09-08T00:00:00Z",
    "ts_awst": "2026-09-08 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-07",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1077.4062244385884,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": -0.021050701136285266,
+    "loss_24h": -0.014609754996621094,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 79,112 is ABOVE its 100d SMA 66,574 (+18.8%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 79112.01,
+     "btc_sma": 66573.5919,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.188339215928651,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0369,
+     "ETH": 0.0499,
+     "BNB": 0.0376,
+     "XRP": 0.0785,
+     "ADA": 0.0775,
+     "SOL": 0.0613,
+     "DOGE": 0.0713,
+     "LTC": 0.0503,
+     "LINK": 0.0643
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1158,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 399,
+   "seq": 409,
    "ts_utc": "2026-09-09T00:00:00Z",
    "ts_awst": "2026-09-09 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-08",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1074.2959356761019,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": -0.023876761478461628,
+    "loss_24h": -0.002886830140699459,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 78,456 is ABOVE its 100d SMA 66,621 (+17.8%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 78455.8,
+     "btc_sma": 66621.406,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.17763650920246254,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0347,
+     "ETH": 0.0427,
+     "BNB": 0.0363,
+     "XRP": 0.0749,
+     "ADA": 0.0774,
+     "SOL": 0.058,
+     "DOGE": 0.0701,
+     "LTC": 0.0506,
+     "LINK": 0.062
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1158,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 400,
+   "seq": 410,
    "ts_utc": "2026-09-10T00:00:00Z",
    "ts_awst": "2026-09-10 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-09",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1047.1693180980294,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": -0.04852445949267692,
+    "loss_24h": -0.025250600581487315,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 78,306 is ABOVE its 100d SMA 66,690 (+17.4%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 78306.43,
+     "btc_sma": 66690.3813,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.1741787717144152,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0331,
+     "ETH": 0.0419,
+     "BNB": 0.0381,
+     "XRP": 0.0693,
+     "ADA": 0.0786,
+     "SOL": 0.0594,
+     "DOGE": 0.0719,
+     "LTC": 0.0519,
+     "LINK": 0.0682
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1158,
+       "LINK": 0.1469
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 401,
+   "seq": 411,
    "ts_utc": "2026-09-11T00:00:00Z",
    "ts_awst": "2026-09-11 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-10",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1019.2417368933699,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": -0.07389992644202281,
+    "loss_24h": -0.026669594612821812,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 76,569 is ABOVE its 100d SMA 66,788 (+14.6%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 76568.72,
+     "btc_sma": 66788.4602,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.14643637195277037,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.031,
+     "ETH": 0.0394,
+     "BNB": 0.0377,
+     "XRP": 0.0668,
+     "ADA": 0.0755,
+     "SOL": 0.0593,
+     "DOGE": 0.0684,
+     "LTC": 0.0486,
+     "LINK": 0.0649
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1268,
+       "SOL": 0.1158
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 402,
+   "seq": 412,
    "ts_utc": "2026-09-12T00:00:00Z",
    "ts_awst": "2026-09-12 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-11",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1040.0476113292912,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": -0.05499536126568472,
+    "loss_24h": 0.02041309110764744,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 77,226 is ABOVE its 100d SMA 66,919 (+15.4%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 77225.7,
+     "btc_sma": 66919.2897,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.15401254774525808,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0318,
+     "ETH": 0.0399,
+     "BNB": 0.0361,
+     "XRP": 0.0582,
+     "ADA": 0.0667,
+     "SOL": 0.0535,
+     "DOGE": 0.0603,
+     "LTC": 0.0449,
+     "LINK": 0.0612
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1268,
+       "SOL": 0.1158
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 403,
+   "seq": 413,
    "ts_utc": "2026-09-13T00:00:00Z",
    "ts_awst": "2026-09-13 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-12",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1042.4739229189836,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": -0.05279077401189192,
+    "loss_24h": 0.0023328851133952444,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 77,279 is ABOVE its 100d SMA 67,053 (+15.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 77278.73,
+     "btc_sma": 67053.2171,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.15249846826514157,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0304,
+     "ETH": 0.038,
+     "BNB": 0.035,
+     "XRP": 0.0543,
+     "ADA": 0.0632,
+     "SOL": 0.0518,
+     "DOGE": 0.0573,
+     "LTC": 0.0433,
+     "LINK": 0.059
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1268,
+       "SOL": 0.1158
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 404,
+   "seq": 414,
    "ts_utc": "2026-09-14T00:00:00Z",
    "ts_awst": "2026-09-14 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-13",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1025.402765864229,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": -0.06830191256898777,
+    "loss_24h": -0.01637562022362582,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 76,842 is ABOVE its 100d SMA 67,211 (+14.3%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 76842.01,
+     "btc_sma": 67211.0725,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.14329391187739193,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.029,
+     "ETH": 0.0379,
+     "BNB": 0.0351,
+     "XRP": 0.0538,
+     "ADA": 0.0635,
+     "SOL": 0.0518,
+     "DOGE": 0.0574,
+     "LTC": 0.0423,
+     "LINK": 0.0601
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1268,
+       "LINK": 0.0832
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 405,
+   "seq": 415,
    "ts_utc": "2026-09-15T00:00:00Z",
    "ts_awst": "2026-09-15 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-14",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1045.320077287131,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": -0.05020471059406861,
+    "loss_24h": 0.019423890870935212,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 78,189 is ABOVE its 100d SMA 67,384 (+16.0%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 78189.21,
+     "btc_sma": 67384.11839999999,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.16035071551815405,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0284,
+     "ETH": 0.0379,
+     "BNB": 0.0341,
+     "XRP": 0.0513,
+     "ADA": 0.0598,
+     "SOL": 0.0492,
+     "DOGE": 0.0542,
+     "LTC": 0.0409,
+     "LINK": 0.0585
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1268,
+       "SOL": 0.1016
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 406,
+   "seq": 416,
    "ts_utc": "2026-09-16T00:00:00Z",
    "ts_awst": "2026-09-16 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-15",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 996.183743040678,
+   "cash": 3.857716433379636,
+   "health": {
+    "ok": true,
+    "drawdown": -0.09485080495310494,
+    "loss_24h": -0.0470060178830336,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 75,644 is ABOVE its 100d SMA 67,507 (+12.1%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 75644.48,
+     "btc_sma": 67507.2431,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.12053872334774685,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0304,
+     "ETH": 0.0414,
+     "BNB": 0.0346,
+     "XRP": 0.0608,
+     "ADA": 0.0652,
+     "SOL": 0.0518,
+     "DOGE": 0.0576,
+     "LTC": 0.043,
+     "LINK": 0.0631
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1268,
+       "LINK": 0.0792
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 407,
+   "seq": 417,
+   "ts_utc": "2026-09-16T02:00:00Z",
+   "ts_awst": "2026-09-16 10:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "KILL_SWITCH",
+   "reasons": [
+    "drawdown -10.07% from peak $1100.57 breached the -10% limit"
+   ],
+   "equity": 989.6923477203455,
+   "orders": [
+    {
+     "sym": "ADA",
+     "side": "SELL",
+     "qty": 300.96164073700425,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 0.1924,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "BNB",
+     "side": "SELL",
+     "qty": 0.18576602950747112,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 708.9,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "BTC",
+     "side": "SELL",
+     "qty": 0.0016576919721099858,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 75489.14,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "DOGE",
+     "side": "SELL",
+     "qty": 1414.8960166847583,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 0.07949,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "ETH",
+     "side": "SELL",
+     "qty": 0.048423474055033014,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 2391.0,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "LINK",
+     "side": "SELL",
+     "qty": 8.361883022738926,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 10.79,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "LTC",
+     "side": "SELL",
+     "qty": 2.616454455610958,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 50.64,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "SOL",
+     "side": "SELL",
+     "qty": 1.1537197817499165,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 96.49,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    },
+    {
+     "sym": "XRP",
+     "side": "SELL",
+     "qty": 85.29225359523116,
+     "close_all": true,
+     "target_weight": 0.0,
+     "ref_close": 1.2757,
+     "created_at": "2026-09-16T02:17:00Z",
+     "reason": "KILL SWITCH: flatten"
+    }
+   ],
+   "halt_kind": "auto",
+   "halted_at_utc": "2026-09-16T02:17:00Z",
+   "reenable_at_utc": "2026-09-19T02:17:00Z"
+  },
+  {
+   "seq": 418,
+   "ts_utc": "2026-09-16T03:00:00Z",
+   "ts_awst": "2026-09-16 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "ADA",
+   "side": "SELL",
+   "qty": 300.96164073700425,
+   "ref_open": 0.1945,
+   "fill_price": 0.194111,
+   "notional": 58.41996504510063,
+   "cost": 0.11707407824669466,
+   "fill_bar_open_utc": "2026-09-16T03:00:00Z",
+   "order_created_utc": "2026-09-16T02:17:00Z",
+   "order_reason": "KILL SWITCH: flatten"
+  },
+  {
+   "seq": 419,
+   "ts_utc": "2026-09-16T03:00:00Z",
+   "ts_awst": "2026-09-16 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "BNB",
+   "side": "SELL",
+   "qty": 0.18576602950747112,
+   "ref_open": 712.86,
+   "fill_price": 711.4342800000001,
+   "notional": 132.16032145110648,
+   "cost": 0.26485034358939175,
+   "fill_bar_open_utc": "2026-09-16T03:00:00Z",
+   "order_created_utc": "2026-09-16T02:17:00Z",
+   "order_reason": "KILL SWITCH: flatten"
+  },
+  {
+   "seq": 420,
+   "ts_utc": "2026-09-16T03:00:00Z",
+   "ts_awst": "2026-09-16 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "BTC",
+   "side": "SELL",
+   "qty": 0.0016576919721099858,
+   "ref_open": 75886.36,
+   "fill_price": 75772.53046000001,
+   "notional": 125.60751545000139,
+   "cost": 0.1886943146469725,
+   "fill_bar_open_utc": "2026-09-16T03:00:00Z",
+   "order_created_utc": "2026-09-16T02:17:00Z",
+   "order_reason": "KILL SWITCH: flatten"
+  },
+  {
+   "seq": 421,
+   "ts_utc": "2026-09-16T03:00:00Z",
+   "ts_awst": "2026-09-16 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "DOGE",
+   "side": "SELL",
+   "qty": 1414.8960166847583,
+   "ref_open": 0.08009,
+   "fill_price": 0.07992982,
+   "notional": 113.09238393232972,
+   "cost": 0.22663804395256457,
+   "fill_bar_open_utc": "2026-09-16T03:00:00Z",
+   "order_created_utc": "2026-09-16T02:17:00Z",
+   "order_reason": "KILL SWITCH: flatten"
+  },
+  {
+   "seq": 422,
+   "ts_utc": "2026-09-16T03:00:00Z",
+   "ts_awst": "2026-09-16 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "ETH",
+   "side": "SELL",
+   "qty": 0.048423474055033014,
+   "ref_open": 2403.01,
+   "fill_price": 2399.405485,
+   "notional": 116.18754925040142,
+   "cost": 0.17454313858347734,
+   "fill_bar_open_utc": "2026-09-16T03:00:00Z",
+   "order_created_utc": "2026-09-16T02:17:00Z",
+   "order_reason": "KILL SWITCH: flatten"
+  },
+  {
+   "seq": 423,
+   "ts_utc": "2026-09-16T03:00:00Z",
+   "ts_awst": "2026-09-16 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "LINK",
+   "side": "SELL",
+   "qty": 8.361883022738926,
+   "ref_open": 10.866,
+   "fill_price": 10.844268,
+   "notional": 90.678500483231,
+   "cost": 0.18172044185016234,
+   "fill_bar_open_utc": "2026-09-16T03:00:00Z",
+   "order_created_utc": "2026-09-16T02:17:00Z",
+   "order_reason": "KILL SWITCH: flatten"
+  },
+  {
+   "seq": 424,
+   "ts_utc": "2026-09-16T03:00:00Z",
+   "ts_awst": "2026-09-16 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "LTC",
+   "side": "SELL",
+   "qty": 2.616454455610958,
+   "ref_open": 50.99,
+   "fill_price": 50.888020000000004,
+   "notional": 133.14618666621956,
+   "cost": 0.2668260253832055,
+   "fill_bar_open_utc": "2026-09-16T03:00:00Z",
+   "order_created_utc": "2026-09-16T02:17:00Z",
+   "order_reason": "KILL SWITCH: flatten"
+  },
+  {
+   "seq": 425,
+   "ts_utc": "2026-09-16T03:00:00Z",
+   "ts_awst": "2026-09-16 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "SOL",
+   "side": "SELL",
+   "qty": 1.1537197817499165,
+   "ref_open": 97.25,
+   "fill_price": 97.0555,
+   "notional": 111.97485027762902,
+   "cost": 0.22439849755035876,
+   "fill_bar_open_utc": "2026-09-16T03:00:00Z",
+   "order_created_utc": "2026-09-16T02:17:00Z",
+   "order_reason": "KILL SWITCH: flatten"
+  },
+  {
+   "seq": 426,
+   "ts_utc": "2026-09-16T03:00:00Z",
+   "ts_awst": "2026-09-16 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "XRP",
+   "side": "SELL",
+   "qty": 85.29225359523116,
+   "ref_open": 1.2894,
+   "fill_price": 1.2868212,
+   "notional": 109.75588012211968,
+   "cost": 0.21995166357138216,
+   "fill_bar_open_utc": "2026-09-16T03:00:00Z",
+   "order_created_utc": "2026-09-16T02:17:00Z",
+   "order_reason": "KILL SWITCH: flatten"
+  },
+  {
+   "seq": 427,
    "ts_utc": "2026-09-17T00:00:00Z",
    "ts_awst": "2026-09-17 08:00",
    "mode": "replay",
@@ -33705,12 +35607,12 @@
    "bar_date": "2026-09-16",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+    "summary": "Kill switch active: drawdown -10.07% from peak $1100.57 breached the -10% limit (automatic halt, re-enables at 2026-09-19T02:17:00Z)"
    },
-   "equity": 1059.0247664787232
+   "equity": 994.8808691115186
   },
   {
-   "seq": 408,
+   "seq": 428,
    "ts_utc": "2026-09-18T00:00:00Z",
    "ts_awst": "2026-09-18 08:00",
    "mode": "replay",
@@ -33719,12 +35621,12 @@
    "bar_date": "2026-09-17",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+    "summary": "Kill switch active: drawdown -10.07% from peak $1100.57 breached the -10% limit (automatic halt, re-enables at 2026-09-19T02:17:00Z)"
    },
-   "equity": 1059.0247664787232
+   "equity": 994.8808691115186
   },
   {
-   "seq": 409,
+   "seq": 429,
    "ts_utc": "2026-09-19T00:00:00Z",
    "ts_awst": "2026-09-19 08:00",
    "mode": "replay",
@@ -33733,107 +35635,882 @@
    "bar_date": "2026-09-18",
    "action": "HALTED - no new entries",
    "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+    "summary": "Kill switch active: drawdown -10.07% from peak $1100.57 breached the -10% limit (automatic halt, re-enables at 2026-09-19T02:17:00Z)"
    },
-   "equity": 1059.0247664787232
+   "equity": 994.8808691115186
   },
   {
-   "seq": 410,
+   "seq": 430,
+   "ts_utc": "2026-09-19T03:00:00Z",
+   "ts_awst": "2026-09-19 11:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "KILL_SWITCH_AUTO_REENABLE",
+   "halted_at_utc": "2026-09-16T02:17:00Z",
+   "reenable_at_utc": "2026-09-19T02:17:00Z",
+   "previous_peak_equity": 1100.5740804852248,
+   "equity": 994.8808691115186,
+   "note": "72h cooling-off over; trading re-enabled; the strategy acts at its next daily decision (nothing forced); peak-equity watermark re-based to current equity"
+  },
+  {
+   "seq": 431,
    "ts_utc": "2026-09-20T00:00:00Z",
    "ts_awst": "2026-09-20 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-19",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [
+    {
+     "sym": "ADA",
+     "side": "BUY",
+     "qty": 274.41707553097365,
+     "target_weight": 0.06283386458298522,
+     "ref_close": 0.2278,
+     "created_at": "2026-09-20T00:17:00Z",
+     "reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "BNB",
+     "side": "BUY",
+     "qty": 0.1660866266466565,
+     "target_weight": 0.12721254892589418,
+     "ref_close": 762.02,
+     "created_at": "2026-09-20T00:17:00Z",
+     "reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "BTC",
+     "side": "BUY",
+     "qty": 0.0015576781146346623,
+     "target_weight": 0.12721254892589418,
+     "ref_close": 81249.99,
+     "created_at": "2026-09-20T00:17:00Z",
+     "reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "DOGE",
+     "side": "BUY",
+     "qty": 1330.7126848654202,
+     "target_weight": 0.11733074817353847,
+     "ref_close": 0.08772,
+     "created_at": "2026-09-20T00:17:00Z",
+     "reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "ETH",
+     "side": "BUY",
+     "qty": 0.04332752253574802,
+     "target_weight": 0.1146548685839212,
+     "ref_close": 2632.69,
+     "created_at": "2026-09-20T00:17:00Z",
+     "reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "LINK",
+     "side": "BUY",
+     "qty": 7.485352549832906,
+     "target_weight": 0.09343139550651636,
+     "ref_close": 12.418,
+     "created_at": "2026-09-20T00:17:00Z",
+     "reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "LTC",
+     "side": "BUY",
+     "qty": 2.1716082916486816,
+     "target_weight": 0.12721254892589418,
+     "ref_close": 58.28,
+     "created_at": "2026-09-20T00:17:00Z",
+     "reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "SOL",
+     "side": "BUY",
+     "qty": 1.0143558671408648,
+     "target_weight": 0.1132340223862891,
+     "ref_close": 111.06,
+     "created_at": "2026-09-20T00:17:00Z",
+     "reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    },
+    {
+     "sym": "XRP",
+     "side": "BUY",
+     "qty": 82.44408891391417,
+     "target_weight": 0.11687745398906706,
+     "ref_close": 1.4104,
+     "created_at": "2026-09-20T00:17:00Z",
+     "reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+    }
+   ],
+   "equity": 994.8808691115186,
+   "cash": 994.8808691115186,
+   "health": {
+    "ok": true,
+    "drawdown": 0.0,
+    "loss_24h": 0.0,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 81249.99,
+     "btc_sma": 68155.2822,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.1921304905109762,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0275,
+     "ETH": 0.038,
+     "BNB": 0.033,
+     "XRP": 0.0543,
+     "ADA": 0.0574,
+     "SOL": 0.0434,
+     "DOGE": 0.0523,
+     "LTC": 0.0409,
+     "LINK": 0.0557
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1315,
+       "LINK": 0.0855
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 411,
+   "seq": 432,
+   "ts_utc": "2026-09-20T01:00:00Z",
+   "ts_awst": "2026-09-20 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "ADA",
+   "side": "BUY",
+   "qty": 274.41707553097365,
+   "ref_open": 0.2288,
+   "fill_price": 0.2292576,
+   "notional": 62.91220013524975,
+   "cost": 0.12557325376297354,
+   "fill_bar_open_utc": "2026-09-20T01:00:00Z",
+   "order_created_utc": "2026-09-20T00:17:00Z",
+   "order_reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 433,
+   "ts_utc": "2026-09-20T01:00:00Z",
+   "ts_awst": "2026-09-20 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "BNB",
+   "side": "BUY",
+   "qty": 0.1660866266466565,
+   "ref_open": 763.38,
+   "fill_price": 764.90676,
+   "notional": 127.04078346762368,
+   "cost": 0.2535744180990493,
+   "fill_bar_open_utc": "2026-09-20T01:00:00Z",
+   "order_created_utc": "2026-09-20T00:17:00Z",
+   "order_reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 434,
+   "ts_utc": "2026-09-20T01:00:00Z",
+   "ts_awst": "2026-09-20 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "BTC",
+   "side": "BUY",
+   "qty": 0.0015576781146346623,
+   "ref_open": 81293.37,
+   "fill_price": 81415.310055,
+   "notional": 126.81884666886886,
+   "cost": 0.18994335497084702,
+   "fill_bar_open_utc": "2026-09-20T01:00:00Z",
+   "order_created_utc": "2026-09-20T00:17:00Z",
+   "order_reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 435,
+   "ts_utc": "2026-09-20T01:00:00Z",
+   "ts_awst": "2026-09-20 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "DOGE",
+   "side": "BUY",
+   "qty": 1330.7126848654202,
+   "ref_open": 0.08756,
+   "fill_price": 0.08773512,
+   "notional": 116.75023709218982,
+   "cost": 0.23303440537363238,
+   "fill_bar_open_utc": "2026-09-20T01:00:00Z",
+   "order_created_utc": "2026-09-20T00:17:00Z",
+   "order_reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 436,
+   "ts_utc": "2026-09-20T01:00:00Z",
+   "ts_awst": "2026-09-20 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "ETH",
+   "side": "BUY",
+   "qty": 0.04332752253574802,
+   "ref_open": 2627.36,
+   "fill_price": 2631.3010400000003,
+   "notional": 114.00775510893722,
+   "cost": 0.17075549941428442,
+   "fill_bar_open_utc": "2026-09-20T01:00:00Z",
+   "order_created_utc": "2026-09-20T00:17:00Z",
+   "order_reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 437,
+   "ts_utc": "2026-09-20T01:00:00Z",
+   "ts_awst": "2026-09-20 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "LINK",
+   "side": "BUY",
+   "qty": 7.485352549832906,
+   "ref_open": 12.4,
+   "fill_price": 12.424800000000001,
+   "notional": 93.0040083611639,
+   "cost": 0.18563674323585608,
+   "fill_bar_open_utc": "2026-09-20T01:00:00Z",
+   "order_created_utc": "2026-09-20T00:17:00Z",
+   "order_reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 438,
+   "ts_utc": "2026-09-20T01:00:00Z",
+   "ts_awst": "2026-09-20 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "LTC",
+   "side": "BUY",
+   "qty": 2.1716082916486816,
+   "ref_open": 58.03,
+   "fill_price": 58.14606,
+   "notional": 126.27046602270174,
+   "cost": 0.252036858328746,
+   "fill_bar_open_utc": "2026-09-20T01:00:00Z",
+   "order_created_utc": "2026-09-20T00:17:00Z",
+   "order_reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 439,
+   "ts_utc": "2026-09-20T01:00:00Z",
+   "ts_awst": "2026-09-20 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "SOL",
+   "side": "BUY",
+   "qty": 1.0143558671408648,
+   "ref_open": 110.95,
+   "fill_price": 111.17190000000001,
+   "notional": 112.76786902619752,
+   "cost": 0.2250855669185579,
+   "fill_bar_open_utc": "2026-09-20T01:00:00Z",
+   "order_created_utc": "2026-09-20T00:17:00Z",
+   "order_reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 440,
+   "ts_utc": "2026-09-20T01:00:00Z",
+   "ts_awst": "2026-09-20 09:00",
+   "mode": "replay",
+   "account": "replay",
+   "kind": "FILL",
+   "sym": "XRP",
+   "side": "BUY",
+   "qty": 81.84236257821995,
+   "ref_open": 1.4061,
+   "fill_price": 1.4089121999999998,
+   "notional": 115.30870311327753,
+   "cost": 0.23015709204247012,
+   "fill_bar_open_utc": "2026-09-20T01:00:00Z",
+   "order_created_utc": "2026-09-20T00:17:00Z",
+   "order_reason": "BTC 81,250 is ABOVE its 100d SMA 68,155 (+19.2%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)"
+  },
+  {
+   "seq": 441,
    "ts_utc": "2026-09-21T00:00:00Z",
    "ts_awst": "2026-09-21 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-20",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 997.5713076708389,
+   "cash": 1.153086941485526e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.00040632339189938804,
+    "loss_24h": 0.002704282133521252,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 81,178 is ABOVE its 100d SMA 68,331 (+18.8%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 81178.0,
+     "btc_sma": 68331.26209999999,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.18800674106091209,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0272,
+     "ETH": 0.0378,
+     "BNB": 0.0338,
+     "XRP": 0.054,
+     "ADA": 0.0586,
+     "SOL": 0.0434,
+     "DOGE": 0.0531,
+     "LTC": 0.0419,
+     "LINK": 0.0561
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1152,
+       "LINK": 0.0855
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 412,
+   "seq": 442,
    "ts_utc": "2026-09-22T00:00:00Z",
    "ts_awst": "2026-09-22 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-21",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1067.8313004688541,
+   "cash": 1.153086941485526e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.0032370705614546136,
+    "loss_24h": 0.07043104814437817,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 86,620 is ABOVE its 100d SMA 68,553 (+26.4%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 86620.0,
+     "btc_sma": 68552.882,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.26355008677826275,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0277,
+     "ETH": 0.0371,
+     "BNB": 0.034,
+     "XRP": 0.0533,
+     "ADA": 0.0571,
+     "SOL": 0.0419,
+     "DOGE": 0.0523,
+     "LTC": 0.0428,
+     "LINK": 0.0547
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1152,
+       "LINK": 0.0855
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 413,
+   "seq": 443,
    "ts_utc": "2026-09-23T00:00:00Z",
    "ts_awst": "2026-09-23 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-22",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1071.381030659503,
+   "cash": 1.153086941485526e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.0010792200817152375,
+    "loss_24h": 0.0033242424988761954,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 86,209 is ABOVE its 100d SMA 68,758 (+25.4%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 86208.56,
+     "btc_sma": 68757.5031,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.2538058555532392,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0279,
+     "ETH": 0.0372,
+     "BNB": 0.0352,
+     "XRP": 0.0542,
+     "ADA": 0.0567,
+     "SOL": 0.0423,
+     "DOGE": 0.0553,
+     "LTC": 0.0441,
+     "LINK": 0.0558
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "SOL": 0.1152,
+       "LINK": 0.0855
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 414,
+   "seq": 444,
    "ts_utc": "2026-09-24T00:00:00Z",
    "ts_awst": "2026-09-24 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-23",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1030.3023489945406,
+   "cash": 1.153086941485526e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.05505565648225352,
+    "loss_24h": -0.03834180416623201,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 84,398 is ABOVE its 100d SMA 68,938 (+22.4%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 84397.6,
+     "btc_sma": 68938.1917,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.22425027287160493,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0275,
+     "ETH": 0.038,
+     "BNB": 0.0362,
+     "XRP": 0.058,
+     "ADA": 0.061,
+     "SOL": 0.0437,
+     "DOGE": 0.0623,
+     "LTC": 0.0477,
+     "LINK": 0.0597
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ETH": 0.1314,
+       "LINK": 0.0855
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 415,
+   "seq": 445,
    "ts_utc": "2026-09-25T00:00:00Z",
    "ts_awst": "2026-09-25 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-24",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1071.9333617297402,
+   "cash": 1.153086941485526e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.016873670352228087,
+    "loss_24h": 0.040406597903835495,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 84,410 is ABOVE its 100d SMA 69,126 (+22.1%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 84410.24,
+     "btc_sma": 69125.544,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.22111501936245181,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.0271,
+     "ETH": 0.0378,
+     "BNB": 0.0359,
+     "XRP": 0.0573,
+     "ADA": 0.0589,
+     "SOL": 0.0432,
+     "DOGE": 0.0611,
+     "LTC": 0.0489,
+     "LINK": 0.0586
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "LTC": 0.1022,
+       "LINK": 0.0855
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   },
   {
-   "seq": 416,
+   "seq": 446,
    "ts_utc": "2026-09-26T00:00:00Z",
    "ts_awst": "2026-09-26 08:00",
    "mode": "replay",
    "account": "replay",
    "kind": "DECISION",
    "bar_date": "2026-09-25",
-   "action": "HALTED - no new entries",
-   "rationale": {
-    "summary": "Kill switch active: drawdown -10.12% from peak $1180.21 breached the -10% limit (manual reset only)"
+   "action": "TARGET",
+   "target_weights": {
+    "BTC": 0.1272,
+    "ETH": 0.1147,
+    "BNB": 0.1272,
+    "XRP": 0.1169,
+    "ADA": 0.0628,
+    "SOL": 0.1132,
+    "DOGE": 0.1173,
+    "LTC": 0.1272,
+    "LINK": 0.0934
    },
-   "equity": 1059.0247664787232
+   "orders": [],
+   "equity": 1093.5935024313549,
+   "cash": 1.153086941485526e-07,
+   "health": {
+    "ok": true,
+    "drawdown": -0.0003098539399734035,
+    "loss_24h": 0.02020661122689793,
+    "reasons": []
+   },
+   "rationale": {
+    "action": "TARGET",
+    "summary": "BTC 84,100 is ABOVE its 100d SMA 69,321 (+21.3%) -> regime ON; hold BTC 12.7%, BNB 12.7%, LTC 12.7%, DOGE 11.7%, XRP 11.7%, ETH 11.5%, SOL 11.3%, LINK 9.3%, ADA 6.3% (size fixed at entry: 1% equity risk to a 2xATR stop, cap 20%, gross <= 100%)",
+    "strategy": "c_btc_regime",
+    "params": {
+     "sma": 100,
+     "basket": "all"
+    },
+    "variant_id": "fab3f1bc9c2a",
+    "params_selected_on": "walk-forward train 2024-06-25..2026-06-24 (fold starting 2026-06-25, best in-sample Sharpe)",
+    "signal": {
+     "btc_close": 84099.99,
+     "btc_sma": 69321.4499,
+     "sma_days": 100,
+     "regime_on": true,
+     "btc_vs_sma": 0.21318856026985666,
+     "basket": "all"
+    },
+    "atr_pct": {
+     "BTC": 0.028,
+     "ETH": 0.0383,
+     "BNB": 0.0334,
+     "XRP": 0.0585,
+     "ADA": 0.0565,
+     "SOL": 0.0431,
+     "DOGE": 0.0562,
+     "LTC": 0.0487,
+     "LINK": 0.057
+    },
+    "shadow_signals_not_traded": {
+     "c_tsmom": {
+      "targets": {
+       "BTC": 0.1397,
+       "ETH": 0.1011,
+       "BNB": 0.1397,
+       "XRP": 0.1074,
+       "ADA": 0.0635,
+       "SOL": 0.1097,
+       "DOGE": 0.1084,
+       "LTC": 0.1397,
+       "LINK": 0.0907
+      },
+      "params": {
+       "lookback": 60
+      }
+     },
+     "c_xsmom": {
+      "targets": {
+       "ADA": 0.0885,
+       "LINK": 0.0855
+      },
+      "params": {
+       "lookback": 90,
+       "top_k": 2
+      }
+     }
+    }
+   }
   }
  ],
  "journal_shadow_tail": [
