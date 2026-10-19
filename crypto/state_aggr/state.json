@@ -2,66 +2,37 @@
  "label": "crypto-aggr-live",
  "mode": "live",
  "start_capital": 1000.0,
- "cash": 2.6885382808927716e-09,
+ "cash": 4.121291681258299e-07,
  "positions": {
-  "LINK": 34.11521205462112,
-  "ADA": 1866.7364200717925
+  "LINK": 34.20410947895781,
+  "SOL": 3.9216875763355112
  },
  "targets": {
   "SOL": 0.5,
   "LINK": 0.5
  },
- "pending": [
-  {
-   "sym": "ADA",
-   "side": "SELL",
-   "qty": 1866.7364200717925,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 0.2212,
-   "created_at": "2026-10-19T01:43:35Z",
-   "reason": "BTC 82,116 is ABOVE its 100d SMA 74,241 (+10.6%) -> regime ON; hold LINK 50% + SOL 50% (top-2 by 90d return, selection refreshed 2026-10-19 from closes to 2026-10-18: LINK +40%, SOL +34%, ADA +30%, BNB +27%)"
-  },
-  {
-   "sym": "LINK",
-   "side": "BUY",
-   "qty": 0.08889742433669312,
-   "target_weight": 0.5,
-   "ref_close": 12.041,
-   "created_at": "2026-10-19T01:43:35Z",
-   "reason": "BTC 82,116 is ABOVE its 100d SMA 74,241 (+10.6%) -> regime ON; hold LINK 50% + SOL 50% (top-2 by 90d return, selection refreshed 2026-10-19 from closes to 2026-10-18: LINK +40%, SOL +34%, ADA +30%, BNB +27%) (rebalance)"
-  },
-  {
-   "sym": "SOL",
-   "side": "BUY",
-   "qty": 3.955928174393728,
-   "target_weight": 0.5,
-   "ref_close": 104.11,
-   "created_at": "2026-10-19T01:43:35Z",
-   "reason": "BTC 82,116 is ABOVE its 100d SMA 74,241 (+10.6%) -> regime ON; hold LINK 50% + SOL 50% (top-2 by 90d return, selection refreshed 2026-10-19 from closes to 2026-10-18: LINK +40%, SOL +34%, ADA +30%, BNB +27%)"
-  }
- ],
+ "pending": [],
  "peak_equity": 1020.1979722003643,
  "halted": false,
  "halt_reasons": [],
- "last_hour": "2026-10-19T00:00:00Z",
+ "last_hour": "2026-10-19T03:00:00Z",
  "last_daily_bar": "2026-10-18",
  "last_px": {
-  "BTC": 82302.44,
-  "ETH": 2413.84,
-  "BNB": 724.45,
-  "XRP": 1.3062,
-  "ADA": 0.2212,
-  "SOL": 104.28,
-  "DOGE": 0.07942,
-  "LTC": 59.21,
-  "LINK": 12.082
+  "BTC": 82530.82,
+  "ETH": 2424.51,
+  "BNB": 726.55,
+  "XRP": 1.3102,
+  "ADA": 0.221,
+  "SOL": 105.25,
+  "DOGE": 0.07966,
+  "LTC": 59.34,
+  "LINK": 12.173
  },
  "opened_at": "2026-09-27T07:40:00Z",
- "n_fills": 37,
- "costs_paid": 8.195937426486537,
- "seq": 61,
- "last_equity": 825.1020881665014,
+ "n_fills": 40,
+ "costs_paid": 9.848800251904514,
+ "seq": 64,
+ "last_equity": 829.1242425087951,
  "strategy": "mom_top2_1x",
  "risk_rules": {
   "leverage": 1.0,
@@ -78,7 +49,7 @@
  "last_health": {
   "ok": true,
   "reasons": [],
-  "drawdown": -0.19123335798548968,
-  "loss_24h": 0.007397765644174159
+  "drawdown": -0.18729083462052099,
+  "loss_24h": 0.005106780543266742
  }
 }
