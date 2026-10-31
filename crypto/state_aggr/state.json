@@ -2,56 +2,37 @@
  "label": "crypto-aggr-live",
  "mode": "live",
  "start_capital": 1000.0,
- "cash": 6.988868150870076e-09,
+ "cash": 0.08220047429250066,
  "positions": {
-  "LINK": 34.76287066593688,
-  "SOL": 3.8602187400293775
+  "LINK": 33.606811790492216,
+  "SOL": 3.997739128221553
  },
  "targets": {
   "SOL": 0.5,
   "LINK": 0.5
  },
- "pending": [
-  {
-   "sym": "LINK",
-   "side": "SELL",
-   "qty": 1.1560588754446641,
-   "target_weight": 0.5,
-   "ref_close": 11.465,
-   "created_at": "2026-10-31T01:04:28Z",
-   "reason": "BTC 77,369 is ABOVE its 100d SMA 76,196 (+1.5%) -> regime ON; hold LINK 50% + SOL 50% (top-2 by 90d return, selection refreshed 2026-10-26 from closes to 2026-10-25: LINK +37%, SOL +37%, ADA +31%, BNB +30%) (rebalance)"
-  },
-  {
-   "sym": "SOL",
-   "side": "BUY",
-   "qty": 0.1375203881921756,
-   "target_weight": 0.5,
-   "ref_close": 96.38,
-   "created_at": "2026-10-31T01:04:28Z",
-   "reason": "BTC 77,369 is ABOVE its 100d SMA 76,196 (+1.5%) -> regime ON; hold LINK 50% + SOL 50% (top-2 by 90d return, selection refreshed 2026-10-26 from closes to 2026-10-25: LINK +37%, SOL +37%, ADA +31%, BNB +30%) (rebalance)"
-  }
- ],
+ "pending": [],
  "peak_equity": 1020.1979722003643,
  "halted": false,
  "halt_reasons": [],
- "last_hour": "2026-10-31T00:00:00Z",
+ "last_hour": "2026-10-31T03:00:00Z",
  "last_daily_bar": "2026-10-30",
  "last_px": {
-  "BTC": 77568.81,
-  "ETH": 2250.06,
-  "BNB": 708.8,
-  "XRP": 1.2603,
-  "ADA": 0.1964,
-  "SOL": 96.8,
-  "DOGE": 0.07624,
-  "LTC": 55.79,
-  "LINK": 11.664
+  "BTC": 77170.74,
+  "ETH": 2240.0,
+  "BNB": 704.45,
+  "XRP": 1.2505,
+  "ADA": 0.194,
+  "SOL": 96.26,
+  "DOGE": 0.07569,
+  "LTC": 55.37,
+  "LINK": 11.481
  },
  "opened_at": "2026-09-27T07:40:00Z",
- "n_fills": 54,
- "costs_paid": 9.928654231347974,
- "seq": 90,
- "last_equity": 779.1432974893204,
+ "n_fills": 56,
+ "costs_paid": 9.98213498238397,
+ "seq": 92,
+ "last_equity": 770.7443751235403,
  "strategy": "mom_top2_1x",
  "risk_rules": {
   "leverage": 1.0,
@@ -68,7 +49,7 @@
  "last_health": {
   "ok": true,
   "reasons": [],
-  "drawdown": -0.23628225234670575,
-  "loss_24h": 0.06485946848728297
+  "drawdown": -0.24451489208393762,
+  "loss_24h": 0.01872010168313798
  }
 }
