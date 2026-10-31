@@ -15,24 +15,24 @@
  "peak_equity": 1020.1979722003643,
  "halted": false,
  "halt_reasons": [],
- "last_hour": "2026-10-31T06:00:00Z",
+ "last_hour": "2026-10-31T09:00:00Z",
  "last_daily_bar": "2026-10-30",
  "last_px": {
-  "BTC": 77388.85,
-  "ETH": 2245.92,
-  "BNB": 702.23,
-  "XRP": 1.2492,
-  "ADA": 0.1934,
-  "SOL": 96.02,
-  "DOGE": 0.07546,
-  "LTC": 55.24,
-  "LINK": 11.457
+  "BTC": 77473.28,
+  "ETH": 2245.8,
+  "BNB": 702.64,
+  "XRP": 1.2486,
+  "ADA": 0.1929,
+  "SOL": 95.55,
+  "DOGE": 0.07511,
+  "LTC": 54.98,
+  "LINK": 11.474
  },
  "opened_at": "2026-09-27T07:40:00Z",
  "n_fills": 56,
  "costs_paid": 9.98213498238397,
  "seq": 92,
- "last_equity": 768.9783542497953,
+ "last_equity": 767.6707326599695,
  "strategy": "mom_top2_1x",
  "risk_rules": {
   "leverage": 1.0,
@@ -49,7 +49,7 @@
  "last_health": {
   "ok": true,
   "reasons": [],
-  "drawdown": -0.24624594911587427,
-  "loss_24h": 0.0029937457207487306
+  "drawdown": -0.2475276822945881,
+  "loss_24h": 0.012562789873101776
  }
 }
