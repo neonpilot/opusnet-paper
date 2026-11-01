@@ -11,18 +11,18 @@
  "halt_reasons": [
   "drawdown -10.05% from peak $839.36 breached the -10% limit"
  ],
- "last_hour": "2026-11-01T15:00:00Z",
+ "last_hour": "2026-11-01T17:00:00Z",
  "last_daily_bar": "2026-10-31",
  "last_px": {
-  "BTC": 77988.03,
-  "ETH": 2266.97,
-  "BNB": 714.85,
-  "XRP": 1.2499,
-  "ADA": 0.193,
-  "SOL": 94.78,
-  "DOGE": 0.07567,
-  "LTC": 55.68,
-  "LINK": 11.611
+  "BTC": 77980.54,
+  "ETH": 2264.6,
+  "BNB": 711.09,
+  "XRP": 1.2502,
+  "ADA": 0.1925,
+  "SOL": 94.61,
+  "DOGE": 0.07542,
+  "LTC": 55.54,
+  "LINK": 11.515
  },
  "opened_at": "2026-09-26T23:11:49Z",
  "n_fills": 72,
