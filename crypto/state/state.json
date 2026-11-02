@@ -6,28 +6,26 @@
  "positions": {},
  "targets": {},
  "pending": [],
- "peak_equity": 839.3556821960336,
- "halted": true,
- "halt_reasons": [
-  "drawdown -10.05% from peak $839.36 breached the -10% limit"
- ],
- "last_hour": "2026-11-02T01:00:00Z",
+ "peak_equity": 752.0800432221981,
+ "halted": false,
+ "halt_reasons": [],
+ "last_hour": "2026-11-02T03:00:00Z",
  "last_daily_bar": "2026-11-01",
  "last_px": {
-  "BTC": 78415.63,
-  "ETH": 2289.77,
-  "BNB": 713.82,
-  "XRP": 1.256,
-  "ADA": 0.1934,
-  "SOL": 94.94,
-  "DOGE": 0.07573,
-  "LTC": 55.8,
-  "LINK": 11.375
+  "BTC": 78634.01,
+  "ETH": 2309.25,
+  "BNB": 714.39,
+  "XRP": 1.2616,
+  "ADA": 0.1937,
+  "SOL": 95.59,
+  "DOGE": 0.07619,
+  "LTC": 56.07,
+  "LINK": 11.355
  },
  "opened_at": "2026-09-26T23:11:49Z",
  "n_fills": 72,
  "costs_paid": 13.448227887828565,
- "seq": 117,
+ "seq": 118,
  "last_equity": 752.0800432221981,
  "btc_scan": {
   "dates": [
@@ -309,16 +307,9 @@
   "sma_days": 100
  },
  "last_health": {
-  "ok": false,
-  "reasons": [
-   "drawdown -10.40% from peak $839.36 breached the -10% limit"
-  ],
-  "drawdown": -0.10397932703033996,
+  "ok": true,
+  "reasons": [],
+  "drawdown": 0.0,
   "loss_24h": 5.747021347701775e-08
- },
- "halt_kind": "auto",
- "halted_at_utc": "2026-10-30T02:15:07Z",
- "halt_breach_candle_close_utc": "2026-10-30T00:00:00Z",
- "cooloff_hours": 72,
- "reenable_at_utc": "2026-11-02T02:15:07Z"
+ }
 }
