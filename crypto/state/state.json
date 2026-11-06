@@ -14,42 +14,122 @@
   "SOL": 0.9258648450804919,
   "XRP": 67.6178010700868
  },
- "targets": {
-  "BTC": 0.12721254892589418,
-  "ETH": 0.1146548685839212,
-  "BNB": 0.12721254892589418,
-  "XRP": 0.11687745398906706,
-  "ADA": 0.06283386458298522,
-  "SOL": 0.1132340223862891,
-  "DOGE": 0.11733074817353847,
-  "LTC": 0.12721254892589418,
-  "LINK": 0.09343139550651636
- },
- "pending": [],
+ "targets": {},
+ "pending": [
+  {
+   "sym": "ADA",
+   "side": "SELL",
+   "qty": 250.56254290238215,
+   "close_all": true,
+   "target_weight": 0.0,
+   "ref_close": 0.1809,
+   "created_at": "2026-11-06T00:14:12Z",
+   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
+  },
+  {
+   "sym": "BNB",
+   "side": "SELL",
+   "qty": 0.13682376731439755,
+   "close_all": true,
+   "target_weight": 0.0,
+   "ref_close": 689.72,
+   "created_at": "2026-11-06T00:14:12Z",
+   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
+  },
+  {
+   "sym": "BTC",
+   "side": "SELL",
+   "qty": 0.0012454959812355823,
+   "close_all": true,
+   "target_weight": 0.0,
+   "ref_close": 76088.01,
+   "created_at": "2026-11-06T00:14:12Z",
+   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
+  },
+  {
+   "sym": "DOGE",
+   "side": "SELL",
+   "qty": 1188.766188301868,
+   "close_all": true,
+   "target_weight": 0.0,
+   "ref_close": 0.07117,
+   "created_at": "2026-11-06T00:14:12Z",
+   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
+  },
+  {
+   "sym": "ETH",
+   "side": "SELL",
+   "qty": 0.03826832698863923,
+   "close_all": true,
+   "target_weight": 0.0,
+   "ref_close": 2238.01,
+   "created_at": "2026-11-06T00:14:12Z",
+   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
+  },
+  {
+   "sym": "LINK",
+   "side": "SELL",
+   "qty": 6.314511859350387,
+   "close_all": true,
+   "target_weight": 0.0,
+   "ref_close": 10.677,
+   "created_at": "2026-11-06T00:14:12Z",
+   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
+  },
+  {
+   "sym": "LTC",
+   "side": "SELL",
+   "qty": 1.7809757873155712,
+   "close_all": true,
+   "target_weight": 0.0,
+   "ref_close": 51.63,
+   "created_at": "2026-11-06T00:14:12Z",
+   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
+  },
+  {
+   "sym": "SOL",
+   "side": "SELL",
+   "qty": 0.9258648450804919,
+   "close_all": true,
+   "target_weight": 0.0,
+   "ref_close": 89.33,
+   "created_at": "2026-11-06T00:14:12Z",
+   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
+  },
+  {
+   "sym": "XRP",
+   "side": "SELL",
+   "qty": 67.6178010700868,
+   "close_all": true,
+   "target_weight": 0.0,
+   "ref_close": 1.2072,
+   "created_at": "2026-11-06T00:14:12Z",
+   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
+  }
+ ],
  "peak_equity": 786.5898199183731,
  "halted": false,
  "halt_reasons": [],
- "last_hour": "2026-11-05T21:00:00Z",
- "last_daily_bar": "2026-11-04",
+ "last_hour": "2026-11-05T23:00:00Z",
+ "last_daily_bar": "2026-11-05",
  "last_px": {
-  "BTC": 75855.56,
-  "ETH": 2229.56,
-  "BNB": 688.46,
-  "XRP": 1.2221,
-  "ADA": 0.1818,
-  "SOL": 89.97,
-  "DOGE": 0.07198,
-  "LTC": 52.02,
-  "LINK": 10.697
+  "BTC": 76088.01,
+  "ETH": 2238.01,
+  "BNB": 689.72,
+  "XRP": 1.2072,
+  "ADA": 0.1809,
+  "SOL": 89.33,
+  "DOGE": 0.07117,
+  "LTC": 51.63,
+  "LINK": 10.677
  },
  "opened_at": "2026-09-26T23:11:49Z",
  "n_fills": 81,
  "costs_paid": 14.858328081376444,
- "seq": 130,
- "last_equity": 731.245146334054,
+ "seq": 131,
+ "last_equity": 728.4210907525899,
  "btc_scan": {
   "dates": [
-   "2026-08-07",
    "2026-08-08",
    "2026-08-09",
    "2026-08-10",
@@ -138,10 +218,10 @@
    "2026-11-01",
    "2026-11-02",
    "2026-11-03",
-   "2026-11-04"
+   "2026-11-04",
+   "2026-11-05"
   ],
   "close": [
-   64923.19,
    64962.6,
    64901.59,
    63970.01,
@@ -230,10 +310,10 @@
    78354.0,
    76816.0,
    77453.86,
-   80504.01
+   80504.01,
+   76088.01
   ],
   "sma": [
-   68165.51,
    68051.67,
    67918.38,
    67771.21,
@@ -322,14 +402,15 @@
    76462.94,
    76587.35,
    76707.89,
-   76875.37
+   76875.37,
+   76997.1
   ],
   "sma_days": 100
  },
  "last_health": {
   "ok": true,
   "reasons": [],
-  "drawdown": -0.07036027187595995,
-  "loss_24h": -0.06193231765119123
+  "drawdown": -0.07395052375813815,
+  "loss_24h": -0.06843136421413154
  }
 }
