@@ -2,55 +2,31 @@
  "label": "crypto-aggr-live",
  "mode": "live",
  "start_capital": 1000.0,
- "cash": 1.514538494618023e-09,
- "positions": {
-  "LINK": 33.50550812181721,
-  "SOL": 4.011695410558235
- },
+ "cash": 726.6258438469656,
+ "positions": {},
  "targets": {},
- "pending": [
-  {
-   "sym": "LINK",
-   "side": "SELL",
-   "qty": 33.50550812181721,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 10.677,
-   "created_at": "2026-11-06T02:16:21Z",
-   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD). Top-2 selection of 2026-11-02 (LINK +39%, SOL +29%, LTC +26%, BTC +23%) is parked."
-  },
-  {
-   "sym": "SOL",
-   "side": "SELL",
-   "qty": 4.011695410558235,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 89.33,
-   "created_at": "2026-11-06T02:16:21Z",
-   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD). Top-2 selection of 2026-11-02 (LINK +39%, SOL +29%, LTC +26%, BTC +23%) is parked."
-  }
- ],
+ "pending": [],
  "peak_equity": 1020.1979722003643,
  "halted": false,
  "halt_reasons": [],
- "last_hour": "2026-11-06T01:00:00Z",
+ "last_hour": "2026-11-06T03:00:00Z",
  "last_daily_bar": "2026-11-05",
  "last_px": {
-  "BTC": 76130.01,
-  "ETH": 2241.04,
-  "BNB": 694.19,
-  "XRP": 1.2168,
-  "ADA": 0.1853,
-  "SOL": 90.23,
-  "DOGE": 0.07208,
-  "LTC": 52.4,
-  "LINK": 10.867
+  "BTC": 75912.71,
+  "ETH": 2236.26,
+  "BNB": 693.76,
+  "XRP": 1.2061,
+  "ADA": 0.1841,
+  "SOL": 89.78,
+  "DOGE": 0.07186,
+  "LTC": 52.53,
+  "LINK": 10.851
  },
  "opened_at": "2026-09-27T07:40:00Z",
- "n_fills": 64,
- "costs_paid": 10.029383418030598,
- "seq": 106,
- "last_equity": 726.0796336559717,
+ "n_fills": 66,
+ "costs_paid": 11.485547433752945,
+ "seq": 108,
+ "last_equity": 726.6258438469656,
  "strategy": "mom_top2_1x",
  "risk_rules": {
   "leverage": 1.0,
@@ -67,7 +43,7 @@
  "last_health": {
   "ok": true,
   "reasons": [],
-  "drawdown": -0.28829535693943575,
-  "loss_24h": -0.055566857029321626
+  "drawdown": -0.28775996066745946,
+  "loss_24h": -0.06031847184849237
  }
 }
