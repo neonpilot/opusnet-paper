@@ -2,132 +2,31 @@
  "label": "crypto-live",
  "mode": "live",
  "start_capital": 1000.0,
- "cash": 8.472518686630792e-08,
- "positions": {
-  "ADA": 250.56254290238215,
-  "BNB": 0.13682376731439755,
-  "BTC": 0.0012454959812355823,
-  "DOGE": 1188.766188301868,
-  "ETH": 0.03826832698863923,
-  "LINK": 6.314511859350387,
-  "LTC": 1.7809757873155712,
-  "SOL": 0.9258648450804919,
-  "XRP": 67.6178010700868
- },
+ "cash": 735.091615231855,
+ "positions": {},
  "targets": {},
- "pending": [
-  {
-   "sym": "ADA",
-   "side": "SELL",
-   "qty": 250.56254290238215,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 0.1809,
-   "created_at": "2026-11-06T00:14:12Z",
-   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
-  },
-  {
-   "sym": "BNB",
-   "side": "SELL",
-   "qty": 0.13682376731439755,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 689.72,
-   "created_at": "2026-11-06T00:14:12Z",
-   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
-  },
-  {
-   "sym": "BTC",
-   "side": "SELL",
-   "qty": 0.0012454959812355823,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 76088.01,
-   "created_at": "2026-11-06T00:14:12Z",
-   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
-  },
-  {
-   "sym": "DOGE",
-   "side": "SELL",
-   "qty": 1188.766188301868,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 0.07117,
-   "created_at": "2026-11-06T00:14:12Z",
-   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
-  },
-  {
-   "sym": "ETH",
-   "side": "SELL",
-   "qty": 0.03826832698863923,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 2238.01,
-   "created_at": "2026-11-06T00:14:12Z",
-   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
-  },
-  {
-   "sym": "LINK",
-   "side": "SELL",
-   "qty": 6.314511859350387,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 10.677,
-   "created_at": "2026-11-06T00:14:12Z",
-   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
-  },
-  {
-   "sym": "LTC",
-   "side": "SELL",
-   "qty": 1.7809757873155712,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 51.63,
-   "created_at": "2026-11-06T00:14:12Z",
-   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
-  },
-  {
-   "sym": "SOL",
-   "side": "SELL",
-   "qty": 0.9258648450804919,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 89.33,
-   "created_at": "2026-11-06T00:14:12Z",
-   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
-  },
-  {
-   "sym": "XRP",
-   "side": "SELL",
-   "qty": 67.6178010700868,
-   "close_all": true,
-   "target_weight": 0.0,
-   "ref_close": 1.2072,
-   "created_at": "2026-11-06T00:14:12Z",
-   "reason": "BTC 76,088 is BELOW its 100d SMA 76,997 (-1.2%) -> regime OFF; hold 100% cash (USD)"
-  }
- ],
+ "pending": [],
  "peak_equity": 786.5898199183731,
  "halted": false,
  "halt_reasons": [],
- "last_hour": "2026-11-05T23:00:00Z",
+ "last_hour": "2026-11-06T01:00:00Z",
  "last_daily_bar": "2026-11-05",
  "last_px": {
-  "BTC": 76088.01,
-  "ETH": 2238.01,
-  "BNB": 689.72,
-  "XRP": 1.2072,
-  "ADA": 0.1809,
-  "SOL": 89.33,
-  "DOGE": 0.07117,
-  "LTC": 51.63,
-  "LINK": 10.677
+  "BTC": 76130.01,
+  "ETH": 2241.04,
+  "BNB": 694.19,
+  "XRP": 1.2168,
+  "ADA": 0.1853,
+  "SOL": 90.23,
+  "DOGE": 0.07208,
+  "LTC": 52.4,
+  "LINK": 10.867
  },
  "opened_at": "2026-09-26T23:11:49Z",
- "n_fills": 81,
- "costs_paid": 14.858328081376444,
- "seq": 131,
- "last_equity": 728.4210907525899,
+ "n_fills": 90,
+ "costs_paid": 16.24073978976635,
+ "seq": 140,
+ "last_equity": 735.091615231855,
  "btc_scan": {
   "dates": [
    "2026-08-08",
@@ -410,7 +309,7 @@
  "last_health": {
   "ok": true,
   "reasons": [],
-  "drawdown": -0.07395052375813815,
-  "loss_24h": -0.06843136421413154
+  "drawdown": -0.06547021507583484,
+  "loss_24h": -0.06062481081379367
  }
 }
