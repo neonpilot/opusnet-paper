@@ -1,0 +1,125 @@
+{
+ "schema": 1,
+ "generated_utc": "2026-11-14T00:58:40+00:00",
+ "generated_awst": "2026-11-14 08:58",
+ "market": {
+  "state": "closed",
+  "ny_time": "2026-11-13 19:58",
+  "note": "US market closed"
+ },
+ "source": "Yahoo Finance via yfinance (quotes may be delayed)",
+ "prices": {
+  "GLD": {
+   "last": 355.45,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 354.89,
+   "chg_pct": 0.00158
+  },
+  "SLV": {
+   "last": 44.13,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 45.12,
+   "chg_pct": -0.02194
+  },
+  "NVDA": {
+   "last": 162.85,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 166.19,
+   "chg_pct": -0.0201
+  },
+  "SPY": {
+   "last": 754.37,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 757.12,
+   "chg_pct": -0.00363
+  },
+  "QQQ": {
+   "last": 679.89,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 688.17,
+   "chg_pct": -0.01203
+  },
+  "TLT": {
+   "last": 79.38,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 79.72,
+   "chg_pct": -0.00426
+  },
+  "IEF": {
+   "last": 90.04,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 90.21,
+   "chg_pct": -0.00188
+  },
+  "UUP": {
+   "last": 29.5,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 29.42,
+   "chg_pct": 0.00272
+  },
+  "USO": {
+   "last": 145.58,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 146.07,
+   "chg_pct": -0.00335
+  },
+  "CPER": {
+   "last": 36.53,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 37.24,
+   "chg_pct": -0.01907
+  },
+  "COPX": {
+   "last": 69.23,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 71.01,
+   "chg_pct": -0.02507
+  },
+  "BIL": {
+   "last": 91.53,
+   "time_utc": "2026-11-13T21:00:00+00:00",
+   "time_awst": "Sat 14 Nov 05:00",
+   "prev_close": 91.5,
+   "chg_pct": 0.00033
+  }
+ },
+ "account": {
+  "ledger_last_bar": "2026-11-13",
+  "cash": 456.22,
+  "positions": [
+   {
+    "ticker": "CPER",
+    "shares": 4.9249,
+    "last": 36.53,
+    "value": 179.91
+   },
+   {
+    "ticker": "USO",
+    "shares": 0.855,
+    "last": 145.58,
+    "value": 124.47
+   },
+   {
+    "ticker": "SPY",
+    "shares": 0.2599,
+    "last": 754.37,
+    "value": 196.06
+   }
+  ],
+  "equity_mark": 956.66,
+  "equity_ledger_close": 956.6608,
+  "pending_orders": 0,
+  "note": "Read-only mark of the paper ledger; fills are booked by the daily run, not here."
+ }
+}
